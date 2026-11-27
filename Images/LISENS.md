@@ -14,6 +14,9 @@ Alle bilder og illustrasjoner i mappen `Images/` er **egenproduserte** for dette
   - `sautso-canyon.jpg`
   - `strandflata-vega.jpg`
   - `stryneelva-landformer.jpg`
+  - `telemark-boelva-delta.jpg`
+  - `telemark-gausta-rjukan.jpg`
+  - `telemark-kalkstein-rognstranda.jpg`
   - `trykkavlastning-granitt.jpg`
   - `voringsfossen-vdal.jpg`
 
