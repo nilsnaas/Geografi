@@ -3,179 +3,163 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Klassisk lesning · Kapittel 3 – Nils sin geografibok</title>
+  <title>Klassisk lesning · Geografi – Nils sin geografibok</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
             sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
             serif: ['Source Serif 4', 'Georgia', 'serif'],
-          },
-          colors: {
-            nordic: {
-              50: '#f4f7f6',
-              100: '#e3ebe8',
-              200: '#c6d8d2',
-              600: '#1f6f66',
-              700: '#185952',
-              800: '#154742',
-              900: '#123a36',
-            }
           }
         }
       }
     }
   </script>
   <style>
-    body { background-color: #fafaf9; color: #1c1917; font-feature-settings: "cv02", "cv03", "cv04", "cv11"; transition: background-color 200ms ease, color 200ms ease; }
-    .scroll-mt-header { scroll-margin-top: 2rem; }
+    :root {
+      --bg-app: #f5f5f4;
+      --bg-panel: #ffffff;
+      --bg-elevated: #fafaf9;
+      --border-subtle: rgba(120, 113, 108, 0.22);
+      --text-primary: #1c1917;
+      --text-secondary: #57534e;
+    }
+    html.dark-theme {
+      --bg-app: #090d16;
+      --bg-panel: #0f1623;
+      --bg-elevated: #151e30;
+      --border-subtle: rgba(148, 163, 184, 0.16);
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+    }
+    body {
+      background-color: var(--bg-app);
+      color: var(--text-primary);
+      font-family: 'Inter', system-ui, sans-serif;
+      transition: background-color 200ms ease, color 200ms ease;
+    }
+    .panel-surface { background-color: var(--bg-panel); border-color: var(--border-subtle); }
+    .elevated-surface { background-color: var(--bg-elevated); border-color: var(--border-subtle); }
+    .text-sec { color: var(--text-secondary); }
+    .scroll-mt-header { scroll-margin-top: 5.5rem; }
     .glossary-term {
       font-weight: 700; color: #185952; border-bottom: 1.5px dotted #1f6f66;
-      padding: 0 2px; border-radius: 3px; transition: background-color 150ms ease, color 150ms ease;
-      cursor: help; text-align: left;
+      padding: 0 2px; border-radius: 3px; cursor: help; transition: background-color 150ms ease;
     }
-    .glossary-term:hover, .glossary-term:focus-visible { background-color: #e3ebe8; color: #123a36; outline: none; }
+    html.dark-theme .glossary-term { color: #34d399; border-bottom-color: #10b981; }
+    .glossary-term:hover { background-color: rgba(16, 185, 129, 0.16); }
     #glossary-tooltip { transition: opacity 150ms ease, transform 150ms ease; }
     #glossary-tooltip.hidden-tooltip { opacity: 0; pointer-events: none; transform: translateY(4px); }
     #glossary-tooltip.visible-tooltip { opacity: 1; pointer-events: auto; transform: translateY(0); }
-
-    html.dark-theme body { background-color: #090d16 !important; color: #f1f5f9 !important; }
-    html.dark-theme header,
-    html.dark-theme aside > div,
-    html.dark-theme #mobile-drawer nav,
-    html.dark-theme main .article-card,
-    html.dark-theme main .bg-white { background-color: #0f1623 !important; border-color: rgba(148, 163, 184, 0.18) !important; color: #f1f5f9 !important; }
-    html.dark-theme main .elevated-surface,
-    html.dark-theme main .bg-stone-50 { background-color: #151e30 !important; border-color: rgba(148, 163, 184, 0.18) !important; color: #e2e8f0 !important; }
-    html.dark-theme aside .bg-stone-50 { background-color: #151e30 !important; border-color: rgba(148, 163, 184, 0.2) !important; color: #e2e8f0 !important; }
-    html.dark-theme main .bg-nordic-50,
-    html.dark-theme aside .bg-nordic-50 { background-color: rgba(16, 185, 129, 0.14) !important; border-color: rgba(16, 185, 129, 0.35) !important; color: #6ee7b7 !important; }
-    html.dark-theme .text-stone-900,
-    html.dark-theme .text-stone-800 { color: #f1f5f9 !important; }
-    html.dark-theme .text-stone-700,
-    html.dark-theme .text-stone-600 { color: #cbd5e1 !important; }
-    html.dark-theme .text-stone-500,
-    html.dark-theme .text-sec,
-    html.dark-theme .text-stone-400 { color: #94a3b8 !important; }
-    html.dark-theme .text-nordic-900,
-    html.dark-theme .text-nordic-800,
-    html.dark-theme .text-nordic-700 { color: #34d399 !important; }
-    html.dark-theme .border-stone-200,
-    html.dark-theme .border-stone-200\/90,
-    html.dark-theme .border-stone-200\/80,
-    html.dark-theme .border-stone-300 { border-color: rgba(148, 163, 184, 0.18) !important; }
-    html.dark-theme .nav-link:hover { background-color: rgba(148, 163, 184, 0.12) !important; color: #f8fafc !important; }
-    html.dark-theme .nav-link.active-nav { background-color: rgba(16, 185, 129, 0.18) !important; color: #6ee7b7 !important; font-weight: 600; }
-    html.dark-theme .glossary-term { color: #34d399 !important; border-bottom-color: #10b981 !important; }
-    html.dark-theme .glossary-term:hover,
-    html.dark-theme .glossary-term:focus-visible { background-color: rgba(16, 185, 129, 0.18) !important; color: #6ee7b7 !important; }
-    html.dark-theme .theme-toggle-btn { background-color: #151e30 !important; border-color: rgba(148, 163, 184, 0.25) !important; color: #f1f5f9 !important; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.25); border-radius: 999px; }
+    @media print {
+      header, aside, #mobile-drawer, .no-print { display: none !important; }
+      body, .panel-surface { background: #fff !important; color: #000 !important; border: none !important; }
+    }
   </style>
 </head>
-<body class="antialiased selection:bg-nordic-100 selection:text-nordic-900">
+<body class="min-h-screen flex flex-col">
 
   <!-- Top reading progress bar -->
-  <div class="fixed top-0 left-0 right-0 h-1 bg-stone-200 z-50">
-    <div id="reading-progress" class="h-full bg-nordic-600 transition-all duration-150" style="width: 0%"></div>
+  <div class="fixed top-0 left-0 right-0 h-1 bg-slate-500/20 z-50">
+    <div id="reading-progress" class="h-full bg-emerald-500 transition-all duration-150" style="width: 0%"></div>
   </div>
 
-  <!-- Mobile Header -->
-  <header class="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-stone-200 px-4 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0">NN</div>
-      <div>
-        <span class="text-[11px] font-semibold uppercase tracking-wider text-nordic-700 block">Nils sin geografibok</span>
-        <span class="font-serif font-bold text-base text-stone-900 leading-tight block">Kapittel 3 · Klassisk</span>
+  <!-- Top Navigation Bar (Identical structure & look to index.html) -->
+  <header class="sticky top-0 panel-surface border-b px-3 sm:px-5 py-2.5 shrink-0 z-30">
+    <div class="flex flex-wrap items-center justify-between gap-2.5">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-emerald-700 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shadow-sm shrink-0">NN</div>
+        <div class="leading-tight">
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-semibold uppercase tracking-wider text-emerald-500">Nils sin geografibok</span>
+            <span class="text-xs text-sec hidden sm:inline">·</span>
+            <span class="text-xs font-medium text-sec hidden sm:inline">Kapittel 3 · Klassisk lesning</span>
+          </div>
+          <h1 class="font-bold text-sm sm:text-base tracking-tight">Naturgeografi · Kapittel 3</h1>
+        </div>
       </div>
-    </div>
-    <div class="flex items-center gap-2">
-      <button type="button" aria-label="Bytt mellom mørkt og lyst tema" class="theme-toggle-btn inline-flex items-center justify-center p-1.5 rounded-lg border border-stone-300 text-sm text-stone-700 hover:bg-stone-100"><span class="theme-toggle-icon">🌙</span></button>
-      <button id="mobile-menu-btn" type="button" aria-label="Åpne innholdsmeny" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-stone-300 text-sm font-medium text-stone-700 hover:bg-stone-100">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        Innhold
-      </button>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <a href="index.html" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors">🌳 App / Kunnskapstre</a>
+
+        <div class="elevated-surface border rounded-lg p-0.5 flex items-center text-xs font-medium" title="Bytt mellom kortversjon og full læreboktekst">
+          <button id="mode-enkel" type="button" class="px-2.5 py-1 rounded-md transition-colors text-sec hover:text-current">Enkel</button>
+          <button id="mode-full" type="button" class="px-2.5 py-1 rounded-md transition-colors bg-emerald-600 text-white font-semibold">Full</button>
+        </div>
+
+        <button id="btn-ordliste" type="button" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors hidden sm:inline-flex">Ordliste</button>
+        <button id="btn-print" type="button" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors hidden md:inline-flex">PDF / Skriv ut</button>
+        <button id="mobile-menu-btn" type="button" class="lg:hidden elevated-surface border px-2.5 py-1.5 rounded-lg text-xs font-medium">☰ Meny</button>
+
+        <button id="btn-theme" type="button" aria-label="Bytt mellom mørkt og lyst tema" title="Bytt mellom mørkt og lyst tema" class="elevated-surface border hover:border-emerald-500/50 p-1.5 rounded-lg text-xs transition-colors">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
     </div>
   </header>
 
   <!-- Mobile Drawer -->
   <div id="mobile-drawer" class="lg:hidden fixed inset-0 z-50 hidden">
-    <div id="mobile-drawer-backdrop" class="absolute inset-0 bg-stone-900/40 backdrop-blur-xs"></div>
-    <nav class="relative w-80 max-w-[88vw] h-full bg-white border-r border-stone-200 p-5 overflow-y-auto shadow-xl">
-      <div class="flex items-center justify-between mb-5 pb-4 border-b border-stone-200">
-        <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0">NN</div>
-          <div>
-            <p class="text-[11px] font-semibold uppercase tracking-wider text-nordic-700">Nils sin geografibok</p>
-            <p class="font-serif font-bold text-base text-stone-900 leading-tight">Kapittel 3</p>
-          </div>
-        </div>
-        <button id="mobile-drawer-close" type="button" aria-label="Lukk meny" class="p-1.5 rounded-md text-stone-500 hover:bg-stone-100">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
+    <div id="mobile-drawer-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-xs"></div>
+    <nav class="relative w-80 max-w-[88vw] h-full panel-surface border-r p-4 overflow-y-auto shadow-xl">
+      <div class="flex items-center justify-between mb-3 pb-3 border-b border-slate-500/15">
+        <p class="text-xs font-bold uppercase tracking-wider text-emerald-500">Innhold · Kapittel 3</p>
+        <button id="mobile-drawer-close" type="button" class="elevated-surface border px-2 py-1 rounded-lg text-xs">✕</button>
       </div>
-      <div id="mobile-nav-list" class="space-y-2 text-sm"></div>
+      <div id="mobile-nav-list" class="space-y-2"></div>
     </nav>
   </div>
 
-  <!-- Main Layout Wrapper -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-    <div class="lg:grid lg:grid-cols-[290px_1fr] lg:gap-10 xl:gap-14 items-start">
+  <!-- Main Workspace (Identical sidebar style to index.html + full classic scroll page) -->
+  <div class="max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-[310px_1fr] xl:grid-cols-[330px_1fr] gap-5 items-start">
 
-      <!-- Left Sticky Sidebar -->
-      <aside class="hidden lg:block sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto">
-        <div class="bg-white border border-stone-200/90 rounded-2xl p-5 shadow-xs">
-          <div class="flex items-center justify-between gap-2 pb-3.5 mb-3.5 border-b border-stone-200">
-            <div class="flex items-center gap-2.5 min-w-0">
-              <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0 shadow-xs">NN</div>
-              <span class="text-xs font-semibold text-stone-800 leading-snug truncate">Nils sin geografibok</span>
-            </div>
-            <button type="button" aria-label="Bytt mellom mørkt og lyst tema" title="Bytt mellom mørkt og lyst tema" class="theme-toggle-btn inline-flex items-center gap-1 px-2 py-1 rounded-lg border border-stone-200 bg-stone-50 hover:bg-stone-100 text-[11px] font-medium text-stone-700 transition-colors shrink-0">
-              <span class="theme-toggle-icon">🌙</span>
-            </button>
-          </div>
-
-          <div class="pb-4 mb-4 border-b border-stone-200">
-            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-nordic-700 bg-nordic-50 px-2.5 py-1 rounded-full">
-              Kapittel 3 · Alle temaer
-            </span>
-            <h2 class="font-serif text-lg font-bold text-stone-900 mt-2.5 leading-snug">Ytre krefter og landformene i Norge</h2>
-            <p class="text-xs text-stone-500 mt-1">Naturgeografi · Samlet lesning</p>
-          </div>
-
-          <nav aria-label="Innholdsfortegnelse">
-            <div id="desktop-nav-list" class="space-y-2 text-sm"></div>
-          </nav>
-
-          <div class="mt-5 pt-4 border-t border-stone-200 space-y-2">
-            <a href="index.html" class="flex items-center justify-between px-3 py-2 rounded-lg bg-stone-900 hover:bg-stone-800 text-xs font-semibold text-white transition-colors">
-              <span>📖 Tilbake til Kunnskapstre / App</span>
-            </a>
-            <div class="text-xs text-stone-500 flex items-center gap-2 pt-1">
-              <span class="w-2 h-2 rounded-full bg-nordic-600 shrink-0"></span>
-              <span>Hold musepekeren over <strong class="text-nordic-700 font-semibold">uthevede begreper</strong> for forklaring.</span>
-            </div>
-          </div>
+    <!-- LEFT SIDEBAR (Same accordion menu as index.html) -->
+    <aside class="hidden lg:flex panel-surface border rounded-2xl flex-col sticky top-20 max-h-[calc(100vh-6rem)] overflow-hidden">
+      <div class="px-4 py-3 border-b border-slate-500/15 flex items-center justify-between gap-2 shrink-0">
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-wider text-emerald-500">Innhold · Kapittel 3</p>
+          <p id="sidebar-progress-text" class="text-xs text-sec mt-0.5">1 / 14 temaer</p>
         </div>
-      </aside>
+        <button id="btn-toggle-all-chapters" type="button" class="elevated-surface border px-2.5 py-1 rounded-lg text-[11px] font-medium text-sec hover:text-current transition-colors">Lukk alle</button>
+      </div>
+      <nav id="desktop-nav-list" aria-label="Kapittelmeny" class="flex-1 overflow-y-auto p-3 space-y-2"></nav>
+      <div class="px-4 py-2.5 border-t border-slate-500/15 text-[11px] text-sec shrink-0">
+        <span class="block font-semibold text-emerald-500">Kilde: Nils</span>
+        Hold over <strong class="text-emerald-500">uthevede begreper</strong> for forklaring.
+      </div>
+    </aside>
 
-      <!-- Main Article Content (All 14 topics in one seamless classic page) -->
-      <main id="classic-main" class="max-w-3xl space-y-12"></main>
+    <!-- RIGHT MAIN CONTENT (Full classic reading layout) -->
+    <main id="classic-main" class="min-w-0 space-y-8"></main>
+  </div>
 
+  <!-- Modal Backdrop (Ordliste) -->
+  <div id="modal-backdrop" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="panel-surface border rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-500/20">
+        <h3 id="modal-title" class="font-serif text-xl font-bold"></h3>
+        <button id="modal-close" type="button" class="p-1.5 rounded-lg text-sec hover:text-current elevated-surface border">✕</button>
+      </div>
+      <div id="modal-body" class="p-6 overflow-y-auto space-y-4 text-sm"></div>
     </div>
   </div>
 
   <!-- Floating Glossary Tooltip -->
-  <div id="glossary-tooltip" role="tooltip" class="hidden-tooltip fixed z-50 max-w-xs sm:max-w-sm bg-stone-900 text-stone-100 rounded-xl p-4 shadow-2xl border border-stone-700">
+  <div id="glossary-tooltip" role="tooltip" class="hidden-tooltip fixed z-50 max-w-xs sm:max-w-sm bg-slate-900 text-slate-100 rounded-xl p-4 shadow-2xl border border-slate-700">
     <div class="flex items-start justify-between gap-3 mb-1">
       <span id="tooltip-title" class="font-serif font-bold text-base text-emerald-300"></span>
-      <button id="tooltip-close" type="button" aria-label="Lukk begrepsforklaring" class="text-stone-400 hover:text-white text-xs px-1">✕</button>
+      <button id="tooltip-close" type="button" aria-label="Lukk begrepsforklaring" class="text-slate-400 hover:text-white text-xs px-1">✕</button>
     </div>
-    <p id="tooltip-body" class="text-xs sm:text-sm text-stone-200 leading-relaxed"></p>
+    <p id="tooltip-body" class="text-xs sm:text-sm text-slate-200 leading-relaxed"></p>
   </div>
 
   <script>
@@ -768,36 +752,39 @@
 
     const expandedGroups = new Set(CHAPTER_GROUPS.map(gr => gr.id));
     let activeSectionId = 'n1';
+    let readingMode = 'full';
 
     function renderClassicNav(targetId, closeDrawerOnClick = false) {
       const el = document.getElementById(targetId);
       if (!el) return;
       const groupsHtml = CHAPTER_GROUPS.map(group => {
         const isOpen = expandedGroups.has(group.id);
-        const subLinks = group.nodeIds.map(nid => {
+        const hasActive = group.nodeIds.includes(activeSectionId);
+        const itemsHtml = group.nodeIds.map(nid => {
           const n = NODES.find(x => x.id === nid);
           if (!n) return '';
-          const active = activeSectionId === n.id;
-          return `<a href="#${n.id}" data-target="${n.id}" class="nav-link block px-2.5 py-1.5 rounded-lg text-xs text-stone-600 hover:text-stone-900 transition-colors ${active ? 'active-nav bg-nordic-50 text-nordic-800 font-semibold' : ''}">${n.title}</a>`;
+          const isActive = activeSectionId === n.id;
+          return `
+            <a href="#${n.id}" data-target="${n.id}" class="nav-link block w-full text-left px-3 py-2 rounded-lg text-xs transition-colors leading-snug ${isActive ? 'bg-emerald-600 text-white font-semibold shadow-sm' : 'hover:bg-slate-500/10 text-sec hover:text-current'}">${n.title}</a>
+          `;
         }).join('');
         return `
-          <div class="border border-stone-200 rounded-xl overflow-hidden bg-stone-50/50">
-            <button type="button" data-group="${group.id}" class="classic-group-btn w-full px-3 py-2 flex items-center justify-between gap-2 text-left text-xs font-bold text-stone-800 hover:bg-stone-100/70 transition-colors">
-              <span class="flex items-center gap-2 min-w-0">
+          <div class="elevated-surface border rounded-xl overflow-hidden ${hasActive ? 'border-emerald-500/40' : ''}">
+            <button type="button" data-group="${group.id}" class="classic-group-btn w-full px-3 py-2.5 flex items-center justify-between gap-2 text-left hover:bg-slate-500/10 transition-colors">
+              <span class="flex items-center gap-2 text-xs font-bold tracking-tight min-w-0">
                 <span class="w-2 h-2 rounded-full ${group.dot} shrink-0"></span>
                 <span class="truncate">${group.title}</span>
               </span>
-              <span class="text-stone-400 shrink-0">${isOpen ? '▾' : '▸'}</span>
+              <span class="text-xs text-sec shrink-0">${isOpen ? '▾' : '▸'}</span>
             </button>
-            <div class="${isOpen ? 'block' : 'hidden'} px-2 pb-2 pt-0.5 space-y-0.5">
-              ${subLinks}
+            <div class="${isOpen ? 'block' : 'hidden'} px-2 pb-2 pt-0.5 space-y-1 border-t border-slate-500/10">
+              ${itemsHtml}
             </div>
           </div>
         `;
       }).join('');
 
-      const glossaryLink = `<a href="#ordliste" data-target="ordliste" class="nav-link block px-3 py-2 rounded-lg text-xs font-semibold text-stone-700 hover:text-stone-900 border border-stone-200 transition-colors ${activeSectionId === 'ordliste' ? 'active-nav bg-nordic-50 text-nordic-800' : ''}">📖 Samlet ordliste</a>`;
-
+      const glossaryLink = `<a href="#ordliste" data-target="ordliste" class="nav-link block px-3 py-2.5 rounded-xl text-xs font-bold border transition-colors ${activeSectionId === 'ordliste' ? 'bg-emerald-600 text-white border-emerald-600' : 'elevated-surface text-sec hover:text-current'}">📖 Samlet ordliste</a>`;
       el.innerHTML = groupsHtml + glossaryLink;
 
       el.querySelectorAll('.classic-group-btn').forEach(btn => {
@@ -820,42 +807,42 @@
     function renderClassicContent() {
       const main = document.getElementById('classic-main');
       const introHeader = `
-        <section class="bg-white border border-stone-200 rounded-2xl p-6 sm:p-10 shadow-xs">
-          <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-nordic-700 mb-3">
-            <span class="bg-nordic-50 border border-nordic-200/70 px-2.5 py-1 rounded-md">Naturgeografi</span>
-            <span class="text-stone-400">/</span>
-            <span>Kapittel 3 · Komplett klassisk visning</span>
+        <section class="panel-surface border rounded-2xl p-6 sm:p-9 shadow-xs">
+          <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-emerald-500 mb-3">
+            <span class="elevated-surface border px-2.5 py-1 rounded-md">Naturgeografi</span>
+            <span class="text-sec">/</span>
+            <span>Kapittel 3 · Samlet klassisk lesning</span>
           </div>
-          <h1 class="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-stone-900 mb-3">Ytre krefter og landformene i Norge</h1>
-          <p class="text-lg text-stone-600 leading-relaxed">
+          <h1 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-3">Ytre krefter og landformene i Norge</h1>
+          <p class="text-base sm:text-lg text-sec leading-relaxed">
             Fra forvitring og erosjon til elvelandformer, isbreer, Norges gamle og unge landformer, løsmasser fra istiden og skredfare. Bruk menyen til venstre for å hoppe rett til ønsket tema, eller les kapittelet fortløpende nedover.
           </p>
         </section>
       `;
 
       const topicSections = NODES.map(n => `
-        <section id="${n.id}" class="scroll-mt-header bg-white border border-stone-200 rounded-2xl p-6 sm:p-9 shadow-xs space-y-5">
-          <div class="border-l-4 border-nordic-600 pl-4">
-            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">${n.part}</span>
-            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1">${n.title}</h2>
-            <p class="text-sm text-stone-500 mt-1">${n.subtitle}</p>
+        <section id="${n.id}" class="scroll-mt-header panel-surface border rounded-2xl p-6 sm:p-9 shadow-xs space-y-5">
+          <div class="border-l-4 border-emerald-500 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-500">${n.part}</span>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold mt-1">${n.title}</h2>
+            <p class="text-sm text-sec mt-1">${n.subtitle}</p>
           </div>
 
-          <figure class="overflow-hidden rounded-xl border border-stone-200 bg-stone-50">
+          <figure class="overflow-hidden rounded-xl border border-slate-500/20 elevated-surface">
             <img src="${n.image}" alt="${n.title}" class="w-full ${n.image.endsWith('.svg') ? 'object-contain bg-white p-2 max-h-80' : 'h-56 sm:h-64 object-cover'}" />
-            <figcaption class="px-4 py-2 text-xs text-stone-500 border-t border-stone-200/80">${n.caption}</figcaption>
+            <figcaption class="px-4 py-2 text-xs text-sec border-t border-slate-500/15">${n.caption}</figcaption>
           </figure>
 
-          <div class="space-y-4 text-stone-700 leading-relaxed text-sm sm:text-base">
-            ${n.full}
+          <div class="space-y-4 leading-relaxed text-sm sm:text-base">
+            ${readingMode === 'enkel' ? n.enkel : n.full}
           </div>
 
           <div class="space-y-3">
             ${n.caseHtml}
           </div>
 
-          <div class="bg-stone-50 border border-stone-200 rounded-xl p-4 text-xs sm:text-sm text-stone-700 space-y-1">
-            <p class="font-bold uppercase tracking-wider text-nordic-800 text-xs">Læringsfokus &amp; refleksjon</p>
+          <div class="elevated-surface border rounded-xl p-4 text-xs sm:text-sm text-sec space-y-1">
+            <p class="font-bold uppercase tracking-wider text-emerald-500 text-xs">Læringsfokus &amp; refleksjon</p>
             <p><strong>Kompetansemål:</strong> ${n.goal}</p>
             <p><strong>Tenk over:</strong> ${n.reflection}</p>
           </div>
@@ -863,39 +850,57 @@
       `).join('');
 
       const glossarySection = `
-        <section id="ordliste" class="scroll-mt-header space-y-6 pb-12">
-          <div class="border-l-4 border-nordic-600 pl-4">
-            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">Begreper</span>
-            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Samlet ordliste</h2>
+        <section id="ordliste" class="scroll-mt-header panel-surface border rounded-2xl p-6 sm:p-9 space-y-6">
+          <div class="border-l-4 border-emerald-500 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-500">Begreper</span>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold mt-1">Samlet ordliste</h2>
           </div>
           <div class="grid sm:grid-cols-2 gap-4">
             ${Object.values(GLOSSARY).map(item => `
-              <div class="bg-white border border-stone-200 rounded-xl p-4 shadow-xs">
-                <p class="font-serif font-bold text-base text-nordic-800 mb-1">${item.title}</p>
-                <p class="text-sm text-stone-600 leading-relaxed">${item.definition}</p>
+              <div class="elevated-surface border rounded-xl p-4">
+                <p class="font-serif font-bold text-base text-emerald-500 mb-1">${item.title}</p>
+                <p class="text-sm text-sec leading-relaxed">${item.definition}</p>
               </div>
             `).join('')}
           </div>
-          <p class="text-xs text-stone-500 pt-4 border-t border-stone-200">
-            <strong>Lisens:</strong> Alle fotografiske illustrasjoner og geologiske figurer i <code>Images/</code> er egenproduserte for dette undervisningsopplegget under åpen lisens (CC0 1.0 / CC BY 4.0).
-          </p>
         </section>
       `;
 
       main.innerHTML = introHeader + topicSections + glossarySection;
+      bindTooltips();
     }
 
-    renderClassicContent();
-    renderClassicNav('desktop-nav-list', false);
-    renderClassicNav('mobile-nav-list', true);
+    const btnToggleAll = document.getElementById('btn-toggle-all-chapters');
+    if (btnToggleAll) {
+      btnToggleAll.addEventListener('click', () => {
+        if (expandedGroups.size === CHAPTER_GROUPS.length) {
+          expandedGroups.clear();
+          btnToggleAll.textContent = 'Åpne alle';
+        } else {
+          CHAPTER_GROUPS.forEach(gr => expandedGroups.add(gr.id));
+          btnToggleAll.textContent = 'Lukk alle';
+        }
+        renderClassicNav('desktop-nav-list', false);
+        renderClassicNav('mobile-nav-list', true);
+      });
+    }
 
-    // Mobile drawer controls
+    const btnEnkel = document.getElementById('mode-enkel');
+    const btnFull = document.getElementById('mode-full');
+    function setReadingMode(mode) {
+      readingMode = mode;
+      btnEnkel.className = mode === 'enkel' ? 'px-2.5 py-1 rounded-md transition-colors bg-emerald-600 text-white font-semibold' : 'px-2.5 py-1 rounded-md transition-colors text-sec hover:text-current';
+      btnFull.className = mode === 'full' ? 'px-2.5 py-1 rounded-md transition-colors bg-emerald-600 text-white font-semibold' : 'px-2.5 py-1 rounded-md transition-colors text-sec hover:text-current';
+      renderClassicContent();
+    }
+    btnEnkel.addEventListener('click', () => setReadingMode('enkel'));
+    btnFull.addEventListener('click', () => setReadingMode('full'));
+
     const drawer = document.getElementById('mobile-drawer');
     document.getElementById('mobile-menu-btn').addEventListener('click', () => drawer.classList.remove('hidden'));
     document.getElementById('mobile-drawer-close').addEventListener('click', () => drawer.classList.add('hidden'));
     document.getElementById('mobile-drawer-backdrop').addEventListener('click', () => drawer.classList.add('hidden'));
 
-    // Reading progress & Scroll-Spy
     window.addEventListener('scroll', () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -905,7 +910,7 @@
       const sections = document.querySelectorAll('main section[id]');
       let current = 'n1';
       sections.forEach(sec => {
-        if (sec.getBoundingClientRect().top <= 160) current = sec.id;
+        if (sec.getBoundingClientRect().top <= 170) current = sec.id;
       });
       if (current !== activeSectionId) {
         activeSectionId = current;
@@ -916,7 +921,21 @@
       }
     });
 
-    // Tooltip logic
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    document.getElementById('btn-ordliste').addEventListener('click', () => {
+      document.getElementById('modal-title').textContent = 'Ordliste · Sentrale fagbegreper';
+      document.getElementById('modal-body').innerHTML = `<div class="grid sm:grid-cols-2 gap-3">${Object.values(GLOSSARY).map(item => `
+        <div class="elevated-surface border rounded-xl p-4">
+          <p class="font-serif font-bold text-base text-emerald-500 mb-1">${item.title}</p>
+          <p class="text-xs text-sec leading-relaxed">${item.definition}</p>
+        </div>
+      `).join('')}</div>`;
+      modalBackdrop.classList.remove('hidden');
+    });
+    document.getElementById('modal-close').addEventListener('click', () => modalBackdrop.classList.add('hidden'));
+    modalBackdrop.addEventListener('click', (e) => { if (e.target === modalBackdrop) modalBackdrop.classList.add('hidden'); });
+    document.getElementById('btn-print').addEventListener('click', () => window.print());
+
     const tooltip = document.getElementById('glossary-tooltip');
     const tooltipTitle = document.getElementById('tooltip-title');
     const tooltipBody = document.getElementById('tooltip-body');
@@ -941,32 +960,33 @@
       tooltip.classList.remove('visible-tooltip');
       tooltip.classList.add('hidden-tooltip');
     }
-    document.querySelectorAll('.glossary-term').forEach(btn => {
-      btn.addEventListener('mouseenter', () => showTooltip(btn));
-      btn.addEventListener('mouseleave', () => { hideTimeout = setTimeout(hideTooltip, 150); });
-      btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(btn); });
-    });
+    function bindTooltips() {
+      document.querySelectorAll('.glossary-term').forEach(btn => {
+        btn.addEventListener('mouseenter', () => showTooltip(btn));
+        btn.addEventListener('mouseleave', () => { hideTimeout = setTimeout(hideTooltip, 150); });
+        btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(btn); });
+      });
+    }
     document.getElementById('tooltip-close').addEventListener('click', hideTooltip);
     document.addEventListener('click', (e) => {
       if (!tooltip.contains(e.target) && !e.target.classList.contains('glossary-term')) hideTooltip();
     });
 
-    // Dark / Light theme sync
     const applyClassicTheme = (isDark) => {
       document.documentElement.classList.toggle('dark-theme', isDark);
-      document.querySelectorAll('.theme-toggle-icon').forEach(el => {
-        el.textContent = isDark ? '☀️' : '🌙';
-      });
+      document.getElementById('theme-icon').textContent = isDark ? '☀️' : '🌙';
     };
-    const savedClassicTheme = localStorage.getItem('geografi-theme');
-    if (savedClassicTheme === 'dark') applyClassicTheme(true);
-    document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const isDark = !document.documentElement.classList.contains('dark-theme');
-        applyClassicTheme(isDark);
-        localStorage.setItem('geografi-theme', isDark ? 'dark' : 'light');
-      });
+    const savedTheme = localStorage.getItem('geografi-theme');
+    if (savedTheme === 'dark') applyClassicTheme(true);
+    document.getElementById('btn-theme').addEventListener('click', () => {
+      const isDark = !document.documentElement.classList.contains('dark-theme');
+      applyClassicTheme(isDark);
+      localStorage.setItem('geografi-theme', isDark ? 'dark' : 'light');
     });
+
+    renderClassicContent();
+    renderClassicNav('desktop-nav-list', false);
+    renderClassicNav('mobile-nav-list', true);
   </script>
 </body>
 </html>
