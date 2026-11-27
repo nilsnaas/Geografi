@@ -3,6 +3,7 @@
 Alle bilder og illustrasjoner i mappen `Images/` er **egenproduserte** for dette undervisningsopplegget og har **åpen lisens (CC0 1.0 Public Domain / CC BY 4.0)**:
 
 - **Fotorealistiske landskaps- og naturillustrasjoner (`.jpg`):** AI-generert direkte for denne læreboka uten opphavsrettslige begrensninger:
+  - `flom-elveslette.jpg`
   - `frostforvitring-fjell.jpg`
   - `kalksteinshule.jpg`
   - `kvikkleire-skredgrop.jpg`
