@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" font-family="Inter, system-ui, sans-serif">
+  <rect width="800" height="380" fill="#f8fafc"/>
+  <rect x="20" y="20" width="760" height="340" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="45" y="54" font-size="18" font-weight="700" fill="#0f172a">Fire hovedtyper isbreer</text>
+
+  <!-- 1. Botnbre -->
+  <rect x="40" y="75" width="165" height="255" rx="12" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <path d="M55 245 L75 135 L110 185 Q135 205 160 190 L190 245 Z" fill="#64748b"/>
+  <path d="M88 152 Q122 202 158 190 Q135 165 88 152 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+  <text x="122" y="102" font-size="13" font-weight="700" text-anchor="middle" fill="#0f172a">1. Botnbre</text>
+  <text x="122" y="272" font-size="11" text-anchor="middle" fill="#334155">Liten bre i skålformet</text>
+  <text x="122" y="288" font-size="11" text-anchor="middle" fill="#334155">grop i fjellsiden.</text>
+  <text x="122" y="308" font-size="10" font-weight="600" text-anchor="middle" fill="#0369a1">Vanligst i norske fjell</text>
+
+  <!-- 2. Dalbre -->
+  <rect x="220" y="75" width="165" height="255" rx="12" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <path d="M235 245 L250 130 L300 175 L355 215 L370 245 Z" fill="#64748b"/>
+  <path d="M258 140 L300 178 L348 216 L332 222 L285 186 L252 152 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+  <text x="302" y="102" font-size="13" font-weight="700" text-anchor="middle" fill="#0f172a">2. Dalbre</text>
+  <text x="302" y="272" font-size="11" text-anchor="middle" fill="#334155">Tungeformet bre som</text>
+  <text x="302" y="288" font-size="11" text-anchor="middle" fill="#334155">glir nedover en dal.</text>
+  <text x="302" y="308" font-size="10" font-weight="600" text-anchor="middle" fill="#0369a1">Eks: Nigardsbreen</text>
+
+  <!-- 3. Platåbre -->
+  <rect x="400" y="75" width="165" height="255" rx="12" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <path d="M415 245 L430 165 L535 165 L550 245 Z" fill="#64748b"/>
+  <path d="M425 165 Q482 125 540 165 L525 188 L510 165 L455 165 L440 190 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+  <text x="482" y="102" font-size="13" font-weight="700" text-anchor="middle" fill="#0f172a">3. Platåbre</text>
+  <text x="482" y="272" font-size="11" text-anchor="middle" fill="#334155">Dekker et fjellplatå</text>
+  <text x="482" y="288" font-size="11" text-anchor="middle" fill="#334155">og sender ut dalbreer.</text>
+  <text x="482" y="308" font-size="10" font-weight="600" text-anchor="middle" fill="#0369a1">Eks: Jostedalsbreen</text>
+
+  <!-- 4. Innlandsis -->
+  <rect x="580" y="75" width="180" height="255" rx="12" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <path d="M595 245 L595 205 L745 205 L745 245 Z" fill="#64748b"/>
+  <path d="M595 205 Q670 115 745 205 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+  <text x="670" y="102" font-size="13" font-weight="700" text-anchor="middle" fill="#0f172a">4. Innlandsis</text>
+  <text x="670" y="272" font-size="11" text-anchor="middle" fill="#334155">Flere km tykk is over</text>
+  <text x="670" y="288" font-size="11" text-anchor="middle" fill="#334155">hele landområder.</text>
+  <text x="670" y="308" font-size="10" font-weight="600" text-anchor="middle" fill="#0369a1">Eks: Grønland, Antarktis</text>
+</svg>
