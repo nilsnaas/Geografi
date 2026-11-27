@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="nb" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Klassisk lesning · Kapittel 3 – Nils sin geografibok</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['Source Serif 4', 'Georgia', 'serif'],
+          },
+          colors: {
+            nordic: {
+              50: '#f4f7f6',
+              100: '#e3ebe8',
+              200: '#c6d8d2',
+              600: '#1f6f66',
+              700: '#185952',
+              800: '#154742',
+              900: '#123a36',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #fafaf9; color: #1c1917; font-feature-settings: "cv02", "cv03", "cv04", "cv11"; transition: background-color 200ms ease, color 200ms ease; }
+    .scroll-mt-header { scroll-margin-top: 2rem; }
+    .glossary-term {
+      font-weight: 700; color: #185952; border-bottom: 1.5px dotted #1f6f66;
+      padding: 0 2px; border-radius: 3px; transition: background-color 150ms ease, color 150ms ease;
+      cursor: help; text-align: left;
+    }
+    .glossary-term:hover, .glossary-term:focus-visible { background-color: #e3ebe8; color: #123a36; outline: none; }
+    #glossary-tooltip { transition: opacity 150ms ease, transform 150ms ease; }
+    #glossary-tooltip.hidden-tooltip { opacity: 0; pointer-events: none; transform: translateY(4px); }
+    #glossary-tooltip.visible-tooltip { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    html.dark-theme body { background-color: #090d16 !important; color: #f1f5f9 !important; }
+    html.dark-theme header,
+    html.dark-theme aside > div,
+    html.dark-theme #mobile-drawer nav,
+    html.dark-theme main .article-card,
+    html.dark-theme main .bg-white { background-color: #0f1623 !important; border-color: rgba(148, 163, 184, 0.18) !important; color: #f1f5f9 !important; }
+    html.dark-theme main .elevated-surface,
+    html.dark-theme main .bg-stone-50 { background-color: #151e30 !important; border-color: rgba(148, 163, 184, 0.18) !important; color: #e2e8f0 !important; }
+    html.dark-theme aside .bg-stone-50 { background-color: #151e30 !important; border-color: rgba(148, 163, 184, 0.2) !important; color: #e2e8f0 !important; }
+    html.dark-theme main .bg-nordic-50,
+    html.dark-theme aside .bg-nordic-50 { background-color: rgba(16, 185, 129, 0.14) !important; border-color: rgba(16, 185, 129, 0.35) !important; color: #6ee7b7 !important; }
+    html.dark-theme .text-stone-900,
+    html.dark-theme .text-stone-800 { color: #f1f5f9 !important; }
+    html.dark-theme .text-stone-700,
+    html.dark-theme .text-stone-600 { color: #cbd5e1 !important; }
+    html.dark-theme .text-stone-500,
+    html.dark-theme .text-sec,
+    html.dark-theme .text-stone-400 { color: #94a3b8 !important; }
+    html.dark-theme .text-nordic-900,
+    html.dark-theme .text-nordic-800,
+    html.dark-theme .text-nordic-700 { color: #34d399 !important; }
+    html.dark-theme .border-stone-200,
+    html.dark-theme .border-stone-200\/90,
+    html.dark-theme .border-stone-200\/80,
+    html.dark-theme .border-stone-300 { border-color: rgba(148, 163, 184, 0.18) !important; }
+    html.dark-theme .nav-link:hover { background-color: rgba(148, 163, 184, 0.12) !important; color: #f8fafc !important; }
+    html.dark-theme .nav-link.active-nav { background-color: rgba(16, 185, 129, 0.18) !important; color: #6ee7b7 !important; font-weight: 600; }
+    html.dark-theme .glossary-term { color: #34d399 !important; border-bottom-color: #10b981 !important; }
+    html.dark-theme .glossary-term:hover,
+    html.dark-theme .glossary-term:focus-visible { background-color: rgba(16, 185, 129, 0.18) !important; color: #6ee7b7 !important; }
+    html.dark-theme .theme-toggle-btn { background-color: #151e30 !important; border-color: rgba(148, 163, 184, 0.25) !important; color: #f1f5f9 !important; }
+  </style>
+</head>
+<body class="antialiased selection:bg-nordic-100 selection:text-nordic-900">
+
+  <!-- Top reading progress bar -->
+  <div class="fixed top-0 left-0 right-0 h-1 bg-stone-200 z-50">
+    <div id="reading-progress" class="h-full bg-nordic-600 transition-all duration-150" style="width: 0%"></div>
+  </div>
+
+  <!-- Mobile Header -->
+  <header class="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-stone-200 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0">NN</div>
+      <div>
+        <span class="text-[11px] font-semibold uppercase tracking-wider text-nordic-700 block">Nils sin geografibok</span>
+        <span class="font-serif font-bold text-base text-stone-900 leading-tight block">Kapittel 3 · Klassisk</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button type="button" aria-label="Bytt mellom mørkt og lyst tema" class="theme-toggle-btn inline-flex items-center justify-center p-1.5 rounded-lg border border-stone-300 text-sm text-stone-700 hover:bg-stone-100"><span class="theme-toggle-icon">🌙</span></button>
+      <button id="mobile-menu-btn" type="button" aria-label="Åpne innholdsmeny" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-stone-300 text-sm font-medium text-stone-700 hover:bg-stone-100">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        Innhold
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="lg:hidden fixed inset-0 z-50 hidden">
+    <div id="mobile-drawer-backdrop" class="absolute inset-0 bg-stone-900/40 backdrop-blur-xs"></div>
+    <nav class="relative w-80 max-w-[88vw] h-full bg-white border-r border-stone-200 p-5 overflow-y-auto shadow-xl">
+      <div class="flex items-center justify-between mb-5 pb-4 border-b border-stone-200">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0">NN</div>
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-wider text-nordic-700">Nils sin geografibok</p>
+            <p class="font-serif font-bold text-base text-stone-900 leading-tight">Kapittel 3</p>
+          </div>
+        </div>
+        <button id="mobile-drawer-close" type="button" aria-label="Lukk meny" class="p-1.5 rounded-md text-stone-500 hover:bg-stone-100">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div id="mobile-nav-list" class="space-y-2 text-sm"></div>
+    </nav>
+  </div>
+
+  <!-- Main Layout Wrapper -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="lg:grid lg:grid-cols-[290px_1fr] lg:gap-10 xl:gap-14 items-start">
+
+      <!-- Left Sticky Sidebar -->
+      <aside class="hidden lg:block sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div class="bg-white border border-stone-200/90 rounded-2xl p-5 shadow-xs">
+          <div class="flex items-center justify-between gap-2 pb-3.5 mb-3.5 border-b border-stone-200">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0 shadow-xs">NN</div>
+              <span class="text-xs font-semibold text-stone-800 leading-snug truncate">Nils sin geografibok</span>
+            </div>
+            <button type="button" aria-label="Bytt mellom mørkt og lyst tema" title="Bytt mellom mørkt og lyst tema" class="theme-toggle-btn inline-flex items-center gap-1 px-2 py-1 rounded-lg border border-stone-200 bg-stone-50 hover:bg-stone-100 text-[11px] font-medium text-stone-700 transition-colors shrink-0">
+              <span class="theme-toggle-icon">🌙</span>
+            </button>
+          </div>
+
+          <div class="pb-4 mb-4 border-b border-stone-200">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-nordic-700 bg-nordic-50 px-2.5 py-1 rounded-full">
+              Kapittel 3 · Alle temaer
+            </span>
+            <h2 class="font-serif text-lg font-bold text-stone-900 mt-2.5 leading-snug">Ytre krefter og landformene i Norge</h2>
+            <p class="text-xs text-stone-500 mt-1">Naturgeografi · Samlet lesning</p>
+          </div>
+
+          <nav aria-label="Innholdsfortegnelse">
+            <div id="desktop-nav-list" class="space-y-2 text-sm"></div>
+          </nav>
+
+          <div class="mt-5 pt-4 border-t border-stone-200 space-y-2">
+            <a href="index.html" class="flex items-center justify-between px-3 py-2 rounded-lg bg-stone-900 hover:bg-stone-800 text-xs font-semibold text-white transition-colors">
+              <span>📖 Tilbake til Kunnskapstre / App</span>
+            </a>
+            <div class="text-xs text-stone-500 flex items-center gap-2 pt-1">
+              <span class="w-2 h-2 rounded-full bg-nordic-600 shrink-0"></span>
+              <span>Hold musepekeren over <strong class="text-nordic-700 font-semibold">uthevede begreper</strong> for forklaring.</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Article Content (All 14 topics in one seamless classic page) -->
+      <main id="classic-main" class="max-w-3xl space-y-12"></main>
+
+    </div>
+  </div>
+
+  <!-- Floating Glossary Tooltip -->
+  <div id="glossary-tooltip" role="tooltip" class="hidden-tooltip fixed z-50 max-w-xs sm:max-w-sm bg-stone-900 text-stone-100 rounded-xl p-4 shadow-2xl border border-stone-700">
+    <div class="flex items-start justify-between gap-3 mb-1">
+      <span id="tooltip-title" class="font-serif font-bold text-base text-emerald-300"></span>
+      <button id="tooltip-close" type="button" aria-label="Lukk begrepsforklaring" class="text-stone-400 hover:text-white text-xs px-1">✕</button>
+    </div>
+    <p id="tooltip-body" class="text-xs sm:text-sm text-stone-200 leading-relaxed"></p>
+  </div>
+
+  <script>
+    const GLOSSARY = {
+      'landform': { title: 'Landform', definition: 'Et karakteristisk landskapstrekk på jordoverflata dannet ved erosjons- og sedimentasjonsprosesser.' },
+      'indre-krefter': { title: 'Indre krefter', definition: 'Prosesser fra jordas indre som løfter og bygger jordskorpa (platekollisjon, fjellkjedefolding, vulkanisme, landheving og jordskjelv).' },
+      'ytre-krefter': { title: 'Ytre krefter', definition: 'Prosesser på jordoverflata som tærer ned landet gjennom forvitring, erosjon og avsetning.' },
+      'forvitring': { title: 'Forvitring', definition: 'At fast fjell eller stein smuldrer opp til løsmateriale og blir værende på samme sted.' },
+      'erosjon': { title: 'Erosjon', definition: 'En ytre kraft (elv, isbre, vind eller bølger) sliter fjell og stein i stykker, transporterer løsmassene og avsetter dem et annet sted.' },
+      'sedimentare-bergarter': { title: 'Sedimentære bergarter', definition: 'Avsetningsbergarter som dannes når løsmasser på havbunnen presses sammen over millioner av år.' },
+      'frostforvitring': { title: 'Frostforvitring', definition: 'Mekanisk forvitring der vann fryser i fjellsprekker, utvider volumet med nesten 10 % og sprenger løs steinblokker.' },
+      'trykkavlastning': { title: 'Trykkavlastning', definition: 'Mekanisk forvitring der overliggende bergarter slites bort, slik at trykket på granitt avtar og øverste lag skaller av i flak som i en løk.' },
+      'kjemisk-forvitring': { title: 'Kjemisk forvitring', definition: 'Svakt surt vann trenger inn i bergarten og endrer den kjemiske sammensetningen (f.eks. oppløsning av kalkstein).' },
+      'slamtransport': { title: 'Slamtransport', definition: 'Små jordpartikler (grums) holdes svevende av strømvirvlene i elva, typisk under vårflommen.' },
+      'bunntransport': { title: 'Bunntransport', definition: 'Stein og grus rulles eller hopper langs elvebunnen når det er kraftig strøm.' },
+      'v-dal': { title: 'V-dal', definition: 'Dal med V-formet tverrprofil som likner et øksehugg, dannet av elveerosjon og utrasning fra sidene.' },
+      'canyon': { title: 'Canyon (elvgjel)', definition: 'Dyp dal med loddrette vegger skåret ned i hardt berg av en elv, som Sautso i Altaelva.' },
+      'meanderlop': { title: 'Meanderløp', definition: 'Svingete elveløp på flat dalbunn med erosjon i yttersving og avsetning av sandbanker i innersving.' },
+      'kroksjo': { title: 'Kroksjø', definition: 'Gammel meandersving som blir liggende igjen uten innløp og utløp etter at elva kutter gjennom under flom.' },
+      'elvevifte': { title: 'Elvevifte', definition: 'Vifteformet avsetning av stein, grus og sand der dalsiden flater ut og elva forgreiner seg.' },
+      'delta': { title: 'Delta', definition: 'Avsetning av sorterte løsmasser ved elvemunningen (grovest innerst, fin leire lengst ute).' },
+      'isbre': { title: 'Isbre', definition: 'Masse av is og snø som er i bevegelse fordi de nederste islagene blir plastiske under tyngden ovenfra.' },
+      'massebalanse': { title: 'Massebalanse', definition: 'Forskjellen mellom vintersnø (næringsområde) og sommersmelting (tæringsområde) på en isbre.' },
+      'skuring': { title: 'Skuring', definition: 'Steiner fastfrosset i bresålen sliper berggrunnen og lager langstrakte skuringsstriper.' },
+      'plukking': { title: 'Plukking', definition: 'Vann fryser i sprekker under breen, og løsnede steiner fryser fast i isen og dras med.' },
+      'rundsva': { title: 'Rundsva', definition: 'Fjellknatt formet av isbreen: mykt avrundet på støtsiden (skuring) og tvert avkuttet på lesiden (plukking).' },
+      'u-dal': { title: 'U-dal & fjord', definition: 'Breerodert dal med avrundet U-profil; når havet trenger inn etter avsmeltingen blir den en fjord.' },
+      'gamle-landformer': { title: 'Gamle landformer', definition: 'Rolige, nedslitte landskap (vidder, heier, skjærgård) dannet i eldre geologiske perioder (trias, jura, kritt).' },
+      'strandflata': { title: 'Strandflata', definition: 'Lavtliggende kystplattform (±50 m) fra Rogaland til Vest-Finnmark, ofte med hattlignende restfjell som Torghatten.' },
+      'raet': { title: 'Raet', definition: 'Norges største endemorene- og isranddeltarygg fra istiden (dannet 12 800–11 500 år før nåtid).' },
+      'marin-grense': { title: 'Marin grense', definition: 'Høyeste havnivå etter siste istid (>200 m i indre Oslofjord, ~147 m i Grenland, 180 m i Trondheimsfjorden, 6–8 m på Jæren). Under denne grensen ble det avsatt marin leire, som både gir Norges beste kornjord og risiko for kvikkleire.' },
+      'ravine': { title: 'Ravine', definition: 'Dyp V-dal gravd ut av elver og bekker i leirsletter av marin leire (f.eks. på Romerike).' },
+      'kvikkleire': { title: 'Kvikkleire', definition: 'Marin leire der saltet er vasket ut av ferskvann; blir til tyntflytende suppe ved erosjon eller graving.' },
+      'jordskred': { title: 'Jordskred', definition: 'Vannmettet jord oppå fast fjell i en dalside sklir nedover som en flytende velling.' },
+      'fjellskred': { title: 'Fjellskred', definition: 'Mer enn 10 000 m³ stein og fjellpartier løsner og raser ut; overvåkes av NVE.' }
+    };
+
+    const g = (term, label) => `<button type="button" class="glossary-term" data-term="${term}">${label}</button>`;
+
+    const NODES = [
+      {
+        id: 'n1', chapter: 'forvitring', type: 'hovedstamme', icon: '🌍',
+        x: 540, y: 745, parents: [],
+        period: 'Kapittel 3', part: '1. Grunnlaget',
+        title: '1. Hva er en landform? Indre vs. ytre krefter',
+        subtitle: 'Mosaikken av landformer og «Havet – fjellenes kirkegård»',
+        image: 'Images/stryneelva-landformer.jpg',
+        caption: 'Elvesvinger i Stryneelva i Vestland fylke – et eksempel på hvordan ytre krefter former det norske landskapet. · Kilde: Egenprodusert AI-illustrasjon (CC0 1.0)',
+        enkel: `
+          <p>En ${g('landform', 'landform')} er et karakteristisk landskapstrekk på jordoverflata dannet av erosjons- og sedimentasjonsprosesser. ${g('indre-krefter', 'Indre krefter')} bygger opp landet (som den kaledonske fjellkjeden for 400 mill. år siden), mens ${g('ytre-krefter', 'ytre krefter')} tærer det ned.</p>
+          <p>Mesteparten av løsmassene ender til slutt på havets bunn («fjellenes kirkegård») og presses sammen til ${g('sedimentare-bergarter', 'sedimentære bergarter')}.</p>
+        `,
+        full: `
+          <p>Med begrepet ${g('landform', 'landform')} mener vi et karakteristisk landskapstrekk på jordoverflata – stort eller lite, i fast fjell eller løsmateriale. Et fjellområde består som oftest av en hel mosaikk av landformer.</p>
+          <p>${g('indre-krefter', 'Indre prosesser')} (platekollisjon, vulkanisme, landheving) løfter jordskorpa – for <strong>400 millioner år siden</strong> skapte den kaledonske fjellkjedefoldingen fjell opptil 10 000 meter høye på Vestlandet. Uten indre krefter ville ${g('ytre-krefter', 'ytre krefter')} (forvitring og erosjon fra vann, isbreer, vind og bølger) ha slipt jorda ned til en glatt flate dekket av hav.</p>
+          <p>Når fjell smuldrer opp og løsmassene fraktes ut i havet, kaller vi havet for <strong>fjellenes kirkegård</strong>. Over millioner av år på havbunnen presses løsmassene sammen til ${g('sedimentare-bergarter', 'sedimentære bergarter')}.</p>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">Kompetansemål i kapittel 3</p>
+            <p>• Gjøre rede for hvordan indre og ytre krefter danner landskap og hvordan mennesker utnytter ressursene.</p>
+            <p>• Utforske årsaker til en aktuell naturkatastrofe og konsekvenser for mennesker, samfunn og natur.</p>
+          </div>
+          <p class="text-xs text-sec"><strong>Eksempler i boka:</strong> Stryneelva (Vestland) og smaragdgrønne Gjende ved Besseggen (leirpartikler fra isbreene).</p>
+        `,
+        quiz: {
+          q: 'Hvorfor kalles havet for «fjellenes kirkegård»?',
+          options: ['Fordi alle fjell dannes under vann', 'Fordi mesteparten av løsmassene fra nedslitte fjell fraktes ut i havet og avsettes der', 'Fordi havet fryser fjell i stykker', 'Fordi det ikke finnes sedimentære bergarter'],
+          correct: 1,
+          feedback: 'Riktig! Løsmassene fra forvitring og erosjon havner til slutt på havets bunn og blir til sedimentære bergarter.'
+        },
+        reflection: 'Hva ville skjedd med jordoverflata hvis de indre kreftene sluttet å virke, mens de ytre kreftene fortsatte?',
+        goal: 'Skille mellom indre og ytre krefter, og forstå hvordan nedbryting fører til avsetning i havet.'
+      },
+      {
+        id: 'n2', chapter: 'forvitring', type: 'hovedstamme', icon: '❄️',
+        x: 250, y: 580, parents: ['n1'],
+        period: 'Kapittel 3', part: '2. Mekanisk forvitring',
+        title: '2. Mekanisk forvitring: Frost & trykkavlastning',
+        subtitle: 'Fysiske krefter sprenger fjellet i stykker på stedet',
+        image: 'Images/frostforvitring-fjell.jpg',
+        caption: 'Frostforvitring i bratt norsk fjellvegg: blokker sprenges løs og danner steinurer. · Kilde: Egenprodusert AI-illustrasjon (CC0 1.0)',
+        enkel: `
+          <p>${g('forvitring', 'Forvitring')} betyr at fast fjell smuldrer opp og blir liggende på stedet. Ved <strong>mekanisk forvitring</strong> skjer det ved fysiske krefter:</p>
+          <p><strong>${g('frostforvitring', 'Frostforvitring')}</strong>: Vann fryser i sprekker og utvider seg nesten <strong>10 %</strong>. <strong>${g('trykkavlastning', 'Trykkavlastning')}</strong>: Overliggende fjell slites bort så granitt utvider seg og skaller av i flak som i en løk.</p>
+        `,
+        full: `
+          <p>${g('forvitring', 'Forvitring')} skjer når fast fjell smuldrer opp og blir værende på samme sted. To vanlige former for mekanisk forvitring er:</p>
+          <p><strong>1. ${g('frostforvitring', 'Frostforvitring')}:</strong> Vanlig der temperaturen svinger rundt 0 °C og det er nok nedbør. Vann trenger inn i sprekker, fryser til is og øker volumet med <strong>nesten 10 prosent</strong>. Gjentatt frysing og tining sprenger løs blokker som kan danne ur og forvitre videre til grus og sand.</p>
+          <p><strong>2. ${g('trykkavlastning', 'Trykkavlastning')}:</strong> En dypbergart som granitt størkner kilometervis under overflata under enormt trykk. Når overliggende bergarter slites bort over millioner av år, avtar trykket, og det øverste laget utvider seg og sprekker opp i flak parallelle med overflata (avskalling som lagene i en løk) – egnet til bygningsstein.</p>
+        `,
+        caseHtml: `
+          <figure class="overflow-hidden rounded-xl border border-slate-500/20 mb-3">
+            <img src="Images/trykkavlastning-granitt.jpg" alt="Trykkavlastning i granitt" class="w-full h-44 object-cover" />
+            <figcaption class="px-3 py-1.5 text-xs text-sec">Illustrasjon av avskalling ved trykkavlastning i granitt. · Kilde: Egenprodusert AI-illustrasjon (CC0 1.0)</figcaption>
+          </figure>
+          <figure class="overflow-hidden rounded-xl border border-slate-500/20">
+            <img src="Images/fig-forvitring.svg" alt="Skisse av frostforvitring og kjemisk forvitring" class="w-full bg-white p-2" />
+          </figure>
+        `,
+        quiz: {
+          q: 'Hvor mye øker volumet til vann når det fryser til is i en fjellsprekk?',
+          options: ['Ca. 1 %', 'Nesten 10 %', 'Ca. 50 %', 'Volumet minker'],
+          correct: 1,
+          feedback: 'Riktig! Vann øker volumet med nesten 10 % når det fryser, noe som gir et enormt sprengtrykk.'
+        },
+        reflection: 'Hvorfor er frostforvitring mest aktiv når temperaturen veksler rundt 0 °C, og ikke når det er konstant -20 °C?',
+        goal: 'Forklare hvordan frostforvitring og trykkavlastning bryter ned fast fjell.'
+      },
+      {
+        id: 'n3', chapter: 'forvitring', type: 'fordypning', icon: '🕳️',
+        x: 130, y: 410, parents: ['n2'],
+        period: 'Kapittel 3', part: '3. Kjemisk forvitring',
+        title: '3. Kjemisk forvitring & kalksteinshuler',
+        subtitle: 'Surt regnvann løser opp mineraler, skaper viddelandskap og grotter',
+        image: 'Images/kalksteinshule.jpg',
+        caption: 'Kalksteinshule med stalaktitter fra taket og stalagmitter fra gulvet. · Kilde: Egenprodusert AI-illustrasjon (CC0 1.0)',
+        enkel: `
+          <p>Ved ${g('kjemisk-forvitring', 'kjemisk forvitring')} trenger svakt surt vann (regnvann med oppløst $CO_2$) inn i bergarten og endrer den kjemiske sammensetningen. I varmere, fuktigere perioder formet dette viddelandskapet.</p>
+          <p>I <strong>kalkstein</strong> løser surt vann opp mineralene og danner synkehull, underjordiske elver og grotter med stalaktitter (tak) og stalagmitter (gulv).</p>
+        `,
+        full: `
+          <p>Ved ${g('kjemisk-forvitring', 'kjemisk forvitring')} er rennende, svakt surt vann sentralt: Karbondioksid i lufta løses i regnvann, som trenger inn i bergarten og løser opp mineraler. I tidligere geologiske perioder med varmere og fuktigere klima var dette svært aktivt og formet det norske <strong>viddelandskapet</strong>. Også organismer som <em>kartlav</em> på stein bidrar.</p>
+          <p>I områder med mye <strong>kalkstein</strong> løses mineralene opp som salt i vann. Bekker forsvinner i nedløpshull, danner synkehull, underjordiske elver og store grotter (som Carlsbad Caverns i New Mexico) med dryppsteinsformer: <strong>stalaktitter</strong> fra taket og <strong>stalagmitter</strong> fra gulvet.</p>
+        `,
+        caseHtml: `
+          <figure class="overflow-hidden rounded-xl border border-slate-500/20">
+            <img src="Images/fig-forvitring.svg" alt="Kjemisk forvitring i kalkstein" class="w-full bg-white p-2" />
+            <figcaption class="px-3 py-1.5 text-xs text-sec">Figur: Surt vann løser opp kalkstein og danner synkehull, underjordisk elv, stalaktitter og stalagmitter. · Kilde: Egenprodusert illustrasjon (CC0 1.0)</figcaption>
+          </figure>
+        `,
+        quiz: {
+          q: 'Hva er forskjellen på en stalaktitt og en stalagmitt?',
+          options: ['Stalaktitter henger fra taket, stalagmitter stiger opp fra gulvet', 'De er laget av granitt', 'Stalaktitter finnes bare i isbreer', 'Ingen forskjell'],
+          correct: 0,
+          feedback: 'Riktig! Stalaktitter henger ned fra taket, mens stalagmitter stiger opp fra gulvet.'
+        },
+        reflection: 'Hvordan viser kalksteinshuler tydelig forskjellen mellom mekanisk og kjemisk forvitring?',
+        goal: 'Forklare hvordan kjemisk forvitring virker, særlig i kalkstein.'
+      },
+      {
+        id: 'n4', chapter: 'forvitring', type: 'fordypning', icon: '🏞️',
+        x: 330, y: 410, parents: ['n2'],
+        period: 'Kapittel 3', part: '4. Erosjon',
+        title: '4. Erosjon – nedsliting og transport',
+        subtitle: 'Når vann, isbre, vind, bølger eller tyngdekraft flytter forvitret materiale',
+        image: 'Images/sautso-canyon.jpg',
+        caption: 'Canyonen Sautso i Altaelva i Finnmark – Nord-Europas største canyon, over 400 m dyp og 12 km lang. · Kilde: Egenprodusert AI-illustrasjon (CC0 1.0)',
+        enkel: `
+          <p>Mens forvitring skjer på stedet, innebærer ${g('erosjon', 'erosjon')} at en ytre kraft (elv, isbre, vind, bølger) sliter løs stein, transporterer løsmassene og avsetter dem et annet sted. Der det er bratt nok, kan <strong>tyngdekraften</strong> alene utløse skred.</p>
+          <p>Et imponerende norsk eksempel på elveerosjon er ${g('canyon', 'canyonen')} <strong>Sautso</strong> i Altaelva i Finnmark – Nord-Europas største canyon, mer enn 400 m dyp og 12 km lang.</p>
+        `,
+        full: `
+          <p>Berggrunn som er forvitret til løsmasser på forhånd, blir lettere erodert. ${g('erosjon', 'Erosjon')} skjer i tre trinn: en ytre kraft (elv, isbre, vind eller bølger) sliter fjell og stein i stykker, transporterer løsmassene fra ett sted og avsetter dem (legger dem igjen) et annet sted.</p>
+          <p>Skal forvitret materiale beveges, trengs det vanligvis en eroderende kraft som en elv eller en isbre. Men der terrenget er tilstrekkelig bratt, kan <strong>tyngdekraften</strong> alene være nok til å sette løsmassene i bevegelse i form av skred.</p>
+          <p>Et imponerende eksempel på hvor dypt rennende vann kan grave seg ned over lang tid, er ${g('canyon', 'canyonen')} <strong>Sautso i Altaelva i Finnmark</strong>. Dette er Nord-Europas største canyon – mer enn <strong>400 meter dyp</strong> og <strong>12 kilometer lang</strong>. I bunnen renner Altaelva, som gjennom millioner av år har skåret seg ned i berggrunnen og fraktet vekk stein og grus som forvitrer og raser ned fra de bratte dalsidene.</p>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm mb-3">
+            <p class="text-xs font-bold uppercase tracking-wider text-sky-400">Norsk eksempel: Sautso i Altaelva</p>
+            <p><strong>Sted:</strong> Altaelva i Finnmark (Nord-Europas største canyon).</p>
+            <p><strong>Dimensjoner:</strong> Mer enn 400 meter dyp og 12 kilometer lang.</p>
+            <p><strong>Prosess:</strong> Forvitring bryter opp fjellet i de bratte sidene (danner ur), mens Altaelva i bunnen eroderer seg nedover og transporterer løsmassene videre.</p>
+          </div>
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-sky-400">Repetisjonsoppgaver</p>
+            <p>1. Hva er mekanisk forvitring? Nevn de ulike formene.</p>
+            <p>2. Forklar hvordan frostforvitring foregår.</p>
+            <p>3. Hvordan foregår forvitring ved trykkavlastning?</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hva skiller erosjon fra forvitring?',
+          options: ['Erosjon skjer bare om vinteren', 'Ved forvitring blir materialet på stedet, mens erosjon transporterer og avsetter det et annet sted', 'Forvitring skjer bare i havet', 'Ingen forskjell'],
+          correct: 1,
+          feedback: 'Riktig! Forvitring smuldrer opp fjellet på stedet, mens erosjon også flytter og avsetter materialet.'
+        },
+        reflection: 'Hvilke fire hovedkrefter står bak erosjon i naturen, og hvilken kan virke alene i bratte skråninger?',
+        goal: 'Skille klart mellom forvitring og erosjon, og bruke Sautso som eksempel.'
+      },
+      {
+        id: 'n5', chapter: 'elver', type: 'hovedstamme', icon: '💧',
+        x: 540, y: 565, parents: ['n1'],
+        period: 'Kapittel 3', part: '5. Rennende vann',
+        title: '5. Elvetransport & erosjonsformer',
+        subtitle: 'Norskehavet for 55 mill. år siden, slam-/bunntransport, Vøringsfossen, V-dal, canyon & jettegryter',
+        image: 'Images/voringsfossen-vdal.jpg',
+        caption: 'Vøringsfossen i Eidfjord faller 182 m ned fra den åpne fjelldalen til den trange Måbødalen nedenfor. · Kilde: Egenprodusert AI-illustrasjon (CC0 1.0)',
+        enkel: `
+          <p>Da <strong>Norskehavet</strong> åpnet seg for ca. 55 mill. år siden og fjellene hevet seg 1000–1500 m, fikk elvene stor erosjonskraft. Elva transporterer materiale som ${g('slamtransport', 'slamtransport')}, ${g('bunntransport', 'bunntransport')} og oppløste mineraler.</p>
+          <p>Erosjonsformer i elva er ${g('v-dal', 'V-dal')} (som øksehugg), ${g('canyon', 'canyon')} (loddrette vegger i hardt berg) og <strong>jettegryter</strong> (roterende steiner i strømvirvler).</p>
+        `,
+        full: `
+          <p>Elver har formet Norge i over 50 millioner år. For ca. <strong>55 millioner år siden</strong> gled Grønland og Skandinavia fra hverandre, Norskehavet åpnet seg, klimaet ble fuktigere, og fjellene hevet seg <strong>1000–1500 meter</strong>. Det ga elvene stor fart og erosjonsevne.</p>
+          <p>Elva transporterer løsmasser på tre måter: <strong>${g('slamtransport', 'Slamtransport')}</strong> (jordpartikler svevende i strømvirvler, typisk i vårflom), <strong>${g('bunntransport', 'bunntransport')}</strong> (stein og grus langs bunnen) og <strong>oppløste mineraler</strong>. Økt vannføring gir økt turbulens og strømhastighet, og dermed større transportevne.</p>
+          <p>Typiske erosjonsformer er <strong>${g('v-dal', 'V-dal')}</strong> (der jord og stein raser ned fra sidene), <strong>${g('canyon', 'canyon')}</strong> (loddrette vegger der berggrunnen er svært hard) og runde <strong>jettegryter</strong> gravd ut av steiner som roterer i strømvirvler.</p>
+          <p><strong>Lokalt eksempel fra Telemark – Jettegrytene i Nissedal:</strong> Langs det gamle elveløpet til Fyresåna ved Eidsfoss/Reinsfoss i Nissedal ligger et rundt 300 meter langt parti med glattskurte svaberg og dype, sylindriske jettegryter. De ble gravd ut av stein og smeltevann under kraftige strømvirvler på slutten av siste istid, og kom tydelig til syne da elva ble regulert på 1950-tallet.</p>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm mb-3">
+            <p class="text-xs font-bold uppercase tracking-wider text-amber-400">Høyt vs. lavt i elveløpet</p>
+            <p><strong>Øvre del (bratt):</strong> Høy fart og sterk erosjon → V-dal, canyon, fosser (Vøringsfossen 182 m) og jettegryter.</p>
+            <p><strong>Nedre del (flatt):</strong> Lavere fart og avsetning → elvevifte, meanderløp, elveslette og delta.</p>
+          </div>
+          <figure class="overflow-hidden rounded-xl border border-slate-500/20">
+            <img src="Images/telemark-nissedal.svg" alt="Jettegrytene i Nissedal i Telemark" class="w-full bg-white p-2" />
+            <figcaption class="px-3 py-1.5 text-xs text-sec">Lokalt eksempel (Telemark): Jettegrytene i Nissedal ble gravd ut av roterende stein i smeltevannselver ved istidens slutt. · Kilde: Egenprodusert illustrasjon (CC0 1.0)</figcaption>
+          </figure>
+        `,
+        quiz: {
+          q: 'Hvorfor får en canyon loddrette vegger, mens en V-dal får skrå sider?',
+          options: ['Canyon lages av vind', 'I en canyon er berggrunnen på sidene så hard at det ikke raser materiale ned fra dem', 'V-daler finnes bare i havet', 'Jettegryter fyller V-dalen'],
+          correct: 1,
+          feedback: 'Riktig! I en canyon foregår erosjonen bare i elvebunnen, og de harde sideveggene blir stående loddrette.'
+        },
+        reflection: 'Hvordan påvirker vårflommen elvas turbulens, strømhastighet og transportevne?',
+        goal: 'Forklare elvas tre transportmåter og dannelsen av V-dal, canyon og jettegryte.'
+      },
+      {
+        id: 'n6', chapter: 'elver', type: 'fordypning', icon: '〰️',
+        x: 540, y: 400, parents: ['n5'],
+        period: 'Kapittel 3', part: '6. Elvas avsetningsformer',
+        title: '6. Meander, kroksjø, elvevifte & delta',
+        subtitle: 'Yttersving vs. innersving, sorterte løsmasser og Reisaelvas delta',
+        image: 'Images/reisaelva-delta.jpg',
+        caption: 'Deltaet til Reisaelva i Troms – elva er nesten 130 km lang og har lagt opp et stort delta i Reisafjorden. · Kilde: Egenprodusert AI-illustrasjon (CC0 1.0)',
+        enkel: `
+          <p>På flate dalbunner danner elva et ${g('meanderlop', 'meanderløp')} (erosjon i yttersving, sandbanker i innersving) og flate <strong>elvesletter</strong>. Under flom kan elva kutte en sving og danne en ${g('kroksjo', 'kroksjø')}.</p>
+          <p>Der dalsiden flater ut dannes en ${g('elvevifte', 'elvevifte')}. Ved munningen i vann eller hav bygges et ${g('delta', 'delta')} av sorterte løsmasser: grovest innerst (toppavsetning), finere i skråningen (frontavsetning) og leire lengst ute (bunnavsetning).</p>
+        `,
+        full: `
+          <p><strong>${g('meanderlop', 'Meanderløp')} og ${g('kroksjo', 'kroksjø')}:</strong> På brede, flate dalbunner eroderer elva i <em>yttersvingene</em> (størst fart) og avsetter sandbanker i <em>innersvingene</em>. Over tid skapes en flat <strong>elveslette</strong> av grus og sand (lettere å dyrke enn steinete morenejord). Under stor flom kan elva skjære rett gjennom en meanderbue og etterlate en ${g('kroksjo', 'kroksjø')}.</p>
+          <p><strong>${g('elvevifte', 'Elvevifte')} og ${g('delta', 'delta')}:</strong> Der dalsiden flater ut, avsetter et forgreinet elveløp en vifteformet løsmasseavsetning (<em>elvevifte</em>). Når elva munner ut i innsjø eller hav, bremses farten og det bygges et <strong>delta</strong> av sorterte løsmasser: sand og småstein innerst (topp- og frontavsetninger), mens finkornet leire synker til bunns lengst ute (bunnavsetning). Ved Amazonas måles slam 300 km til havs; i Norge har blant annet Reisaelva i Troms (130 km) et stort delta.</p>
+        `,
+        caseHtml: `
+          <figure class="overflow-hidden rounded-xl border border-slate-500/20">
+            <img src="Images/fig-elvelandformer.svg" alt="Meander til kroksjø og lagdeling i delta" class="w-full bg-white p-2" />
+            <figcaption class="px-3 py-1.5 text-xs text-sec">Figur: Dannelse av kroksjø (venstre) og sortert lagdeling i et delta (høyre). · Kilde: Egenprodusert illustrasjon (CC0 1.0)</figcaption>
+          </figure>
+        `,
+        quiz: {
+          q: 'I hvilken rekkefølge avsettes løsmassene i et delta?',
+          options: ['Leire innerst og stein lengst ute', 'Sand og småstein innerst (topp/front), og finkornet leire lengst ute (bunnavsetning)', 'Helt usortert blanding', 'Bare oppløste salter'],
+          correct: 1,
+          feedback: 'Riktig! Grovt materiale faller til bunns først ved munningen, mens finkornet leire virvler lengst ut.'
+        },
+        reflection: 'Hvorfor er det farlig å vade ut i en meandrerende elv fra den grunne sandbanken i innersvingen?',
+        goal: 'Forklare hvordan meanderløp, kroksjøer, elvevifter og deltaer dannes.'
+      },
+      {
+        id: 'n7', chapter: 'elver', type: 'motperspektiv', icon: '🌧️',
+        x: 420, y: 245, parents: ['n6'],
+        period: '2011 & 2013', part: '7. Naturfare · Elv',
+        title: '7. Flomfare på elvevifter og elvesletter',
+        subtitle: 'Skadeflom i Kvam (2011 & 2013) og oversvømmelse ved Frya i Gudbrandsdalen (2013)',
+        image: 'Images/stryneelva-landformer.jpg',
+        caption: 'Flate elvesletter og elvevifter er attraktive for hus, veier og jordbruk, men dannet av flom. · Kilde: Egenprodusert AI-illustrasjon (CC0 1.0)',
+        enkel: `
+          <p>Elvevifter og elvesletter er flate og lettbygde, men de er skapt av elver i flom. Tettstedet <strong>Kvam i Gudbrandsdalen</strong> ligger på en elvevifte og ble rammet av skadeflom i både <strong>2011 og 2013</strong> da sideelva skiftet løp med stein og grus.</p>
+          <p>Ved <strong>Frya i Sør-Fron</strong> i 2013 fylte Gudbrandsdalslågen hele dalbunnen slik at selv flyplassen sto under vann.</p>
+        `,
+        full: `
+          <p>I et bratt land som Norge har flate <strong>elvesletter</strong> og <strong>elvevifter</strong> vært svært attraktive for jordbruk, veier og bebyggelse. Men når ett løp på en elvevifte fylles med stein og grus under kraftig nedbør, finner vannet nye løp ved siden av.</p>
+          <p>Tettstedet <strong>Kvam i Gudbrandsdalen</strong> ligger på en slik elvevifte der en sideelv møter Gudbrandsdalslågen. Både i <strong>2011 og 2013</strong> raserte flomvann med stein og grus bebyggelsen. Under storflommen i 2013 sto også hele dalbunnen og flyplassen ved <strong>Frya i Sør-Fron</strong> under vann.</p>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-rose-400">Arealbruk vs. flomrisiko</p>
+            <p><strong>Fordeler:</strong> Flatt terreng og sand-/grusrik jord som er lettere å dyrke enn steinete morenejord.</p>
+            <p><strong>Risiko:</strong> Løpsendringer på elvevifter (Kvam 2011/2013) og oversvømmelse av elvesletter (Frya 2013).</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hvorfor var Kvam i Gudbrandsdalen spesielt utsatt for skadeflom i 2011 og 2013?',
+          options: ['Fordi Kvam ligger på en elvevifte der sideelva kan legge igjen stein og finne nye løp', 'Fordi Kvam ligger i en canyon', 'Fordi det ikke renner elver der', 'Fordi havet steg inn i dalen'],
+          correct: 0,
+          feedback: 'Riktig! På en elvevifte kan et løp tettes av løsmasser under flom, slik at elva tar et nytt løp innover bebyggelsen.'
+        },
+        reflection: 'Hvordan bør kommuner planlegge bebyggelse på elvevifter og elvesletter i møte med mer ekstremnedbør?',
+        goal: 'Drøfte fordeler og flomrisiko ved bosetting på elvevifter og elvesletter.'
+      },
+      {
+        id: 'n8', chapter: 'isbreer', type: 'hovedstamme', icon: '🧊',
+        x: 800, y: 580, parents: ['n1'],
+        period: '2,6 mill. år – nåtid', part: '8. Isbreer & istider',
+        title: '8. Istider, bredannelse & bretyper',
+        subtitle: '50 klimasvingninger, plastisk is, massebalanse, platåbre, dalbre og botnbre',
+        image: 'Images/nigardsbreen-isbre.jpg',
+        caption: 'Nigardsbreen i Sogn er en dalbre fra platåbreen Jostedalsbreen. Under den lille istiden ødela den gården Nigard i 1743. · Kilde: Egenprodusert AI-illustrasjon (CC0 1.0)',
+        enkel: `
+          <p>I kvartærtiden (siste 2,6 mill. år) har det vært <strong>50 klimasvingninger</strong> med istider (kaldest for 22 000 år siden; Golfstrømmen tilbake for 11 600 år siden; isfritt for 8000 år siden; den lille istiden 1580–1850).</p>
+          <p>En ${g('isbre', 'isbre')} dannes når snø trykkes til is og de nederste lagene blir <strong>plastiske</strong> (Engabreen beveger seg opptil 1,25 m/døgn). Vi skiller mellom platåbre, dalbre, innlandsis og botnbre.</p>
+        `,
+        full: `
+          <p>I kvartærtiden (de siste <strong>2,6 millioner år</strong>) har det vært <strong>50 tydelige klimasvingninger</strong>. Aller kaldest var det for rundt <strong>22 000 år siden</strong>, da innlandsisen nådde ut til kontinentalsokkelen i vest og ned til Nederland, Tyskland og Polen i sør. For <strong>11 600 år siden</strong> (Ra-tiden) vendte Golfstrømmen tilbake, og for ca. <strong>8000 år siden</strong> var Norge trolig isfritt. Under <strong>den lille istiden</strong> (ca. 1580–1850) rykket breene fram igjen.</p>
+          <p>En ${g('isbre', 'isbre')} begynner med en snøfonn som ikke smelter om sommeren. Under tyngden blir de nederste islagene <strong>plastiske</strong> (faste, men formbare) og siger nedover (Engabreen: opptil 1,25 m/døgn). Forskjellen mellom vintersnø og sommersmelting er breens ${g('massebalanse', 'massebalanse')} (delt ved likevektslinja).</p>
+          <p>Norge har i dag litt over <strong>2500 isbreer</strong> (0,7 % av fastlandet): <strong>platåbreer</strong> (Jostedalsbreen) med <strong>dalbreer</strong> (Nigardsbreen, Briksdalsbreen), <strong>botnbreer</strong> i fjellsider og <strong>innlandsis</strong> (Grønland, Antarktis).</p>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-sky-400">Istidshistorien i korte trekk</p>
+            <p><strong>22 000 år siden:</strong> Maks utbredelse (til Tyskland/Polen).</p>
+            <p><strong>11 600 år siden:</strong> Golfstrømmen kommer tilbake (Ra-tiden).</p>
+            <p><strong>8000 år siden:</strong> Norge trolig helt isfritt. <strong>1580–1850:</strong> Den lille istiden.</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hva menes med at de nederste lagene i en isbre blir «plastiske»?',
+          options: ['Isen smelter til vann', 'Isen er fast, men formbar under tyngden ovenfor slik at breen kan sige nedover', 'Isen inneholder plast', 'Isen sprekker opp i biter'],
+          correct: 1,
+          feedback: 'Riktig! Plastisk is er fast, men formbar, slik at hele breen kan gli og sige nedover i terrenget.'
+        },
+        reflection: 'Hvordan ser man forskjell på næringsområdet og tæringsområdet på en bre på sensommeren?',
+        goal: 'Gjør rede for istidshistorien, hvordan breer dannes og beveger seg, og ulike bretyper.'
+      },
+      {
+        id: 'n9', chapter: 'isbreer', type: 'fordypning', icon: '🏔️',
+        x: 745, y: 410, parents: ['n8'],
+        period: 'Kapittel 3', part: '9. Breerosjon & former',
+        title: '9. Skuring, plukking, alpine former & U-daler',
+        subtitle: 'Rundsva, botn, egg, tind, U-daler (Romsdalen) og fjorder (Sognefjorden 2000 m)',
+        image: 'Images/romsdalen-udal.jpg',
+        caption: 'Romsdalen sett fra Romsdalshorn – en klassisk U-dal med elva Rauma i bunnen og Romsdalsfjorden bak. · Kilde: Egenprodusert AI-illustrasjon (CC0 1.0)',
+        enkel: `
+          <p>Breen eroderer ved ${g('skuring', 'skuring')} (steiner i bresålen lager skuringsstriper) og ${g('plukking', 'plukking')}. En fjellknatt blir et ${g('rundsva', 'rundsva')}.</p>
+          <p>Botnbreer skaper alpine landformer: <strong>botn</strong>, <strong>egg</strong> og <strong>tind</strong> (Jotunheimen, Sunnmøre, Lofoten, Lyngsalpene). I dalene omformet breene elvenes V-daler til avrundede ${g('u-dal', 'U-daler og fjorder')}.</p>
+        `,
+        full: `
+          <p>Ren is sliper ikke fjell, men stein i bresålen gjør det ved <strong>${g('skuring', 'skuring')}</strong> (lager skuringsstriper; i Sognefjorden gravde breen <strong>2000 meter</strong> ned i berggrunnen) og <strong>${g('plukking', 'plukking')}</strong> (frostsprenging og fastfrysing av stein på lesiden). Slik dannes et ${g('rundsva', 'rundsva')} med myk støtside og bratt leside.</p>
+          <p><strong>Alpine landformer:</strong> En botnbre graver ut en skålformet <strong>botn</strong> (ofte med botnsjø). To botner fra hver sin side gir en skarp <strong>egg</strong>, og tre eller flere gir en spiss <strong>tind</strong> (Jotunheimen, Sunnmøre, Lofoten, Lyngsalpene).</p>
+          <p><strong>${g('u-dal', 'U-daler og fjorder')}:</strong> Under istidene fylte breene elvenes gamle V-daler og eroderte både bunn og sider til avrundede U-daler (Stølsmaradalen, Romsdalen). Der breen gravde under havnivå og havet trengte inn etter smeltingen, ble det en <strong>fjord</strong>.</p>
+        `,
+        caseHtml: `
+          <figure class="overflow-hidden rounded-xl border border-slate-500/20">
+            <img src="Images/fig-breerosjon.svg" alt="Rundsva og utvikling fra V-dal til U-dal" class="w-full bg-white p-2" />
+            <figcaption class="px-3 py-1.5 text-xs text-sec">Figur: Rundsva med støtside/leside (venstre) og utvikling fra V-dal til U-dal (høyre). · Kilde: Egenprodusert illustrasjon (CC0 1.0)</figcaption>
+          </figure>
+        `,
+        quiz: {
+          q: 'Hvordan dannes en skarp egg og en spiss tind?',
+          options: ['Av elver på flat mark', 'Når to botnbreer møtes (egg) eller tre+ botnbreer eroderer rundt en topp (tind)', 'Av kalkstein', 'Av vind'],
+          correct: 1,
+          feedback: 'Riktig! Botnbreer som møtes fra flere kanter skaper skarpe egger og spisse tinder.'
+        },
+        reflection: 'Hvorfor finnes det bare fjorder i deler av verden som har vært utsatt for iserosjon?',
+        goal: 'Forklare skuring, plukking, rundsva, alpine landformer, U-daler og fjorder.'
+      },
+      {
+        id: 'n10', chapter: 'isbreer', type: 'motperspektiv', icon: '🌡️',
+        x: 945, y: 410, parents: ['n8'],
+        period: '2024 – 2100', part: '10. Klima & risiko',
+        title: '10. Bresmelting & toppturfarer i alpint terreng',
+        subtitle: 'Rekordsmelting i 2024, prognose på ~10 % igjen i år 2100, og skredulykker',
+        image: 'Images/nigardsbreen-isbre.jpg',
+        caption: 'Norske breer smelter raskt i et varmere klima, mens bratte alpine fjell gir økt snø- og fjellskredrisiko. · Kilde: Egenprodusert AI-illustrasjon (CC0 1.0)',
+        enkel: `
+          <p>I <strong>2024</strong> smeltet 34 av 35 observerte breer i Fastlands-Norge tilbake, og Svalbard hadde rekordsmelting. I <strong>år 2100</strong> kan bare <strong>10 %</strong> av dagens breer være igjen.</p>
+          <p>Samtidig lokker alpine landformer i Lofoten, Lyngsalpene og Sunnmøre stadig flere toppturister – der flere omkommer i snø- og fjellskred hvert år.</p>
+        `,
+        full: `
+          <p>Isbreer er svært følsomme for klimaendringer. I <strong>2024</strong> var bresmeltingen ekstraordinær: <strong>34 av 35 observerte breer</strong> i Fastlands-Norge smeltet tilbake, og Svalbard hadde den varmeste sommeren og raskeste bresmeltingen som noen gang er målt. Forskere anslår at kanskje bare <strong>10 prosent</strong> av dagens isbreer vil være igjen i <strong>år 2100</strong>.</p>
+          <p>I tillegg utgjør det bratte alpine terrenget – særlig i Lofoten, Lyngsalpene, Sunnmøre og Jotunheimen – en stor risiko for toppturister på grunn av fare for <strong>fjell- og snøskred</strong>. Hvert år omkommer flere personer i slike ulykker i Norge.</p>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-rose-400">Observasjoner 2024</p>
+            <p><strong>Fastlands-Norge:</strong> 34 av 35 målte breer trakk seg tilbake.</p>
+            <p><strong>Svalbard:</strong> Varmeste sommer og raskeste bresmelting som noen gang er registrert.</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hvor stor andel av dagens norske isbreer anslår forskere at kanskje vil være igjen i år 2100?',
+          options: ['90 %', '50 %', 'Kanskje bare 10 %', 'Alle vil vokse'],
+          correct: 2,
+          feedback: 'Riktig! I et varmere klima kan mange mindre breer forsvinne, slik at kanskje bare 10 % er igjen i år 2100.'
+        },
+        reflection: 'Hva kan konsekvensene bli for vannkraft, elver og naturmangfold hvis 90 % av breene våre forsvinner?',
+        goal: 'Drøfte bresmelting i Norge og naturfarer knyttet til ferdsel i alpint terreng.'
+      },
+      {
+        id: 'n11', chapter: 'norge', type: 'hovedstamme', icon: '🇳🇴',
+        x: 660, y: 245, parents: ['n9'],
+        period: 'Kapittel 3', part: '11. Norges landformer',
+        title: '11. Gamle & unge landformer i Norge',
+        subtitle: 'Forskjellen på selve steinen og formen på landskapet – med eksempler fra Telemark og resten av Norge',
+        image: 'Images/preikestolen-lysefjorden.jpg',
+        caption: 'Preikestolen (604 m stup) over Lysefjorden: Et ungt, dypt fjordlandskap skåret rett ned i et gammelt, flatt fjellplatå. · Kilde: Egenprodusert AI-illustrasjon (CC0 1.0)',
+        enkel: `
+          <p><strong>Viktig huskeregel:</strong> Om en landform er «gammel» eller «ung» handler om <em>når formen på landskapet ble laget</em> – ikke hvor gammel selve steinen er! Selv om grunnfjellet er over 1 milliard år gammelt, kan en dal eller jettegryte som ble gravd ut i det under istiden, være en <strong>ung landform</strong>.</p>
+          <p>${g('gamle-landformer', 'Gamle landformer')} er rolige, myke og nedslitte (Hardangervidda i Vinje/Tinn, Finnmarksvidda, Sørlandsheiene og skjærgården i Bamble/Kragerø). <strong>Unge landformer</strong> er bratte, skarpe og dype former skåret ned i det gamle landskapet de siste 2,6 millioner årene (Vestfjorddalen ved Rjukan, Jettegrytene i Nissedal, fjorder og ${g('strandflata', 'strandflata')}).</p>
+        `,
+        full: `
+          <p><strong>Den viktigste huskeregelen først:</strong> Når geografer snakker om <em>gamle</em> og <em>unge (nye) landformer</em>, snakker vi om <strong>alderen på selve formen i landskapet</strong> – ikke alderen på steinen! Tenk deg en gammel, slitt trebenk som har blitt rund i kantene gjennom mange tiår. Hvis du tar et hoggjern og skjærer dype spor i den, er selve benken gammel, men sporene er helt nye. Slik er det i Norge også: Berggrunnen (grunnfjellet) i indre Finnmark, Sørøst-Norge og Telemark er over 1 milliard år gammel, men elver og isbreer har skåret helt <em>unge</em> former ned i dette gamle fjellet.</p>
+          <p><strong>1. ${g('gamle-landformer', 'Gamle landformer')} (rolige og bølgete):</strong> På dinosaurenes tid (trias, jura og kritt) lå Norge rett ved Grønland i et varmt klima. Over hundrevis av millioner år ble landet slipt ned til myke, bølgete flater med små høydeforskjeller. Disse gamle landformene utgjør faktisk <strong>mesteparten av Norge</strong>: Finnmarksvidda, <strong>Hardangervidda</strong> (som strekker seg inn i Vinje og Tinn i Telemark), Østlandets skog- og fjellvidder, Sørlandsheiene og <strong>skjærgården</strong> (fra Lindesnes og østover, inkludert Bamble- og Kragerø-skjærgården).</p>
+          <p><strong>2. Unge landformer (bratte, dype og skarpe):</strong> Etter at Norskehavet åpnet seg og landet hevet seg i paleogen/neogen, og særlig under istidene i kvartær (siste <strong>2,6 millioner år</strong>), skar elver og isbreer dype spor ned i det gamle landskapet. Typiske unge landformer er fjorder (med terskel, delta og fjordsjøer som Hornindalsvatnet 514 m og Mjøsa), alpine tinder, U-daler som <strong>Vestfjorddalen ved Rjukan</strong> i Telemark, <strong>Jettegrytene i Nissedal</strong>, løsmasseformer som <strong>Jomfruland</strong> og <strong>Geiteryggen</strong>, og ${g('strandflata', 'strandflata')} langs kysten fra Rogaland til Vest-Finnmark (med restfjell som Torghatten).</p>
+          <p><strong>Gamle og unge side om side:</strong> Står du oppe på det flate platået på <strong>Hardangervidda</strong> (gammel landform) og går ut mot kanten av <strong>Vestfjorddalen</strong> ved Rjukan eller <strong>Preikestolen</strong> over Lysefjorden, ser du begge deler i ett blikk: en dyp, ung dal som har skåret seg rett ned i den gamle, rolige overflata.</p>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm mb-3">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">Husketabell: Gamle vs. unge (nye) landformer</p>
+            <p><strong>Gamle landformer:</strong> Myke, flate og rolige linjer · Slipt ned i trias/jura/kritt · Eks. i Telemark: Hardangervidda (Vinje/Tinn) og skjærgården i Bamble/Kragerø.</p>
+            <p><strong>Unge landformer:</strong> Bratte stup, dype daler og skarpe former · Gravd ut i paleogen/neogen og kvartær (siste 2,6 mill. år) · Eks. i Telemark: Vestfjorddalen ved Rjukan, Jettegrytene i Nissedal, Jomfruland og Geiteryggen.</p>
+          </div>
+          <figure class="overflow-hidden rounded-xl border border-slate-500/20 mb-3">
+            <img src="Images/strandflata-vega.jpg" alt="Strandflata ved Vega" class="w-full h-44 object-cover" />
+            <figcaption class="px-3 py-1.5 text-xs text-sec">Strandflata på nordlandskysten ved Vega – meislet ut av bølger, frost og is under istidene (ung landform). · Kilde: Egenprodusert AI-illustrasjon (CC0 1.0)</figcaption>
+          </figure>
+          <figure class="overflow-hidden rounded-xl border border-slate-500/20">
+            <img src="Images/fig-fjordprofil.svg" alt="Lengdesnitt av vestlandsfjord" class="w-full bg-white p-2" />
+          </figure>
+        `,
+        quiz: {
+          q: 'Hva skiller strandflata fra skjærgården på Sørlandet?',
+          options: ['Strandflata har ingen øyer', 'Strandflata kan ha hattlignende restfjell (Torghatten) og regnes som en ung landform', 'Strandflata ligger over 1000 moh.', 'Ingen forskjell'],
+          correct: 1,
+          feedback: 'Riktig! Strandflata fra Rogaland til Vest-Finnmark har restfjell som Torghatten og ble meislet ut som en ung landform.'
+        },
+        reflection: 'Hvordan ser du både gamle og unge landformer samtidig på Hardangervidda eller ved Preikestolen?',
+        goal: 'Skille mellom gamle og unge landformer i Norge og beskrive kyst- og fjordformene.'
+      },
+      {
+        id: 'n12', chapter: 'norge', type: 'fordypning', icon: '🚜',
+        x: 880, y: 245, parents: ['n8'],
+        period: 'Kapittel 3', part: '12. Løsmasser fra istiden',
+        title: '12. Bunnmorene, Raet, marin grense & raviner',
+        subtitle: 'Morenejord, isranddeltaer, korndyrking på marin leire og ravinelandskap på Romerike',
+        image: 'Images/marin-grense-landbruk.jpg',
+        caption: 'Flate, fruktbare kornåkre på marin leire under den marine grensen, avgrenset av skogkledde åser over den marine grensen. · Kilde: Egenprodusert AI-illustrasjon (CC0 1.0)',
+        enkel: `
+          <p><strong>Bunnmorene</strong> (morenejord) er Norges vanligste jordart. Der brefronten stoppet, dannet den endemorener og isranddeltaer – den største ryggen er ${g('raet', 'Raet')} (12 800–11 500 år siden).</p>
+          <p>${g('marin-grense', 'Marin grense')} (>200 m ved Oslo, maks 220 m; ~147 m i Grenland; 180 m i Trøndelag; 6–8 m på Jæren) viser hvor havet sto. Under denne grensen ble det avsatt <strong>marin leire</strong>, som skaper en viktig dobbelthet: Den gir både Norges beste <strong>landbruksjord</strong> (korn) og risiko for ${g('kvikkleire', 'kvikkleire')} når saltet vaskes ut (og ${g('ravine', 'raviner')} når bekker graver i leira).</p>
+        `,
+        full: `
+          <p>Norge har lite løsmasser fordi breerosjonen fraktet mye ut i havet, men da breene smeltet ned, la de igjen <strong>bunnmorener</strong> (<em>morenejord</em> er vår vanligste jordart). Der brefronten skjøv masser foran seg og stoppet, oppsto endemorener og isranddeltaer (viktige sand- og grusressurser). Den største moreneryggen er ${g('raet', 'Raet')}, dannet mellom <strong>12 800 og 11 500 år før nåtid</strong> da isen presset landet ned opptil 150 meter.</p>
+          <p>${g('marin-grense', 'Marin grense')} er det høyeste nivået havet nådde etter istiden: over <strong>200 m</strong> ved indre Oslofjord (maks 220 m i Norge), rundt <strong>147 m</strong> i Grenland/Skien, opptil <strong>180 m</strong> i Trondheimsfjorden, men bare <strong>6–8 m</strong> lengst sør på Jæren.</p>
+          <p><strong>Sammenhengen mellom marin grense, landbruk og kvikkleire:</strong> Under den marine grensen (gammel havbunn) ble det avsatt finkornet <strong>marin leire</strong>. Dette skaper en tydelig dobbelthet i norsk naturgeografi: På den ene siden gir den næringsrike marine leira Norges beste <strong>landbruks- og kornjord</strong> (på Østlandet, i Trøndelag og i lavlandet i Telemark), og der bekker graver seg ned i leira dannes ${g('ravine', 'raviner')} (f.eks. på Romerike). På den andre siden er det <em>bare</em> under den marine grensen at marin leire finnes – og dermed også bare der ferskvann kan vaske ut saltet og danne ustabil ${g('kvikkleire', 'kvikkleire')} med fare for kvikkleireskred.</p>
+          <p><strong>Lokale eksempler fra Telemark – Jomfruland og Geiteryggen:</strong><br>• <strong>Jomfruland (Kragerø):</strong> En synlig del av <em>Raet</em> (ca. 12 800–11 700 år gammel endemorene) som ble løftet opp av havet ved landhevingen. Bølger fra Skagerrak har vasket bort finstoff på yttersiden så rullesteinene (bl.a. larvikitt og rombeporfyr) ligger igjen, mens innsiden har sand og jordbruk.<br>• <strong>Geiteryggen (Skien):</strong> Et stort <em>isranddelta</em> bygd opp til datidens marine grense (ca. 147 moh.) der breelver spylte sand og grus ut i havet. I dag huser platået både flyplass og et av Norges viktigste grustak (Skyggestein grustak).</p>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm mb-3">
+            <p class="text-xs font-bold uppercase tracking-wider text-sky-400">5 morenetrinn rundt Oslofjorden</p>
+            <p>1. Tjøme/Hvaler (13 100 år) · 2. Ytre Ra (11 750 år) · 3. <strong>Raet</strong> (11 500 år) · 4. Ås/Ski (11 200 år) · 5. Aker-trinnet (10 800 år).</p>
+          </div>
+          <figure class="overflow-hidden rounded-xl border border-slate-500/20 mb-3">
+            <img src="Images/fig-maringrense.svg" alt="Sammenhengen mellom marin grense, kornjord og kvikkleire" class="w-full bg-white p-2" />
+            <figcaption class="px-3 py-1.5 text-xs text-sec">Prinsippskisse: Under den marine grensen finner vi både Norges beste kornjord og risiko for kvikkleire. · Kilde: Egenprodusert illustrasjon (CC0 1.0)</figcaption>
+          </figure>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <figure class="overflow-hidden rounded-xl border border-slate-500/20">
+              <img src="Images/telemark-jomfruland.svg" alt="Jomfruland i Kragerø som del av Raet" class="w-full bg-white p-1.5" />
+              <figcaption class="px-3 py-1.5 text-xs text-sec">Jomfruland (Kragerø): Raet løftet av landheving, med rullestein ut mot Skagerrak og sand/jordbruk på innsiden. · Kilde: Egenprodusert illustrasjon (CC0 1.0)</figcaption>
+            </figure>
+            <figure class="overflow-hidden rounded-xl border border-slate-500/20">
+              <img src="Images/telemark-geiteryggen.svg" alt="Geiteryggen isranddelta og grustak i Skien" class="w-full bg-white p-1.5" />
+              <figcaption class="px-3 py-1.5 text-xs text-sec">Geiteryggen (Skien): Klassisk isranddelta avsatt til marin grense (~147 moh.) og utnyttet til sand- og grustak. · Kilde: Egenprodusert illustrasjon (CC0 1.0)</figcaption>
+            </figure>
+          </div>
+        `,
+        quiz: {
+          q: 'Hvorfor er den marine grensen over 200 m ved Oslofjorden, men bare 6–8 m på Jæren?',
+          options: ['Det regner mer i Oslo', 'Istyngden var størst og presset landet mest ned i øst, og mindre lengst sørvest', 'Jæren består av kalkstein', 'Raet blokkerte havet'],
+          correct: 1,
+          feedback: 'Riktig! Nedpressingen av jordskorpa var sterkest der innlandsisen var tykkest.'
+        },
+        reflection: 'Hvorfor ligger mange hovedveier og sandtak i Østfold og Vestfold langs Raet?',
+        goal: 'Forklare bunnmorene, endemorene, Raet, marin grense, marin leire og raviner.'
+      },
+      {
+        id: 'n13', chapter: 'skred', type: 'motperspektiv', icon: '📡',
+        x: 610, y: 100, parents: ['n11'],
+        period: '1756 – 2024', part: '13. Skred i fjell & jord',
+        title: '13. Jordskred, fjellskred & NVE-overvåking',
+        subtitle: 'Ekstremværet Hans (2023), Tjelleskredet (1756), Mannen, Åkneset & Indre Nordnes',
+        image: 'Images/fig-fjellskred.svg',
+        caption: 'NVE overvåker ti ustabile fjellpartier konstant med GPS, radar og laser for å varsle flodbølger og redde liv. · Kilde: Egenprodusert illustrasjon (CC0 1.0)',
+        enkel: `
+          <p>${g('jordskred', 'Jordskred')} skjer når vannmettet jord oppå fast fjell sklir ned som en flytende velling (som under ekstremværet <strong>Hans i 2023</strong>).</p>
+          <p>${g('fjellskred', 'Fjellskred')} (&gt;10 000 m³) kan skape enorme flodbølger (Tjelleskredet 1756: 50 m bølge). NVE overvåker i 2024 ti fjellpartier konstant, bl.a. <strong>Mannen</strong>, <strong>Åkneset</strong> (opptil 80 m bølge) og <strong>Indre Nordnes</strong>.</p>
+        `,
+        full: `
+          <p><strong>${g('jordskred', 'Jordskred')}:</strong> Når jorda oppå fast fjell i en dalside blir mettet med vann fra kraftig nedbør eller snøsmelting, kan den plutselig gli ut som en flytende velling. Fordi slike skred ikke følger elveløp, kan de ramme overraskende steder – som under ekstremværet <strong>Hans i 2023</strong>.</p>
+          <p><strong>${g('fjellskred', 'Fjellskred')}:</strong> Når mer enn 10 000 m³ fjell løsner (mindre: steinskred/steinsprang). Norges største var <strong>Tjelleskredet</strong> i 1756 (15 mill. m³, 50 m flodbølge). Vestlandet og Nord-Norge er mest utsatt.</p>
+          <p><strong>Overvåking:</strong> NVE (sammen med NGU og NGI) bruker GPS, radar og laser på sprekkesoner. I 2024 overvåkes 10 områder konstant: bl.a. <strong>Mannen</strong> (Veslemannen raste i 2019), <strong>Åkneset</strong> i Sunnylvsfjorden (8 cm/år, mulig 80 m bølge) og <strong>Indre Nordnes</strong> ved Lyngenfjorden (overvåket fra 2007). Overvåking hindrer ikke skredet, men redder liv.</p>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-rose-400">Overvåking redder liv</p>
+            <p><strong>Åkneset:</strong> Sprekk 500–900 m over fjorden; mulig terning på &gt;350 m side og 80 m bølge.</p>
+            <p><strong>Mannen:</strong> Større ras kan demme opp Rauma og gi katastrofeflom.</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hva er hensikten med at NVE overvåker fjellpartier som Åkneset og Indre Nordnes?',
+          options: ['Å stoppe sprekkene med betong', 'Å varsle bevegelse slik at man kan evakuere og redde liv før skredet går', 'Å hindre nedbør', 'Å måle vanndybden'],
+          correct: 1,
+          feedback: 'Riktig! Overvåking kan ikke unngå selve skredet, men gjør det mulig å varsle og redde liv.'
+        },
+        reflection: 'Hvorfor fører klimaendringer med mer ekstremnedbør til økt fare for jordskred?',
+        goal: 'Forklare jordskred, fjellskred og hvordan NVE/NGU/NGI overvåker ustabile fjell.'
+      },
+      {
+        id: 'n14', chapter: 'skred', type: 'motperspektiv', icon: '⚠️',
+        x: 860, y: 100, parents: ['n12'],
+        period: '1893 – 2025', part: '14. Kvikkleireskred',
+        title: '14. Leire & kvikkleireskred',
+        subtitle: 'Hvorfor Norge har så mye kvikkleire, situasjonen i Telemark, og katastrofer som Gjerdrum (2020) og E6 i Levanger (2025)',
+        image: 'Images/kvikkleire-skredgrop.jpg',
+        caption: 'Typisk kvikkleireskred i flatt jordbruks- og boligterreng: en skålformet rasgrop med blågrå marin leire etter at skredet har glidd ut. · Kilde: Egenprodusert AI-illustrasjon (CC0 1.0)',
+        enkel: `
+          <p><strong>Hvorfor er det så mye kvikkleire i Norge?</strong> Isbreene knuste fjell til fint steinmel (leire &lt; 0,002 mm), som ble avsatt på salt havbunn da landet var presset ned. Saltet bandt leira sammen i en stabil korthusstruktur. Da landet steg og ferskvann vasket ut saltet, ble leira til ustabil ${g('kvikkleire', 'kvikkleire')}.</p>
+          <p><strong>Finnes det i Telemark?</strong> Ja – store deler av <strong>Skien og Porsgrunn</strong> (under marin grense) har kartlagte kvikkleiresoner (f.eks. Gråtenmoen, Tollnes, Bøle og Klosterøya). Leira er trygg så lenge den ligger i ro, men graving eller erosjon kan utløse ras.</p>
+          <p><strong>Konsekvenser &amp; eksempler:</strong> Kvikkleireskred kan ta liv, ødelegge hele nabolag og kutte hovedveier – som <strong>Ask i Gjerdrum (30. des. 2020, 10 omkomne)</strong> og skredet ved <strong>Nesvatnet i Levanger (30. aug. 2025)</strong> som kuttet både <strong>E6</strong> og Nordlandsbanen.</p>
+        `,
+        full: `
+          <p><strong>Hvorfor har Norge så mye kvikkleire?</strong> Kombinasjonen av tre ting gjør Norge spesielt utsatt: (1) Under istiden knuste isbreene fjell til fint steinmel – partikler under 0,002 mm (leire). (2) Istyngden presset landet langt ned, så store deler av dagens lavland lå under havet (under den marine grensen). I det salte havvannet la saltkrystaller seg mellom leirflakene og bygde en åpen, men stabil «korthusstruktur». (3) Etter landhevingen har regn- og grunnvann (ferskvann) piplet gjennom leira i tusenvis av år og vasket ut saltet. Da forsvinner «limet» mellom leirflakene, og vi får ustabil ${g('kvikkleire', 'kvikkleire')}.</p>
+          <p><strong>Er det kvikkleire i Telemark?</strong> Ja! Fordi store deler av Grenland – særlig langs Skienselva, Porsgrunnselva og Frierfjorden – ligger under den marine grensen, finnes det betydelige forekomster av marin leire og kartlagte kvikkleiresoner i både <strong>Skien</strong> (bl.a. Gråtenmoen, Tollnes, Follestad, Klosterøya, Bøle og Nenset) og <strong>Porsgrunn</strong>. Kvikkleire er stabil så lenge den ligger i ro, men elveerosjon eller menneskelig inngripen (graving, fylling, rystelser) kan få korthusstrukturen til å kollapse til en tyntflytende leiresuppe (initialras → hovedras; omrørt leire etterpå blir stabil og aldri kvikk igjen).</p>
+          <p><strong>Konsekvenser og store skred:</strong> Kvikkleireskred kan skje svært brått selv i nesten flatt terreng og føre til tap av menneskeliv, evakuering av hele tettsteder og brudd på livsviktig infrastruktur:</p>
+          <p>• <strong>Ask i Gjerdrum (30. desember 2020):</strong> Et 700 × 300 meter stort skred i Akershus tok med seg bolighus i mørket; <strong>10 mennesker</strong> (inkludert en gravid kvinne) omkom og over 1000 måtte evakueres.<br>• <strong>Nesvatnet i Levanger, Trøndelag (30. august 2025):</strong> Et kvikkleireskred i forbindelse med grunnarbeid kuttet både ny og gammel <strong>E6</strong> samt <strong>Nordlandsbanen</strong>. Én person omkom, hovedfartsåren mellom nord og sør i Trøndelag ble brutt i over to måneder (omkjøring via smale fylkesveier og Sverige til midlertidig E6 åpnet 8. nov. 2025).<br>• <strong>Tidligere katastrofer:</strong> Verdal (1893, 116 omkomne), Rissa (1978, største på 1900-tallet og første som ble filmet, 1 omkom) og Sørum (2016, 3 omkomne).</p>
+        `,
+        caseHtml: `
+          <figure class="overflow-hidden rounded-xl border border-slate-500/20 mb-3">
+            <img src="Images/fig-kvikkleire.svg" alt="Kvikkleirens 4 stadier og skredforløp" class="w-full bg-white p-2" />
+            <figcaption class="px-3 py-1.5 text-xs text-sec">Kvikkleirens 4 stadier og forløpet ved et kvikkleireskred (elveerosjon/graving → initialras → hovedras). · Kilde: Egenprodusert illustrasjon (CC0 1.0)</figcaption>
+          </figure>
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm mb-3">
+            <p class="text-xs font-bold uppercase tracking-wider text-rose-400">Kvikkleire i Telemark &amp; NVE Temakart</p>
+            <p><strong>Grenland (Skien &amp; Porsgrunn):</strong> Store deler av bysentrum og områdene langs Skienselva/Porsgrunnselva ligger under marin grense, med kartlagte soner bl.a. på Gråtenmoen, Tollnes, Klosterøya, Bøle og Nenset. Skal man grave eller bygge her, kreves strenge geotekniske undersøkelser.</p>
+          </div>
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-rose-400">Hovedoppgaver fra kapittel 3</p>
+            <p>• Finn landformer i Romsdalen (delta, meander, kroksjø, tind, egg, botn, U-dal, fjord).</p>
+            <p>• Regn ut bresmelting per år mellom Ra-trinnet (11 500 år) og Aker-trinnet (10 800 år, &gt;70 km).</p>
+            <p>• Søk på NVE Skrednett / Kvikkleirekart for å se faresoner der du bor, og undersøk Gauldalen 1345.</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hva gjør at marin leire blir til ustabil kvikkleire?',
+          options: ['At havet blir saltere', 'At ferskvann pipler gjennom leira og vasker ut saltet som bandt leirpartiklene sammen', 'At leira fryser til is', 'At den blandes med granitt'],
+          correct: 1,
+          feedback: 'Riktig! Når ferskvann vasker ut saltet, svekkes bindingskreftene i korthusstrukturen og vi får kvikkleire.'
+        },
+        reflection: 'Hvorfor blir omrørt kvikkleire etter et ras stabil og aldri kvikk igjen?',
+        goal: 'Forklare hvordan kvikkleire oppstår, hva som utløser kvikkleireskred, og kjenne norske eksempler.'
+      }
+    ];
+
+    const CHAPTER_GROUPS = [
+      { id: 'forvitring', title: '3.1 Forvitring og erosjon', dot: 'bg-emerald-400', nodeIds: ['n1', 'n2', 'n3', 'n4'] },
+      { id: 'elver', title: '3.2 Elvelandformer', dot: 'bg-amber-400', nodeIds: ['n5', 'n6', 'n7'] },
+      { id: 'isbreer', title: '3.3 Isbreer', dot: 'bg-sky-400', nodeIds: ['n8', 'n9', 'n10'] },
+      { id: 'norge', title: '3.4 Norges landformer & løsmasser', dot: 'bg-violet-400', nodeIds: ['n11', 'n12'] },
+      { id: 'skred', title: '3.5 Skred og ras', dot: 'bg-rose-400', nodeIds: ['n13', 'n14'] }
+    ];
+
+    const expandedGroups = new Set(CHAPTER_GROUPS.map(gr => gr.id));
+    let activeSectionId = 'n1';
+
+    function renderClassicNav(targetId, closeDrawerOnClick = false) {
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      const groupsHtml = CHAPTER_GROUPS.map(group => {
+        const isOpen = expandedGroups.has(group.id);
+        const subLinks = group.nodeIds.map(nid => {
+          const n = NODES.find(x => x.id === nid);
+          if (!n) return '';
+          const active = activeSectionId === n.id;
+          return `<a href="#${n.id}" data-target="${n.id}" class="nav-link block px-2.5 py-1.5 rounded-lg text-xs text-stone-600 hover:text-stone-900 transition-colors ${active ? 'active-nav bg-nordic-50 text-nordic-800 font-semibold' : ''}">${n.title}</a>`;
+        }).join('');
+        return `
+          <div class="border border-stone-200 rounded-xl overflow-hidden bg-stone-50/50">
+            <button type="button" data-group="${group.id}" class="classic-group-btn w-full px-3 py-2 flex items-center justify-between gap-2 text-left text-xs font-bold text-stone-800 hover:bg-stone-100/70 transition-colors">
+              <span class="flex items-center gap-2 min-w-0">
+                <span class="w-2 h-2 rounded-full ${group.dot} shrink-0"></span>
+                <span class="truncate">${group.title}</span>
+              </span>
+              <span class="text-stone-400 shrink-0">${isOpen ? '▾' : '▸'}</span>
+            </button>
+            <div class="${isOpen ? 'block' : 'hidden'} px-2 pb-2 pt-0.5 space-y-0.5">
+              ${subLinks}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const glossaryLink = `<a href="#ordliste" data-target="ordliste" class="nav-link block px-3 py-2 rounded-lg text-xs font-semibold text-stone-700 hover:text-stone-900 border border-stone-200 transition-colors ${activeSectionId === 'ordliste' ? 'active-nav bg-nordic-50 text-nordic-800' : ''}">📖 Samlet ordliste</a>`;
+
+      el.innerHTML = groupsHtml + glossaryLink;
+
+      el.querySelectorAll('.classic-group-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const gid = btn.dataset.group;
+          if (expandedGroups.has(gid)) expandedGroups.delete(gid);
+          else expandedGroups.add(gid);
+          renderClassicNav('desktop-nav-list', false);
+          renderClassicNav('mobile-nav-list', true);
+        });
+      });
+
+      if (closeDrawerOnClick) {
+        el.querySelectorAll('a.nav-link').forEach(a => {
+          a.addEventListener('click', () => document.getElementById('mobile-drawer').classList.add('hidden'));
+        });
+      }
+    }
+
+    function renderClassicContent() {
+      const main = document.getElementById('classic-main');
+      const introHeader = `
+        <section class="bg-white border border-stone-200 rounded-2xl p-6 sm:p-10 shadow-xs">
+          <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-nordic-700 mb-3">
+            <span class="bg-nordic-50 border border-nordic-200/70 px-2.5 py-1 rounded-md">Naturgeografi</span>
+            <span class="text-stone-400">/</span>
+            <span>Kapittel 3 · Komplett klassisk visning</span>
+          </div>
+          <h1 class="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-stone-900 mb-3">Ytre krefter og landformene i Norge</h1>
+          <p class="text-lg text-stone-600 leading-relaxed">
+            Fra forvitring og erosjon til elvelandformer, isbreer, Norges gamle og unge landformer, løsmasser fra istiden og skredfare. Bruk menyen til venstre for å hoppe rett til ønsket tema, eller les kapittelet fortløpende nedover.
+          </p>
+        </section>
+      `;
+
+      const topicSections = NODES.map(n => `
+        <section id="${n.id}" class="scroll-mt-header bg-white border border-stone-200 rounded-2xl p-6 sm:p-9 shadow-xs space-y-5">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">${n.part}</span>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1">${n.title}</h2>
+            <p class="text-sm text-stone-500 mt-1">${n.subtitle}</p>
+          </div>
+
+          <figure class="overflow-hidden rounded-xl border border-stone-200 bg-stone-50">
+            <img src="${n.image}" alt="${n.title}" class="w-full ${n.image.endsWith('.svg') ? 'object-contain bg-white p-2 max-h-80' : 'h-56 sm:h-64 object-cover'}" />
+            <figcaption class="px-4 py-2 text-xs text-stone-500 border-t border-stone-200/80">${n.caption}</figcaption>
+          </figure>
+
+          <div class="space-y-4 text-stone-700 leading-relaxed text-sm sm:text-base">
+            ${n.full}
+          </div>
+
+          <div class="space-y-3">
+            ${n.caseHtml}
+          </div>
+
+          <div class="bg-stone-50 border border-stone-200 rounded-xl p-4 text-xs sm:text-sm text-stone-700 space-y-1">
+            <p class="font-bold uppercase tracking-wider text-nordic-800 text-xs">Læringsfokus &amp; refleksjon</p>
+            <p><strong>Kompetansemål:</strong> ${n.goal}</p>
+            <p><strong>Tenk over:</strong> ${n.reflection}</p>
+          </div>
+        </section>
+      `).join('');
+
+      const glossarySection = `
+        <section id="ordliste" class="scroll-mt-header space-y-6 pb-12">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">Begreper</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Samlet ordliste</h2>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            ${Object.values(GLOSSARY).map(item => `
+              <div class="bg-white border border-stone-200 rounded-xl p-4 shadow-xs">
+                <p class="font-serif font-bold text-base text-nordic-800 mb-1">${item.title}</p>
+                <p class="text-sm text-stone-600 leading-relaxed">${item.definition}</p>
+              </div>
+            `).join('')}
+          </div>
+          <p class="text-xs text-stone-500 pt-4 border-t border-stone-200">
+            <strong>Lisens:</strong> Alle fotografiske illustrasjoner og geologiske figurer i <code>Images/</code> er egenproduserte for dette undervisningsopplegget under åpen lisens (CC0 1.0 / CC BY 4.0).
+          </p>
+        </section>
+      `;
+
+      main.innerHTML = introHeader + topicSections + glossarySection;
+    }
+
+    renderClassicContent();
+    renderClassicNav('desktop-nav-list', false);
+    renderClassicNav('mobile-nav-list', true);
+
+    // Mobile drawer controls
+    const drawer = document.getElementById('mobile-drawer');
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => drawer.classList.remove('hidden'));
+    document.getElementById('mobile-drawer-close').addEventListener('click', () => drawer.classList.add('hidden'));
+    document.getElementById('mobile-drawer-backdrop').addEventListener('click', () => drawer.classList.add('hidden'));
+
+    // Reading progress & Scroll-Spy
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+      document.getElementById('reading-progress').style.width = `${pct}%`;
+
+      const sections = document.querySelectorAll('main section[id]');
+      let current = 'n1';
+      sections.forEach(sec => {
+        if (sec.getBoundingClientRect().top <= 160) current = sec.id;
+      });
+      if (current !== activeSectionId) {
+        activeSectionId = current;
+        const ownerGroup = CHAPTER_GROUPS.find(gr => gr.nodeIds.includes(current));
+        if (ownerGroup) expandedGroups.add(ownerGroup.id);
+        renderClassicNav('desktop-nav-list', false);
+        renderClassicNav('mobile-nav-list', true);
+      }
+    });
+
+    // Tooltip logic
+    const tooltip = document.getElementById('glossary-tooltip');
+    const tooltipTitle = document.getElementById('tooltip-title');
+    const tooltipBody = document.getElementById('tooltip-body');
+    let hideTimeout = null;
+    function showTooltip(trigger) {
+      const entry = GLOSSARY[trigger.dataset.term];
+      if (!entry) return;
+      clearTimeout(hideTimeout);
+      tooltipTitle.textContent = entry.title;
+      tooltipBody.textContent = entry.definition;
+      tooltip.classList.remove('hidden-tooltip');
+      tooltip.classList.add('visible-tooltip');
+      const rect = trigger.getBoundingClientRect();
+      const ttRect = tooltip.getBoundingClientRect();
+      let left = Math.max(12, Math.min(rect.left + rect.width / 2 - ttRect.width / 2, window.innerWidth - ttRect.width - 12));
+      let top = rect.top - ttRect.height - 10;
+      if (top < 12) top = rect.bottom + 10;
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+    }
+    function hideTooltip() {
+      tooltip.classList.remove('visible-tooltip');
+      tooltip.classList.add('hidden-tooltip');
+    }
+    document.querySelectorAll('.glossary-term').forEach(btn => {
+      btn.addEventListener('mouseenter', () => showTooltip(btn));
+      btn.addEventListener('mouseleave', () => { hideTimeout = setTimeout(hideTooltip, 150); });
+      btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(btn); });
+    });
+    document.getElementById('tooltip-close').addEventListener('click', hideTooltip);
+    document.addEventListener('click', (e) => {
+      if (!tooltip.contains(e.target) && !e.target.classList.contains('glossary-term')) hideTooltip();
+    });
+
+    // Dark / Light theme sync
+    const applyClassicTheme = (isDark) => {
+      document.documentElement.classList.toggle('dark-theme', isDark);
+      document.querySelectorAll('.theme-toggle-icon').forEach(el => {
+        el.textContent = isDark ? '☀️' : '🌙';
+      });
+    };
+    const savedClassicTheme = localStorage.getItem('geografi-theme');
+    if (savedClassicTheme === 'dark') applyClassicTheme(true);
+    document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isDark = !document.documentElement.classList.contains('dark-theme');
+        applyClassicTheme(isDark);
+        localStorage.setItem('geografi-theme', isDark ? 'dark' : 'light');
+      });
+    });
+  </script>
+</body>
+</html>
