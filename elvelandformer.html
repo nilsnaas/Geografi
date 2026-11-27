@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="nb" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landformer som er dannet av elver – Naturgeografi (Kapittel 3)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['Source Serif 4', 'Georgia', 'serif'],
+          },
+          colors: {
+            nordic: {
+              50: '#f4f7f6',
+              100: '#e3ebe8',
+              200: '#c6d8d2',
+              600: '#1f6f66',
+              700: '#185952',
+              800: '#154742',
+              900: '#123a36',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #fafaf9;
+      color: #1c1917;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+    .scroll-mt-header { scroll-margin-top: 2rem; }
+    .glossary-term {
+      font-weight: 700;
+      color: #185952;
+      border-bottom: 1.5px dotted #1f6f66;
+      padding: 0 2px;
+      border-radius: 3px;
+      transition: background-color 150ms ease, color 150ms ease;
+      cursor: help;
+      text-align: left;
+    }
+    .glossary-term:hover,
+    .glossary-term:focus-visible {
+      background-color: #e3ebe8;
+      color: #123a36;
+      outline: none;
+    }
+    #glossary-tooltip {
+      transition: opacity 150ms ease, transform 150ms ease;
+    }
+    #glossary-tooltip.hidden-tooltip {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(4px);
+    }
+    #glossary-tooltip.visible-tooltip {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-nordic-100 selection:text-nordic-900">
+
+  <div class="fixed top-0 left-0 right-0 h-1 bg-stone-200 z-50">
+    <div id="reading-progress" class="h-full bg-nordic-600 transition-all duration-150" style="width: 0%"></div>
+  </div>
+
+  <!-- Mobile Header -->
+  <header class="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-stone-200 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0">NN</div>
+      <div>
+        <span class="text-[11px] font-semibold uppercase tracking-wider text-nordic-700 block">Nils sin geografibok · Kap. 3</span>
+        <span class="font-serif font-bold text-lg text-stone-900 leading-tight block">Elvelandformer</span>
+      </div>
+    </div>
+    <button id="mobile-menu-btn" type="button" aria-label="Åpne innholdsmeny" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-stone-300 text-sm font-medium text-stone-700 hover:bg-stone-100">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      Innhold
+    </button>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="lg:hidden fixed inset-0 z-50 hidden">
+    <div id="mobile-drawer-backdrop" class="absolute inset-0 bg-stone-900/40 backdrop-blur-xs"></div>
+    <nav class="relative w-72 max-w-[85vw] h-full bg-white border-r border-stone-200 p-6 overflow-y-auto shadow-xl">
+      <div class="flex items-center justify-between mb-6 pb-4 border-b border-stone-200">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0">NN</div>
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-wider text-nordic-700">Nils sin geografibok</p>
+            <p class="font-serif font-bold text-base text-stone-900 leading-tight">Elvelandformer</p>
+          </div>
+        </div>
+        <button id="mobile-drawer-close" type="button" aria-label="Lukk meny" class="p-1.5 rounded-md text-stone-500 hover:bg-stone-100">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <ul class="space-y-1 text-sm" id="mobile-nav-list"></ul>
+    </nav>
+  </div>
+
+  <!-- Main Layout Wrapper -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="lg:grid lg:grid-cols-[270px_1fr] lg:gap-12 xl:gap-16 items-start">
+
+      <!-- Left Sticky Sidebar -->
+      <aside class="hidden lg:block sticky top-8">
+        <div class="bg-white border border-stone-200/90 rounded-2xl p-5 shadow-xs">
+          <div class="flex items-center gap-2.5 pb-3.5 mb-3.5 border-b border-stone-200">
+            <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0 shadow-xs">NN</div>
+            <span class="text-xs font-semibold text-stone-800 leading-snug">Nils sin geografibok</span>
+          </div>
+          <div class="pb-4 mb-4 border-b border-stone-200">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-nordic-700 bg-nordic-50 px-2.5 py-1 rounded-full">
+              Kapittel 3 · s. 69–75
+            </span>
+            <h2 class="font-serif text-xl font-bold text-stone-900 mt-2.5">Landformer som er dannet av elver</h2>
+            <p class="text-xs text-stone-500 mt-1">Naturgeografi · Nils sin geografibok</p>
+          </div>
+
+          <nav aria-label="Innholdsfortegnelse">
+            <ul id="desktop-nav-list" class="space-y-1 text-sm">
+              <li><a href="#norges-landformer" data-target="norges-landformer" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">1. Norges unge landformer</a></li>
+              <li><a href="#elvetransport" data-target="elvetransport" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">2. Erosjon og transport i elva</a></li>
+              <li><a href="#erosjonsformer" data-target="erosjonsformer" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">3. V-dal, canyon &amp; jettegryte</a></li>
+              <li><a href="#elvevifte" data-target="elvevifte" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">4. Elvevifte &amp; skadeflom</a></li>
+              <li><a href="#meander" data-target="meander" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">5. Meander, elveslette &amp; kroksjø</a></li>
+              <li><a href="#delta" data-target="delta" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">6. Delta</a></li>
+              <li><a href="#ordliste" data-target="ordliste" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">7. Ordliste</a></li>
+            </ul>
+          </nav>
+
+          <div class="mt-5 pt-4 border-t border-stone-200 space-y-2.5">
+            <a href="index.html" class="flex items-center justify-between px-3 py-2 rounded-lg bg-stone-900 hover:bg-stone-800 text-xs font-semibold text-white transition-colors">
+              <span>🌳 Åpne Kunnskapstreet</span>
+            </a>
+            <a href="ytre-krefter.html" class="flex items-center justify-between px-3 py-2 rounded-lg bg-nordic-50 hover:bg-nordic-100 border border-nordic-200/80 text-xs font-semibold text-nordic-800 transition-colors">
+              <span>← Forrige del: Ytre krefter</span>
+            </a>
+            <a href="isbreer.html" class="flex items-center justify-between px-3 py-2 rounded-lg bg-nordic-50 hover:bg-nordic-100 border border-nordic-200/80 text-xs font-semibold text-nordic-800 transition-colors">
+              <span>Neste del: Isbreer →</span>
+            </a>
+            <div class="text-xs text-stone-500 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-nordic-600 shrink-0"></span>
+              <span>Hold musepekeren over <strong class="text-nordic-700 font-semibold">uthevede fagbegreper</strong> for forklaring.</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Article Content -->
+      <main class="max-w-3xl space-y-14">
+
+        <!-- 1. Norges unge landformer -->
+        <section id="norges-landformer" class="scroll-mt-header">
+          <div class="bg-white border border-stone-200 rounded-2xl p-6 sm:p-10 shadow-xs">
+            <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-nordic-700 mb-4">
+              <span class="bg-nordic-50 border border-nordic-200/70 px-2.5 py-1 rounded-md">Naturgeografi</span>
+              <span class="text-stone-400">/</span>
+              <span>Kapittel 3 · s. 69–70</span>
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-stone-900 mb-4">Landformer som er dannet av elver</h1>
+            <p class="text-lg sm:text-xl text-stone-600 leading-relaxed mb-6">
+              Rennende vann produserer både erosjonsformer i høyereliggende områder og avsetningsformer der terrenget flater ut, i en innsjø eller i havet.
+            </p>
+
+            <figure class="my-6 overflow-hidden rounded-xl border border-stone-200 bg-stone-50">
+              <img src="Images/voringsfossen-vdal.jpg" alt="Vøringsfossen i Eidfjord kommune i Vestland" class="w-full h-56 sm:h-64 object-cover" />
+              <figcaption class="px-4 py-2.5 text-xs text-stone-500 border-t border-stone-200/80">
+                Vøringsfossen i Eidfjord kommune i Vestland fylke faller 182 m ned fra den åpne fjelldalen til den trange Måbødalen nedenfor.
+              </figcaption>
+            </figure>
+
+            <div class="space-y-4 text-stone-700 leading-relaxed">
+              <p>
+                Elver har formet Norge i mer enn 50 millioner år. For om lag <strong>55 millioner år siden</strong> begynte Grønland og den skandinaviske halvøya å bevege seg fra hverandre. Ny havbunn ble dannet, og <strong>Norskehavet</strong> åpnet seg. Et bredere hav i vest ga fuktigere klima og større vannføring i elvene, samtidig som fjellene i Sør- og Nord-Norge hevet seg <strong>1000–1500 meter</strong>. Større fall fra fjell til kyst ga elvene større evne til å erodere seg ned i de gamle dalene.
+              </p>
+              <p>
+                Seinere, under istidene som startet for <strong>2,6 millioner år siden</strong>, utvidet breene de lange elvedalene på Vestlandet og i Nord-Norge og gravde dem dypere ned i berggrunnen. Etter at breene smeltet bort og havet trengte innover, ble dalbunnene til fjorder. Slike landformer dannet etter landhevingen i paleogen/neogen og under istidene i kvartær kalles <button type="button" class="glossary-term" data-term="unge-landformer">unge landformer</button>.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Elvetransport -->
+        <section id="elvetransport" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">s. 70–71</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Rennende vann eroderer og transporterer løsmasser</h2>
+          </div>
+
+          <p class="text-stone-700 leading-relaxed">
+            Elvene eroderer bare der vannstrømmen går. Der elva renner over fast fjell, kan hoppende stein i strømmen slå løs stykker av elvebunnen. Når vannføringen øker under snøsmelting eller kraftig nedbør, øker også turbulensen (strømvirvlene) og strømhastigheten – og dermed øker elvas transportevne.
+          </p>
+
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div class="bg-white border border-stone-200 rounded-xl p-5">
+              <h3 class="font-serif font-bold text-lg text-stone-900 mb-2">1. Slamtransport</h3>
+              <p class="text-sm text-stone-700"><button type="button" class="glossary-term" data-term="slamtransport">Slamtransport</button> skjer når små jordpartikler (grums) holdes svevende av strømvirvlene, typisk under vårflommen i leirjordsområder som Østlandet og Trøndelag.</p>
+            </div>
+            <div class="bg-white border border-stone-200 rounded-xl p-5">
+              <h3 class="font-serif font-bold text-lg text-stone-900 mb-2">2. Bunntransport</h3>
+              <p class="text-sm text-stone-700"><button type="button" class="glossary-term" data-term="bunntransport">Bunntransport</button> av stein og grus skjer langs elvebunnen når det er kraftig strøm i elva.</p>
+            </div>
+            <div class="bg-white border border-stone-200 rounded-xl p-5">
+              <h3 class="font-serif font-bold text-lg text-stone-900 mb-2">3. Oppløst materiale</h3>
+              <p class="text-sm text-stone-700">Vannet løser opp mineraler gjennom kjemisk forvitring, og det oppløste materialet følger vannstrømmen.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Erosjonsformer -->
+        <section id="erosjonsformer" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">s. 71–72</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Elvas erosjonsformer</h2>
+          </div>
+
+          <div class="grid sm:grid-cols-3 gap-5">
+            <div class="bg-white border border-stone-200 rounded-xl p-5 space-y-2">
+              <h3 class="font-serif text-xl font-bold text-stone-900">V-dal</h3>
+              <p class="text-sm text-stone-700 leading-relaxed">
+                Der terrenget skråner, øker farten og elva graver ut en <button type="button" class="glossary-term" data-term="v-dal">V-dal</button> som likner et øksehugg i fjellsiden. Jord og stein raser ned fra sidene etter hvert som elva graver seg ned, og dalbunnen er ikke bredere enn selve elva.
+              </p>
+            </div>
+            <div class="bg-white border border-stone-200 rounded-xl p-5 space-y-2">
+              <h3 class="font-serif text-xl font-bold text-stone-900">Canyon</h3>
+              <p class="text-sm text-stone-700 leading-relaxed">
+                Renner elva over knauser av hardt berg, foregår erosjonen bare i elvebunnen. Sidene er så harde at det ikke raser materiale ned, og veggene blir loddrette – en <button type="button" class="glossary-term" data-term="canyon">canyon</button> eller et elvegjel.
+              </p>
+            </div>
+            <div class="bg-white border border-stone-200 rounded-xl p-5 space-y-2">
+              <h3 class="font-serif text-xl font-bold text-stone-900">Jettegryte</h3>
+              <p class="text-sm text-stone-700 leading-relaxed">
+                Spesielle strømvirvler kan få steiner til å rotere på et avgrenset område, slik at de graver ut runde <button type="button" class="glossary-term" data-term="jettegryte">jettegryter</button> i bunnen av elveløpet. Et kjent lokalt eksempel i Telemark er <strong>Jettegrytene i Nissedal</strong> (langs Fyresåna), som ble avdekket da elva ble regulert på 1950-tallet.
+              </p>
+            </div>
+          </div>
+
+          <figure class="overflow-hidden rounded-xl border border-stone-200 bg-white">
+            <img src="Images/telemark-nissedal.svg" alt="Jettegrytene i Nissedal i Telemark" class="w-full" />
+            <figcaption class="px-4 py-2 text-xs text-stone-500 border-t border-stone-200/80">
+              Lokalt eksempel fra Telemark: Jettegrytene i Nissedal – rundt 300 meter med glattskurte svaberg og dype jettegryter dannet av smeltevann ved slutten av siste istid.
+            </figcaption>
+          </figure>
+        </section>
+
+        <!-- 4. Elvevifte -->
+        <section id="elvevifte" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">s. 72</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Elvevifte og skadeflom i Kvam</h2>
+          </div>
+
+          <div class="bg-white border border-stone-200 rounded-xl p-6 space-y-4 text-stone-700 leading-relaxed">
+            <p>
+              Der dalsiden begynner å flate ut, reduseres vannets fart og transportevne. Over lang tid bygges stein, grus og sand opp som en <button type="button" class="glossary-term" data-term="elvevifte">elvevifte</button> – smal øverst og bred nederst – fordi elva breier seg ut i et forgreinet løp. Når ett løp fylles opp med løsmasser under flom, blir det stengt, og vannet finner et nytt løp ved siden av.
+            </p>
+            <p class="bg-amber-50/70 border border-amber-200/80 rounded-lg p-4 text-sm text-amber-950">
+              <strong>Eksempel – Kvam i Gudbrandsdalen:</strong> Tettstedet Kvam ligger på en elvevifte der en sideelv munner ut i Gudbrandsdalslågen. I både <strong>2011 og 2013</strong> opplevde innbyggerne skadeflom da kraftig nedbør førte flomvann med stein og grus innover bebyggelsen.
+            </p>
+          </div>
+        </section>
+
+        <!-- 5. Meander, elveslette og kroksjø -->
+        <section id="meander" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">s. 73–74</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Meanderløp, elveslette og kroksjø</h2>
+          </div>
+
+          <div class="space-y-4 text-stone-700 leading-relaxed">
+            <p>
+              Hvis det er mye løsmasser der dalbunnen er bred og flat, får hovedelva et svingete <button type="button" class="glossary-term" data-term="meanderlop">meanderløp</button>. I <strong>yttersvingene</strong> har vannet størst fart og eroderer seg inn i terrenget. I <strong>innersvingene</strong> bremses farten opp, og elva avsetter sandbanker. Over tid flytter elveløpet seg fram og tilbake og danner en flat <button type="button" class="glossary-term" data-term="elveslette">elveslette</button>.
+            </p>
+            <p>
+              Elvesletter med sand og grus har vært mye lettere å dyrke opp enn steinete <button type="button" class="glossary-term" data-term="morenejord">morenejord</button>, og er attraktive for veier, næringsbygg og bebyggelse – men også flomutsatt (som ved Frya i Sør-Fron under flommen i Gudbrandsdalen i 2013, der selv flyplassen sto under vann).
+            </p>
+            <p>
+              Når yttersvingene kryper nærmere hverandre, kan elva ved stor flom skjære rett gjennom meanderbuen. Meandersvingen blir liggende igjen uten innløp og utløp som en <button type="button" class="glossary-term" data-term="kroksjo">kroksjø</button>, som gradvis gror igjen med frodig vegetasjon og yrende dyreliv.
+            </p>
+          </div>
+          <figure class="overflow-hidden rounded-xl border border-stone-200 bg-white">
+            <img src="Images/fig-elvelandformer.svg" alt="Meander til kroksjø og lagdeling i delta" class="w-full" />
+            <figcaption class="px-4 py-2 text-xs text-stone-500 border-t border-stone-200/80">
+              Prinsippskisse: Fra meanderløp til kroksjø (venstre) og sortert lagdeling i et delta (høyre).
+            </figcaption>
+          </figure>
+        </section>
+
+        <!-- 6. Delta -->
+        <section id="delta" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">s. 74–75</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Delta</h2>
+          </div>
+
+          <figure class="overflow-hidden rounded-xl border border-stone-200 bg-white">
+            <img src="Images/reisaelva-delta.jpg" alt="Deltaet til Reisaelva i Troms" class="w-full h-56 sm:h-64 object-cover" />
+            <figcaption class="px-4 py-2.5 text-xs text-stone-500 border-t border-stone-200/80">
+              Deltaet til Reisaelva i Troms – elva er nesten 130 km lang og har lagt opp et stort delta der den munner ut i Reisafjorden.
+            </figcaption>
+          </figure>
+
+          <div class="space-y-4 text-stone-700 leading-relaxed">
+            <p>
+              Et <button type="button" class="glossary-term" data-term="delta">delta</button> er en avsetning av sorterte løsmasser ved munningen av en elv (oppkalt etter den greske bokstaven $\Delta$). Når elva kommer ut i vann eller hav, bremses farten: Sand og småstein avsettes først (<strong>toppavsetninger</strong> innerst og finere <strong>frontavsetninger</strong> i deltaskråningen), mens finkornet leire virvler videre og synker til bunns lengst ute (<strong>bunnavsetninger</strong>). Ved utløpet av Amazonas kan ferskvann og slam registreres hele 300 km ut i Atlanterhavet.
+            </p>
+          </div>
+        </section>
+
+        <!-- 7. Ordliste -->
+        <section id="ordliste" class="scroll-mt-header space-y-6 pb-12">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">Begreper</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Ordliste</h2>
+          </div>
+          <div id="glossary-grid" class="grid sm:grid-cols-2 gap-4"></div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Floating Glossary Tooltip -->
+  <div id="glossary-tooltip" role="tooltip" class="hidden-tooltip fixed z-50 max-w-xs sm:max-w-sm bg-stone-900 text-stone-100 rounded-xl p-4 shadow-2xl border border-stone-700">
+    <div class="flex items-start justify-between gap-3 mb-1">
+      <span id="tooltip-title" class="font-serif font-bold text-base text-emerald-300"></span>
+      <button id="tooltip-close" type="button" aria-label="Lukk begrepsforklaring" class="text-stone-400 hover:text-white text-xs px-1">✕</button>
+    </div>
+    <p id="tooltip-body" class="text-xs sm:text-sm text-stone-200 leading-relaxed"></p>
+  </div>
+
+  <script>
+    const GLOSSARY = {
+      'unge-landformer': { title: 'Unge landformer', definition: 'Landformer dannet etter landhevingen i paleogen/neogen og under istidene i kvartær.' },
+      'slamtransport': { title: 'Slamtransport', definition: 'Små jordpartikler (grums) som holdes svevende av strømvirvlene i elva.' },
+      'bunntransport': { title: 'Bunntransport', definition: 'Stein og grus som rulles eller hopper langs elvebunnen når det er kraftig strøm.' },
+      'v-dal': { title: 'V-dal', definition: 'Dal med V-formet tverrprofil som likner et øksehugg i fjellsiden, dannet av elveerosjon og utrasning fra sidene.' },
+      'canyon': { title: 'Canyon', definition: 'Dyp dal med loddrette vegger i hardt berg der erosjonen bare skjer i elvebunnen.' },
+      'jettegryte': { title: 'Jettegryte', definition: 'Rund fordypning gravd ut i elvebunnen av steiner som roterer i strømvirvler.' },
+      'elvevifte': { title: 'Elvevifte', definition: 'Vifteformet avsetning av stein, grus og sand der dalsiden flater ut og elva forgreiner seg.' },
+      'meanderlop': { title: 'Meanderløp', definition: 'Svingete elveløp med erosjon i yttersvingene og avsetning av sandbanker i innersvingene.' },
+      'elveslette': { title: 'Elveslette', definition: 'Flatt parti med løsmasser (grus og sand) i dalbunnen formet av et elveløp som flytter seg.' },
+      'morenejord': { title: 'Morenejord', definition: 'Usortert løsmateriale lagt igjen av isbreer, som ofte inneholder store steiner.' },
+      'kroksjo': { title: 'Kroksjø', definition: 'Avsnørt meandersving uten innløp og utløp etter at elva har skåret rett fram under en stor flom.' },
+      'delta': { title: 'Delta', definition: 'Avsetning av sorterte løsmasser ved munningen av en elv i innsjø eller hav.' }
+    };
+
+    const grid = document.getElementById('glossary-grid');
+    Object.values(GLOSSARY).forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'bg-white border border-stone-200 rounded-xl p-4 shadow-xs';
+      card.innerHTML = `<p class="font-serif font-bold text-base text-nordic-800 mb-1">${item.title}</p><p class="text-sm text-stone-600 leading-relaxed">${item.definition}</p>`;
+      grid.appendChild(card);
+    });
+
+    const desktopLinks = document.querySelectorAll('#desktop-nav-list a');
+    const mobileList = document.getElementById('mobile-nav-list');
+    desktopLinks.forEach(a => {
+      const li = document.createElement('li');
+      const clone = a.cloneNode(true);
+      clone.addEventListener('click', () => document.getElementById('mobile-drawer').classList.add('hidden'));
+      li.appendChild(clone);
+      mobileList.appendChild(li);
+    });
+
+    const drawer = document.getElementById('mobile-drawer');
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => drawer.classList.remove('hidden'));
+    document.getElementById('mobile-drawer-close').addEventListener('click', () => drawer.classList.add('hidden'));
+    document.getElementById('mobile-drawer-backdrop').addEventListener('click', () => drawer.classList.add('hidden'));
+
+    const sections = document.querySelectorAll('main section[id]');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+      document.getElementById('reading-progress').style.width = `${pct}%`;
+
+      let current = 'norges-landformer';
+      sections.forEach(sec => {
+        if (sec.getBoundingClientRect().top <= 140) current = sec.id;
+      });
+      desktopLinks.forEach(link => {
+        const active = link.dataset.target === current;
+        link.classList.toggle('bg-nordic-50', active);
+        link.classList.toggle('text-nordic-800', active);
+        link.classList.toggle('font-semibold', active);
+      });
+    });
+
+    const tooltip = document.getElementById('glossary-tooltip');
+    const tooltipTitle = document.getElementById('tooltip-title');
+    const tooltipBody = document.getElementById('tooltip-body');
+    let hideTimeout = null;
+    function showTooltip(trigger) {
+      const entry = GLOSSARY[trigger.dataset.term];
+      if (!entry) return;
+      clearTimeout(hideTimeout);
+      tooltipTitle.textContent = entry.title;
+      tooltipBody.textContent = entry.definition;
+      tooltip.classList.remove('hidden-tooltip');
+      tooltip.classList.add('visible-tooltip');
+      const rect = trigger.getBoundingClientRect();
+      const ttRect = tooltip.getBoundingClientRect();
+      let left = Math.max(12, Math.min(rect.left + rect.width / 2 - ttRect.width / 2, window.innerWidth - ttRect.width - 12));
+      let top = rect.top - ttRect.height - 10;
+      if (top < 12) top = rect.bottom + 10;
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+    }
+    function hideTooltip() {
+      tooltip.classList.remove('visible-tooltip');
+      tooltip.classList.add('hidden-tooltip');
+    }
+    document.querySelectorAll('.glossary-term').forEach(btn => {
+      btn.addEventListener('mouseenter', () => showTooltip(btn));
+      btn.addEventListener('mouseleave', () => { hideTimeout = setTimeout(hideTooltip, 150); });
+      btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(btn); });
+    });
+    document.getElementById('tooltip-close').addEventListener('click', hideTooltip);
+    document.addEventListener('click', (e) => {
+      if (!tooltip.contains(e.target) && !e.target.classList.contains('glossary-term')) hideTooltip();
+    });
+  </script>
+</body>
+</html>

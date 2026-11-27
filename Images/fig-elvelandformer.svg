@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" font-family="Inter, system-ui, sans-serif">
+  <rect width="800" height="420" fill="#f8fafc"/>
+  <!-- Left: Meander til kroksjø -->
+  <rect x="20" y="20" width="370" height="380" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="40" y="52" font-size="16" font-weight="700" fill="#0f172a">Meanderløp → Kroksjø</text>
+  <!-- Stage 1 -->
+  <rect x="40" y="75" width="155" height="135" rx="8" fill="#dcfce7" stroke="#86efac"/>
+  <path d="M55 195 C90 160, 155 160, 150 130 C145 100, 80 120, 115 80" fill="none" stroke="#0ea5e9" stroke-width="14" stroke-linecap="round"/>
+  <text x="117" y="200" font-size="11" font-weight="600" text-anchor="middle" fill="#166534">1. Yttersving eroderes</text>
+  <!-- Stage 2 -->
+  <rect x="215" y="75" width="155" height="135" rx="8" fill="#dcfce7" stroke="#86efac"/>
+  <path d="M235 195 L325 80" fill="none" stroke="#0ea5e9" stroke-width="14" stroke-linecap="round"/>
+  <path d="M265 155 C315 165, 345 130, 295 110" fill="none" stroke="#38bdf8" stroke-width="10" stroke-linecap="round" opacity="0.8"/>
+  <text x="292" y="200" font-size="11" font-weight="600" text-anchor="middle" fill="#166534">2. Flom kutter → Kroksjø</text>
+  <!-- Legend box -->
+  <rect x="40" y="235" width="330" height="140" rx="10" fill="#f1f5f9"/>
+  <text x="58" y="265" font-size="13" font-weight="700" fill="#0f172a">Slik virker et meanderløp:</text>
+  <text x="58" y="292" font-size="12" fill="#334155">• Yttersving: størst fart → elva eroderer</text>
+  <text x="58" y="316" font-size="12" fill="#334155">• Innersving: lav fart → sandbanker avsettes</text>
+  <text x="58" y="340" font-size="12" fill="#334155">• Elveslette: flatt område med grus og sand</text>
+
+  <!-- Right: Delta -->
+  <rect x="410" y="20" width="370" height="380" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="430" y="52" font-size="16" font-weight="700" fill="#0f172a">Delta: Sorterte løsmasser</text>
+  <!-- Sea -->
+  <rect x="570" y="135" width="190" height="160" fill="#bae6fd"/>
+  <!-- Bedrock -->
+  <path d="M430 100 L520 150 L580 265 L760 295 L760 330 L430 330 Z" fill="#64748b"/>
+  <!-- Topp/Front/Bunn -->
+  <polygon points="520,150 615,150 580,265" fill="#fde68a" stroke="#d97706"/>
+  <polygon points="615,150 655,265 580,265" fill="#fed7aa" stroke="#ea580c"/>
+  <polygon points="580,265 760,278 760,295" fill="#cbd5e1" stroke="#475569"/>
+  <!-- River -->
+  <path d="M430 100 L525 148 L615 148" fill="none" stroke="#0284c7" stroke-width="8"/>
+  <text x="555" y="138" font-size="11" font-weight="700" fill="#92400e">Toppavsetninger (sand/grus)</text>
+  <text x="645" y="215" font-size="11" font-weight="700" fill="#9a3412">Front-</text>
+  <text x="645" y="229" font-size="11" font-weight="700" fill="#9a3412">avsetning</text>
+  <text x="670" y="316" font-size="11" font-weight="700" fill="#1e293b">Bunnavsetning (leire)</text>
+  <text x="595" y="368" font-size="12" fill="#475569" text-anchor="middle">Grovest materiale innerst, fin leire lengst ute</text>
+</svg>

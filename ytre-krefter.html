@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="nb" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ytre krefter og landformene i Norge – Naturgeografi (Kapittel 3)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['Source Serif 4', 'Georgia', 'serif'],
+          },
+          colors: {
+            nordic: {
+              50: '#f4f7f6',
+              100: '#e3ebe8',
+              200: '#c6d8d2',
+              600: '#1f6f66',
+              700: '#185952',
+              800: '#154742',
+              900: '#123a36',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #fafaf9;
+      color: #1c1917;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+    .scroll-mt-header {
+      scroll-margin-top: 2rem;
+    }
+    .glossary-term {
+      font-weight: 700;
+      color: #185952;
+      border-bottom: 1.5px dotted #1f6f66;
+      padding: 0 2px;
+      border-radius: 3px;
+      transition: background-color 150ms ease, color 150ms ease;
+      cursor: help;
+      text-align: left;
+    }
+    .glossary-term:hover,
+    .glossary-term:focus-visible {
+      background-color: #e3ebe8;
+      color: #123a36;
+      outline: none;
+    }
+    #glossary-tooltip {
+      transition: opacity 150ms ease, transform 150ms ease;
+    }
+    #glossary-tooltip.hidden-tooltip {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(4px);
+    }
+    #glossary-tooltip.visible-tooltip {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-nordic-100 selection:text-nordic-900">
+
+  <!-- Top reading progress bar -->
+  <div class="fixed top-0 left-0 right-0 h-1 bg-stone-200 z-50">
+    <div id="reading-progress" class="h-full bg-nordic-600 transition-all duration-150" style="width: 0%"></div>
+  </div>
+
+  <!-- Mobile Header -->
+  <header class="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-stone-200 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0">NN</div>
+      <div>
+        <span class="text-[11px] font-semibold uppercase tracking-wider text-nordic-700 block">Nils sin geografibok · Kap. 3</span>
+        <span class="font-serif font-bold text-lg text-stone-900 leading-tight block">Ytre krefter og landformer</span>
+      </div>
+    </div>
+    <button id="mobile-menu-btn" type="button" aria-label="Åpne innholdsmeny" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-stone-300 text-sm font-medium text-stone-700 hover:bg-stone-100">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      Innhold
+    </button>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="lg:hidden fixed inset-0 z-50 hidden">
+    <div id="mobile-drawer-backdrop" class="absolute inset-0 bg-stone-900/40 backdrop-blur-xs"></div>
+    <nav class="relative w-72 max-w-[85vw] h-full bg-white border-r border-stone-200 p-6 overflow-y-auto shadow-xl">
+      <div class="flex items-center justify-between mb-6 pb-4 border-b border-stone-200">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0">NN</div>
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-wider text-nordic-700">Nils sin geografibok</p>
+            <p class="font-serif font-bold text-base text-stone-900 leading-tight">Ytre krefter</p>
+          </div>
+        </div>
+        <button id="mobile-drawer-close" type="button" aria-label="Lukk meny" class="p-1.5 rounded-md text-stone-500 hover:bg-stone-100">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <ul class="space-y-1 text-sm" id="mobile-nav-list"></ul>
+    </nav>
+  </div>
+
+  <!-- Main Layout Wrapper -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="lg:grid lg:grid-cols-[270px_1fr] lg:gap-12 xl:gap-16 items-start">
+
+      <!-- Left Sticky Sidebar (Scroll-Spy) -->
+      <aside class="hidden lg:block sticky top-8">
+        <div class="bg-white border border-stone-200/90 rounded-2xl p-5 shadow-xs">
+          <div class="flex items-center gap-2.5 pb-3.5 mb-3.5 border-b border-stone-200">
+            <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0 shadow-xs">NN</div>
+            <span class="text-xs font-semibold text-stone-800 leading-snug">Nils sin geografibok</span>
+          </div>
+          <div class="pb-4 mb-4 border-b border-stone-200">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-nordic-700 bg-nordic-50 px-2.5 py-1 rounded-full">
+              Kapittel 3 · s. 60–68
+            </span>
+            <h2 class="font-serif text-xl font-bold text-stone-900 mt-2.5">Ytre krefter og landformene i Norge</h2>
+            <p class="text-xs text-stone-500 mt-1">Naturgeografi · Nils sin geografibok</p>
+          </div>
+
+          <nav aria-label="Innholdsfortegnelse">
+            <ul id="desktop-nav-list" class="space-y-1 text-sm">
+              <li><a href="#innledning" data-target="innledning" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">1. Innledning &amp; kompetansemål</a></li>
+              <li><a href="#hva-er-en-landform" data-target="hva-er-en-landform" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">2. Hva er en landform?</a></li>
+              <li><a href="#havet-kirkegard" data-target="havet-kirkegard" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">3. Havet – fjellenes kirkegård</a></li>
+              <li><a href="#forvitring" data-target="forvitring" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">4. Forvitring</a></li>
+              <li><a href="#mekanisk-forvitring" data-target="mekanisk-forvitring" class="nav-link block pl-6 pr-3 py-1.5 rounded-lg text-xs text-stone-500 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">↳ Frostforvitring &amp; trykkavlastning</a></li>
+              <li><a href="#kjemisk-forvitring" data-target="kjemisk-forvitring" class="nav-link block pl-6 pr-3 py-1.5 rounded-lg text-xs text-stone-500 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">↳ Kjemisk forvitring &amp; grotter</a></li>
+              <li><a href="#erosjon" data-target="erosjon" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">5. Erosjon, Sautso &amp; skred</a></li>
+              <li><a href="#aktiviteter" data-target="aktiviteter" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">6. Repetisjon &amp; test deg selv</a></li>
+              <li><a href="#ordliste" data-target="ordliste" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">7. Ordliste</a></li>
+            </ul>
+          </nav>
+
+          <div class="mt-5 pt-4 border-t border-stone-200 space-y-2.5">
+            <a href="index.html" class="flex items-center justify-between px-3 py-2 rounded-lg bg-stone-900 hover:bg-stone-800 text-xs font-semibold text-white transition-colors">
+              <span>🌳 Åpne Kunnskapstreet</span>
+            </a>
+            <a href="elvelandformer.html" class="flex items-center justify-between px-3 py-2 rounded-lg bg-nordic-50 hover:bg-nordic-100 border border-nordic-200/80 text-xs font-semibold text-nordic-800 transition-colors">
+              <span>Neste del: Landformer dannet av elver →</span>
+            </a>
+            <div class="text-xs text-stone-500 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-nordic-600 shrink-0"></span>
+              <span>Hold musepekeren over <strong class="text-nordic-700 font-semibold">uthevede fagbegreper</strong> for forklaring.</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Article Content -->
+      <main class="max-w-3xl space-y-14">
+
+        <!-- 1. Innledning -->
+        <section id="innledning" class="scroll-mt-header">
+          <div class="bg-white border border-stone-200 rounded-2xl p-6 sm:p-10 shadow-xs">
+            <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-nordic-700 mb-4">
+              <span class="bg-nordic-50 border border-nordic-200/70 px-2.5 py-1 rounded-md">Naturgeografi</span>
+              <span class="text-stone-400">/</span>
+              <span>Kapittel 3 (s. 60–68)</span>
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-stone-900 mb-4">Ytre krefter og landformene i Norge</h1>
+            <p class="text-lg sm:text-xl text-stone-600 leading-relaxed mb-6">
+              Hvorfor er det fjorder i Norge? Hvorfor slynger elva seg i så fine svinger nedover dalen, hvorfor er noen av fjellene så spisse, og er det sant at jorda med hus og veier kan rase ut selv der terrenget er nesten helt flatt?
+            </p>
+
+            <figure class="my-6 overflow-hidden rounded-xl border border-stone-200 bg-stone-50">
+              <img src="Images/stryneelva-landformer.jpg" alt="Elvesvinger i Stryneelva i Vestland fylke" class="w-full h-56 sm:h-64 object-cover" />
+              <figcaption class="px-4 py-2.5 text-xs text-stone-500 border-t border-stone-200/80">
+                Elvesvinger i Stryneelva i Vestland fylke – et eksempel på hvordan ytre krefter former det norske landskapet.
+              </figcaption>
+            </figure>
+
+            <p class="text-stone-700 leading-relaxed mb-6">
+              Svært mange turister lokkes til Norge av den spektakulære naturen vår: milelange, vakre fjorder, trange, frodige daler som skjærer seg ned i berggrunnen, og bratte fjell med skarpe tinder som reiser seg mot himmelen. I dette kapittelet får du kunnskaper som går dypere enn de fargerike brosjyrene – slik at du kan forklare hvordan landformene våre er blitt til, hvilke krefter som har slitt og knadd landet, og hvordan de fremdeles er aktive i landets ustoppelige «bli-ny»-prosess.
+            </p>
+
+            <div class="grid sm:grid-cols-2 gap-4 mt-6">
+              <div class="bg-stone-50 border border-stone-200 rounded-xl p-5">
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-stone-800 mb-3">Kompetansemål</h3>
+                <ul class="space-y-2 text-sm text-stone-700">
+                  <li class="flex items-start gap-2"><span class="text-nordic-600 font-bold mt-0.5">•</span><span>Gjøre rede for hvordan indre og ytre krefter har dannet ulike landskap, og gi eksempler på ressursutnyttelse</span></li>
+                  <li class="flex items-start gap-2"><span class="text-nordic-600 font-bold mt-0.5">•</span><span>Utforske og gjøre rede for årsakene til en aktuell natur- eller miljøkatastrofe og konsekvenser for mennesker, samfunn og natur</span></li>
+                  <li class="flex items-start gap-2"><span class="text-nordic-600 font-bold mt-0.5">•</span><span>Utforske og presentere geografiske forhold og prosesser ved å bruke ulike kilder, inkludert kart</span></li>
+                </ul>
+              </div>
+
+              <div class="bg-amber-50/70 border border-amber-200/80 rounded-xl p-5">
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-amber-900 mb-3">Tenk over</h3>
+                <ol class="space-y-2 text-sm text-amber-950/90 list-decimal list-inside">
+                  <li>Hva er forskjellen på indre og ytre krefter?</li>
+                  <li>Hvorfor blir ikke jorda slipt helt flat og dekket av hav?</li>
+                  <li>Hvordan skiller forvitring seg fra erosjon?</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Hva er en landform? -->
+        <section id="hva-er-en-landform" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">Del 1 · s. 62</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Hva er en landform?</h2>
+          </div>
+
+          <div class="bg-white border border-stone-200 rounded-xl p-5 shadow-xs">
+            <p class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-1.5">Kort fortalt</p>
+            <p class="text-stone-800 leading-relaxed">
+              Med begrepet <button type="button" class="glossary-term" data-term="landform">landform</button> mener vi et karakteristisk landskapstrekk på jordoverflata som er dannet ved erosjons- og sedimentasjonsprosesser.
+            </p>
+          </div>
+
+          <div class="space-y-4 text-stone-700 leading-relaxed">
+            <p>
+              Vi bruker ordet landform om alle former på landoverflata – små og store, former i fast fjell og former i <button type="button" class="glossary-term" data-term="losmasser">løsmateriale</button>. Hvis vi sitter høyt med godt utsyn og betrakter et landskap, for eksempel et fjellområde, vil det som oftest bestå av en mosaikk av landformer.
+            </p>
+            <p>
+              Landformene blir til etter ulike prosesser som deler seg inn i to hovedgrupper: de <button type="button" class="glossary-term" data-term="indre-krefter">indre prosessene</button> som har sitt opphav i jordas indre og løfter og bygger jordskorpa (platekollisjon, fjellkjededannelse, vulkanisme, landheving og jordskjelv), og de <button type="button" class="glossary-term" data-term="ytre-krefter">ytre prosessene</button> som virker på jordoverflata ved å tære ned landet. I Norge har vi spesielt mange landformer dannet av <strong>rennende vann</strong> og <strong>isbreer</strong> – slik vi blant annet ser ved Besseggen, der Gjende får sin smaragdgrønne farge fra leirpartikler ført ut av isbreene i Jotunheimen.
+            </p>
+          </div>
+        </section>
+
+        <!-- 3. Havet – fjellenes kirkegård -->
+        <section id="havet-kirkegard" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">Del 2 · s. 62–64</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Havet – fjellenes kirkegård</h2>
+          </div>
+
+          <div class="space-y-4 text-stone-700 leading-relaxed">
+            <p>
+              For <strong>400 millioner år siden</strong> satte jordas indre krefter i gang en enorm platekollisjon. Platekanter ble knust og skjøvet sammen til en nesten 6000 kilometer lang fjellkjede, <em>den kaledonske fjellkjedefoldingen</em>. På denne tiden kunne fjellene på det som i dag er Vestlandet, muligens rage hele 10 000 meter over havet. Men noen titall millioner år seinere var disse fjellene slitt ned av ytre krefter. Hadde det ikke vært for at de indre kreftene stadig presser opp nye fjellkjeder og spruter lava ut gjennom jordskorpa, ville de ytre kreftene for lengst ha slipt jorda ned til en helt glatt overflate fullstendig dekket av hav.
+            </p>
+            <p>
+              Det faste fjellet smuldrer opp ved <button type="button" class="glossary-term" data-term="forvitring">forvitring</button> og blir til <button type="button" class="glossary-term" data-term="losmasser">løsmasser</button> (alt fra store og små steiner til grus, sand og leire). Ved <button type="button" class="glossary-term" data-term="erosjon">erosjon</button> fraktes mesteparten av løsmassene til slutt ut i havet, der de <button type="button" class="glossary-term" data-term="avsetning">avsettes</button> og blir liggende. Derfor kan vi kalle havet for <strong>fjellenes kirkegård</strong>. Etter noen millioner år på havets bunn blir løsmassene presset sammen til avsetningsbergarter, også kalt <button type="button" class="glossary-term" data-term="sedimentare-bergarter">sedimentære bergarter</button>.
+            </p>
+          </div>
+        </section>
+
+        <!-- 4. Forvitring -->
+        <section id="forvitring" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">Del 3 · s. 64–67</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Forvitring</h2>
+          </div>
+
+          <p class="text-stone-700 leading-relaxed">
+            <button type="button" class="glossary-term" data-term="forvitring">Forvitring</button> er betegnelsen på at fast fjell eller stein smuldrer opp og blir værende på samme sted som før. Denne forvitringen kan skje på to ulike måter: <strong>mekanisk</strong> og <strong>kjemisk</strong>.
+          </p>
+
+          <div id="mekanisk-forvitring" class="scroll-mt-header grid sm:grid-cols-2 gap-6">
+            <div class="bg-white border border-stone-200 rounded-xl p-6 space-y-3">
+              <img src="Images/frostforvitring-fjell.jpg" alt="Frostforvitring i fjell" class="w-full h-40 object-cover rounded-lg border border-stone-200" />
+              <h3 class="font-serif text-xl font-bold text-stone-900">Frostforvitring</h3>
+              <p class="text-sm text-stone-700 leading-relaxed">
+                <button type="button" class="glossary-term" data-term="frostforvitring">Frostforvitring</button> er vanlig i områder der temperaturen svinger rundt frysepunktet og det er nok nedbør. Rennende vann finner veien ned i sprekker i berget. Når vannet fryser til is, øker volumet med <strong>nesten 10 prosent</strong>. Det gir et så stort trykk at sprekken utvider seg, og etter gjentatt frysing og tining løsner deler av berget og kan forvitre videre til grus og sand.
+              </p>
+            </div>
+
+            <div class="bg-white border border-stone-200 rounded-xl p-6 space-y-3">
+              <img src="Images/trykkavlastning-granitt.jpg" alt="Trykkavlastning i granitt" class="w-full h-40 object-cover rounded-lg border border-stone-200" />
+              <h3 class="font-serif text-xl font-bold text-stone-900">Trykkavlastning</h3>
+              <p class="text-sm text-stone-700 leading-relaxed">
+                En dypbergart som granitt størkner flere kilometer under jordoverflata under stort trykk. Når overliggende bergarter slites bort i løpet av millioner av år, blir trykket betydelig mindre – dette kalles <button type="button" class="glossary-term" data-term="trykkavlastning">trykkavlastning</button>. Da utvider det øverste laget seg og sprekker opp i flak parallelle med overflata, lik lagene i en løk. Pene, passe tykke flak kan brukes til bygningsformål.
+              </p>
+            </div>
+          </div>
+
+          <div id="kjemisk-forvitring" class="scroll-mt-header bg-white border border-stone-200 rounded-xl p-6 space-y-4">
+            <h3 class="font-serif text-2xl font-bold text-stone-900">Kjemisk forvitring og kalksteinshuler</h3>
+            <div class="grid sm:grid-cols-[1fr_240px] gap-5 items-center">
+              <div class="space-y-3 text-sm sm:text-base text-stone-700 leading-relaxed">
+                <p>
+                  Ved <button type="button" class="glossary-term" data-term="kjemisk-forvitring">kjemisk forvitring</button> er rennende vann sentralt – som regel svakt <strong>surt vann</strong> som trenger inn i overflaten av bergarten og endrer den kjemiske sammensetningen. I tidligere geologiske perioder med varmere og fuktigere klima var dette svært aktivt og bidro til å utforme det norske <strong>viddelandskapet</strong>.
+                </p>
+                <p>
+                  Der det er mye <button type="button" class="glossary-term" data-term="kalkstein">kalkstein</button>, løses karbondioksid i regnvann opp til svakt surt vann som løser opp kalkmineralene (slik salt løses i vann). Bekker forsvinner ned i nedløpshull og lager synkehull, underjordiske elver og store kalksteinshuler med <button type="button" class="glossary-term" data-term="stalaktitt">stalaktitter</button> fra taket og stalagmitter fra gulvet.
+                </p>
+              </div>
+              <img src="Images/kalksteinshule.jpg" alt="Kalksteinshule med stalaktitter og stalagmitter" class="w-full h-44 object-cover rounded-lg border border-stone-200" />
+            </div>
+            <figure class="overflow-hidden rounded-lg border border-stone-200 bg-white">
+              <img src="Images/fig-forvitring.svg" alt="Skisse av frostforvitring og kjemisk forvitring" class="w-full" />
+              <figcaption class="px-3 py-2 text-xs text-stone-500 border-t border-stone-200">Prinsippskisse: Mekanisk frostsprengning (venstre) og kjemisk oppløsning av kalkstein (høyre).</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- 5. Erosjon -->
+        <section id="erosjon" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">Del 4 · s. 68</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Erosjon, Sautso og skred</h2>
+          </div>
+
+          <figure class="overflow-hidden rounded-xl border border-stone-200 bg-white">
+            <img src="Images/sautso-canyon.jpg" alt="Canyonen Sautso i Altaelva i Finnmark" class="w-full h-56 sm:h-64 object-cover" />
+            <figcaption class="px-4 py-2.5 text-xs text-stone-500 border-t border-stone-200/80">
+              Canyonen Sautso i Altaelva i Finnmark – Nord-Europas største canyon, mer enn 400 m dyp og 12 km lang.
+            </figcaption>
+          </figure>
+
+          <div class="space-y-4 text-stone-700 leading-relaxed">
+            <p>
+              Når steinmateriale forvitrer, blir det værende på samme sted. <button type="button" class="glossary-term" data-term="erosjon">Erosjon</button> skjer ved at en ytre kraft – for eksempel en elv, en isbre, vind eller bølger – sliter fjell og stein i stykker, transporterer løsmassene fra ett sted og avsetter dem et annet sted. Berggrunn som er forvitret på forhånd, blir lettere erodert. Et imponerende resultat av elveerosjon er <button type="button" class="glossary-term" data-term="canyon">canyonen</button> <strong>Sautso i Altaelva</strong> i Finnmark.
+            </p>
+            <p>
+              Skal forvitret materiale beveges, trengs det vanligvis en eroderende kraft som elv eller isbre. Men der terrenget er tilstrekkelig bratt, kan <strong>tyngdekraften</strong> være nok til å sette løsmassene i bevegelse i form av <button type="button" class="glossary-term" data-term="skred">skred</button>.
+            </p>
+          </div>
+        </section>
+
+        <!-- 6. Repetisjon -->
+        <section id="aktiviteter" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">Repetisjon · s. 68</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Repetisjonsoppgaver</h2>
+          </div>
+
+          <div class="bg-white border border-stone-200 rounded-xl p-6 space-y-3">
+            <ol class="list-decimal list-inside space-y-2.5 text-stone-800 font-medium">
+              <li>Hva er mekanisk forvitring? Nevn de ulike formene.</li>
+              <li>Forklar hvordan frostforvitring foregår.</li>
+              <li>Hvordan foregår forvitring ved trykkavlastning?</li>
+              <li>Hva er forskjellen på mekanisk og kjemisk forvitring? Bruk dannelsen av kalksteinshuler som eksempel.</li>
+              <li>Forklar forskjellen på forvitring og erosjon.</li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- 7. Ordliste -->
+        <section id="ordliste" class="scroll-mt-header space-y-6 pb-12">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">Begreper</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Ordliste</h2>
+          </div>
+
+          <div id="glossary-grid" class="grid sm:grid-cols-2 gap-4"></div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Floating Glossary Tooltip -->
+  <div id="glossary-tooltip" role="tooltip" class="hidden-tooltip fixed z-50 max-w-xs sm:max-w-sm bg-stone-900 text-stone-100 rounded-xl p-4 shadow-2xl border border-stone-700">
+    <div class="flex items-start justify-between gap-3 mb-1">
+      <span id="tooltip-title" class="font-serif font-bold text-base text-emerald-300"></span>
+      <button id="tooltip-close" type="button" aria-label="Lukk begrepsforklaring" class="text-stone-400 hover:text-white text-xs px-1">✕</button>
+    </div>
+    <p id="tooltip-body" class="text-xs sm:text-sm text-stone-200 leading-relaxed"></p>
+  </div>
+
+  <script>
+    const GLOSSARY = {
+      'landform': {
+        title: 'Landform',
+        definition: 'Et karakteristisk landskapstrekk på jordoverflata som er dannet ved erosjons- og sedimentasjonsprosesser.'
+      },
+      'indre-krefter': {
+        title: 'Indre krefter',
+        definition: 'Prosesser fra jordas indre som løfter og bygger jordskorpa (platekollisjon, fjellkjededannelse, vulkanisme, landheving og jordskjelv).'
+      },
+      'ytre-krefter': {
+        title: 'Ytre krefter',
+        definition: 'Prosesser som virker på jordoverflata ved å tære ned landet gjennom forvitring, erosjon og avsetning.'
+      },
+      'forvitring': {
+        title: 'Forvitring',
+        definition: 'At fast fjell eller stein smuldrer opp til løsmateriale og blir værende på samme sted som før.'
+      },
+      'erosjon': {
+        title: 'Erosjon',
+        definition: 'En prosess der en ytre kraft (elv, isbre, vind eller bølger) sliter fjell og stein i stykker, transporterer løsmassene og avsetter dem et annet sted.'
+      },
+      'avsetning': {
+        title: 'Avsetning (sedimentasjon)',
+        definition: 'At transporterte løsmasser legges igjen på et nytt sted, for eksempel på havbunnen.'
+      },
+      'losmasser': {
+        title: 'Løsmasser (løsmateriale)',
+        definition: 'Oppsmuldret steinmateriale – alt fra store og små steiner til grus, sand og leire.'
+      },
+      'sedimentare-bergarter': {
+        title: 'Sedimentære bergarter',
+        definition: 'Avsetningsbergarter som dannes når løsmasser på havbunnen presses sammen over millioner av år.'
+      },
+      'frostforvitring': {
+        title: 'Frostforvitring',
+        definition: 'Mekanisk forvitring der vann fryser i fjellsprekker, utvider volumet med nesten 10 % og sprenger løs steinblokker.'
+      },
+      'trykkavlastning': {
+        title: 'Trykkavlastning',
+        definition: 'Mekanisk forvitring der overliggende bergarter slites bort, slik at trykket på en dypbergart (som granitt) avtar og det øverste laget skaller av i flak.'
+      },
+      'kjemisk-forvitring': {
+        title: 'Kjemisk forvitring',
+        definition: 'Når vann – som regel svakt surt vann – trenger inn i bergarten og endrer den kjemiske sammensetningen.'
+      },
+      'kalkstein': {
+        title: 'Kalkstein',
+        definition: 'En bergart som lett løses opp av svakt surt regnvann og kan danne synkehull, underjordiske elver og store grotter.'
+      },
+      'stalaktitt': {
+        title: 'Stalaktitt og stalagmitt',
+        definition: 'Dryppsteinsformer i kalksteinshuler: Stalaktitter henger ned fra taket, mens stalagmitter stiger opp fra gulvet.'
+      },
+      'skred': {
+        title: 'Skred',
+        definition: 'Når tyngdekraften setter løsmasser eller fjell i rask bevegelse nedover i bratt terreng (eller ved ustabile masser).'
+      },
+      'canyon': {
+        title: 'Canyon',
+        definition: 'En dyp, trang dal med bratte vegger skåret ned av en elv, som Sautso i Altaelva.'
+      }
+    };
+
+    // Populate glossary grid
+    const grid = document.getElementById('glossary-grid');
+    Object.values(GLOSSARY).forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'bg-white border border-stone-200 rounded-xl p-4 shadow-xs';
+      card.innerHTML = `<p class="font-serif font-bold text-base text-nordic-800 mb-1">${item.title}</p><p class="text-sm text-stone-600 leading-relaxed">${item.definition}</p>`;
+      grid.appendChild(card);
+    });
+
+    // Populate mobile nav from desktop nav
+    const desktopLinks = document.querySelectorAll('#desktop-nav-list a');
+    const mobileList = document.getElementById('mobile-nav-list');
+    desktopLinks.forEach(a => {
+      const li = document.createElement('li');
+      const clone = a.cloneNode(true);
+      clone.addEventListener('click', () => document.getElementById('mobile-drawer').classList.add('hidden'));
+      li.appendChild(clone);
+      mobileList.appendChild(li);
+    });
+
+    // Mobile drawer controls
+    const drawer = document.getElementById('mobile-drawer');
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => drawer.classList.remove('hidden'));
+    document.getElementById('mobile-drawer-close').addEventListener('click', () => drawer.classList.add('hidden'));
+    document.getElementById('mobile-drawer-backdrop').addEventListener('click', () => drawer.classList.add('hidden'));
+
+    // Reading progress bar & Scroll-Spy
+    const sections = document.querySelectorAll('main section[id]');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+      document.getElementById('reading-progress').style.width = `${pct}%`;
+
+      let current = 'innledning';
+      sections.forEach(sec => {
+        if (sec.getBoundingClientRect().top <= 140) current = sec.id;
+      });
+      desktopLinks.forEach(link => {
+        const active = link.dataset.target === current;
+        link.classList.toggle('bg-nordic-50', active);
+        link.classList.toggle('text-nordic-800', active);
+        link.classList.toggle('font-semibold', active);
+      });
+    });
+
+    // Tooltip logic
+    const tooltip = document.getElementById('glossary-tooltip');
+    const tooltipTitle = document.getElementById('tooltip-title');
+    const tooltipBody = document.getElementById('tooltip-body');
+    let hideTimeout = null;
+
+    function showTooltip(trigger) {
+      const entry = GLOSSARY[trigger.dataset.term];
+      if (!entry) return;
+      clearTimeout(hideTimeout);
+      tooltipTitle.textContent = entry.title;
+      tooltipBody.textContent = entry.definition;
+      tooltip.classList.remove('hidden-tooltip');
+      tooltip.classList.add('visible-tooltip');
+      const rect = trigger.getBoundingClientRect();
+      const ttRect = tooltip.getBoundingClientRect();
+      let left = Math.max(12, Math.min(rect.left + rect.width / 2 - ttRect.width / 2, window.innerWidth - ttRect.width - 12));
+      let top = rect.top - ttRect.height - 10;
+      if (top < 12) top = rect.bottom + 10;
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+    }
+    function hideTooltip() {
+      tooltip.classList.remove('visible-tooltip');
+      tooltip.classList.add('hidden-tooltip');
+    }
+    document.querySelectorAll('.glossary-term').forEach(btn => {
+      btn.addEventListener('mouseenter', () => showTooltip(btn));
+      btn.addEventListener('mouseleave', () => { hideTimeout = setTimeout(hideTooltip, 150); });
+      btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(btn); });
+    });
+    document.getElementById('tooltip-close').addEventListener('click', hideTooltip);
+    document.addEventListener('click', (e) => {
+      if (!tooltip.contains(e.target) && !e.target.classList.contains('glossary-term')) hideTooltip();
+    });
+  </script>
+</body>
+</html>

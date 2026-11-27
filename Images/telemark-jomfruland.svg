@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" font-family="Inter, system-ui, sans-serif">
+  <rect width="800" height="380" fill="#f8fafc"/>
+  <rect x="20" y="20" width="760" height="340" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="45" y="54" font-size="18" font-weight="700" fill="#0f172a">Telemark-eksempel: Jomfruland (Raet i Kragerø)</text>
+  <!-- Sea inside & outside -->
+  <rect x="45" y="210" width="210" height="120" fill="#bae6fd"/>
+  <rect x="530" y="210" width="225" height="120" fill="#7dd3fc"/>
+  <!-- Moraine ridge (Jomfruland) -->
+  <path d="M180 330 L240 210 Q380 140 530 210 L590 330 Z" fill="#d6d3d1" stroke="#78716c" stroke-width="2"/>
+  <!-- Sand / farming inner side -->
+  <path d="M240 210 Q320 165 400 165 L400 205 L240 210 Z" fill="#86efac"/>
+  <!-- Cobblestones outer side -->
+  <circle cx="485" cy="192" r="7" fill="#57534e"/><circle cx="500" cy="198" r="6" fill="#44403c"/><circle cx="515" cy="204" r="7" fill="#78716c"/>
+  <circle cx="470" cy="184" r="6" fill="#78716c"/><circle cx="528" cy="208" r="5" fill="#44403c"/>
+  <!-- Waves -->
+  <path d="M560 198 Q590 182 620 198 Q650 182 680 198" fill="none" stroke="#0284c7" stroke-width="3"/>
+  <!-- Labels -->
+  <text x="145" y="195" font-size="12" font-weight="700" text-anchor="middle" fill="#0369a1">Innsiden (mot Kragerø)</text>
+  <text x="295" y="145" font-size="12" font-weight="600" fill="#15803d">Sand, skog &amp; jordbruk</text>
+  <text x="520" y="150" font-size="12" font-weight="700" fill="#44403c">Rullesteinsstrand</text>
+  <text x="520" y="166" font-size="11" fill="#57534e">(larvikitt, rombeporfyr)</text>
+  <text x="645" y="175" font-size="12" font-weight="700" text-anchor="middle" fill="#0284c7">Skagerrak vasker bort finstoff</text>
+  <text x="390" y="295" font-size="13" font-weight="700" text-anchor="middle" fill="#1c1917">Endemorene (Raet, ca. 12 800–11 700 år) løftet av landheving</text>
+</svg>

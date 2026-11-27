@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" font-family="Inter, system-ui, sans-serif">
+  <rect width="800" height="420" fill="#f8fafc"/>
+  <rect x="20" y="20" width="760" height="380" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="45" y="54" font-size="18" font-weight="700" fill="#0f172a">Lengdesnitt av en vestlandsfjord og dal (fra kyst til høyfjell)</text>
+  <!-- Sea / Fjord water -->
+  <path d="M45 200 L430 200 L430 330 L45 330 Z" fill="#bae6fd"/>
+  <!-- Fjordsjø -->
+  <path d="M480 185 L600 185 L600 290 L480 290 Z" fill="#7dd3fc"/>
+  <!-- Bedrock -->
+  <path d="M45 225 L120 225 Q150 212 180 240 Q260 320 350 260 Q410 215 445 200 L480 200 Q535 280 600 200 L660 170 L745 105 L745 355 L45 355 Z" fill="#cbd5e1" stroke="#475569" stroke-width="2.5"/>
+  <!-- Isfrontdelta -->
+  <path d="M430 200 Q455 168 485 200 Z" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
+  <!-- Mountain backdrop -->
+  <path d="M120 200 L180 140 L270 155 L360 120 L480 135 L580 110 L680 90 L745 105" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="5 4"/>
+  <!-- Labels -->
+  <text x="90" y="185" font-size="12" font-weight="700" fill="#0369a1">Strandflate</text>
+  <text x="150" y="265" font-size="12" font-weight="700" fill="#0f172a">Terskel</text>
+  <text x="150" y="280" font-size="11" fill="#334155">(150 m i Sogn)</text>
+  <text x="270" y="250" font-size="13" font-weight="700" fill="#0369a1">Fjordbasseng</text>
+  <text x="270" y="266" font-size="11" fill="#0369a1">(opptil 1300 m)</text>
+  <text x="455" y="158" font-size="12" font-weight="700" text-anchor="middle" fill="#b45309">Isfrontdelta</text>
+  <text x="540" y="245" font-size="12" font-weight="700" text-anchor="middle" fill="#0c4a6e">Fjordsjø</text>
+  <text x="540" y="260" font-size="11" text-anchor="middle" fill="#0c4a6e">(Hornindalsvatnet 514 m)</text>
+  <text x="700" y="155" font-size="12" font-weight="700" text-anchor="middle" fill="#0f172a">Bratt dalende</text>
+</svg>

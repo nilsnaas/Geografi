@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="nb" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Løsmasser og jord fra istiden – Naturgeografi (Kapittel 3)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['Source Serif 4', 'Georgia', 'serif'],
+          },
+          colors: {
+            nordic: {
+              50: '#f4f7f6',
+              100: '#e3ebe8',
+              200: '#c6d8d2',
+              600: '#1f6f66',
+              700: '#185952',
+              800: '#154742',
+              900: '#123a36',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #fafaf9; color: #1c1917; font-feature-settings: "cv02", "cv03", "cv04", "cv11"; }
+    .scroll-mt-header { scroll-margin-top: 2rem; }
+    .glossary-term {
+      font-weight: 700; color: #185952; border-bottom: 1.5px dotted #1f6f66;
+      padding: 0 2px; border-radius: 3px; transition: background-color 150ms ease, color 150ms ease;
+      cursor: help; text-align: left;
+    }
+    .glossary-term:hover, .glossary-term:focus-visible { background-color: #e3ebe8; color: #123a36; outline: none; }
+    #glossary-tooltip { transition: opacity 150ms ease, transform 150ms ease; }
+    #glossary-tooltip.hidden-tooltip { opacity: 0; pointer-events: none; transform: translateY(4px); }
+    #glossary-tooltip.visible-tooltip { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  </style>
+</head>
+<body class="antialiased selection:bg-nordic-100 selection:text-nordic-900">
+
+  <div class="fixed top-0 left-0 right-0 h-1 bg-stone-200 z-50">
+    <div id="reading-progress" class="h-full bg-nordic-600 transition-all duration-150" style="width: 0%"></div>
+  </div>
+
+  <!-- Mobile Header -->
+  <header class="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-stone-200 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0">NN</div>
+      <div>
+        <span class="text-[11px] font-semibold uppercase tracking-wider text-nordic-700 block">Nils sin geografibok · Kap. 3</span>
+        <span class="font-serif font-bold text-lg text-stone-900 leading-tight block">Løsmasser</span>
+      </div>
+    </div>
+    <button id="mobile-menu-btn" type="button" aria-label="Åpne innholdsmeny" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-stone-300 text-sm font-medium text-stone-700 hover:bg-stone-100">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      Innhold
+    </button>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="lg:hidden fixed inset-0 z-50 hidden">
+    <div id="mobile-drawer-backdrop" class="absolute inset-0 bg-stone-900/40 backdrop-blur-xs"></div>
+    <nav class="relative w-72 max-w-[85vw] h-full bg-white border-r border-stone-200 p-6 overflow-y-auto shadow-xl">
+      <div class="flex items-center justify-between mb-6 pb-4 border-b border-stone-200">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0">NN</div>
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-wider text-nordic-700">Nils sin geografibok</p>
+            <p class="font-serif font-bold text-base text-stone-900 leading-tight">Løsmasser</p>
+          </div>
+        </div>
+        <button id="mobile-drawer-close" type="button" aria-label="Lukk meny" class="p-1.5 rounded-md text-stone-500 hover:bg-stone-100">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <ul class="space-y-1 text-sm" id="mobile-nav-list"></ul>
+    </nav>
+  </div>
+
+  <!-- Main Layout Wrapper -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="lg:grid lg:grid-cols-[270px_1fr] lg:gap-12 xl:gap-16 items-start">
+
+      <!-- Left Sticky Sidebar -->
+      <aside class="hidden lg:block sticky top-8">
+        <div class="bg-white border border-stone-200/90 rounded-2xl p-5 shadow-xs">
+          <div class="flex items-center gap-2.5 pb-3.5 mb-3.5 border-b border-stone-200">
+            <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0 shadow-xs">NN</div>
+            <span class="text-xs font-semibold text-stone-800 leading-snug">Nils sin geografibok</span>
+          </div>
+          <div class="pb-4 mb-4 border-b border-stone-200">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-nordic-700 bg-nordic-50 px-2.5 py-1 rounded-full">
+              Kapittel 3 · s. 89–91
+            </span>
+            <h2 class="font-serif text-xl font-bold text-stone-900 mt-2.5">Løsmasser og jord fra istiden</h2>
+            <p class="text-xs text-stone-500 mt-1">Naturgeografi · Nils sin geografibok</p>
+          </div>
+
+          <nav aria-label="Innholdsfortegnelse">
+            <ul id="desktop-nav-list" class="space-y-1 text-sm">
+              <li><a href="#bunnmorene" data-target="bunnmorene" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">1. Bunnmorener &amp; morenejord</a></li>
+              <li><a href="#endemorene" data-target="endemorene" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">2. Endemorener &amp; Raet</a></li>
+              <li><a href="#maringrense" data-target="maringrense" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">3. Marin grense &amp; marin leire</a></li>
+              <li><a href="#raviner" data-target="raviner" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">4. Raviner</a></li>
+              <li><a href="#repetisjon" data-target="repetisjon" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">5. Repetisjonsoppgaver</a></li>
+              <li><a href="#ordliste" data-target="ordliste" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">6. Ordliste</a></li>
+            </ul>
+          </nav>
+
+          <div class="mt-5 pt-4 border-t border-stone-200 space-y-2.5">
+            <a href="index.html" class="flex items-center justify-between px-3 py-2 rounded-lg bg-stone-900 hover:bg-stone-800 text-xs font-semibold text-white transition-colors">
+              <span>🌳 Åpne Kunnskapstreet</span>
+            </a>
+            <a href="norges-landformer.html" class="flex items-center justify-between px-3 py-2 rounded-lg bg-nordic-50 hover:bg-nordic-100 border border-nordic-200/80 text-xs font-semibold text-nordic-800 transition-colors">
+              <span>← Forrige del: Norges landformer</span>
+            </a>
+            <a href="skred-og-ras.html" class="flex items-center justify-between px-3 py-2 rounded-lg bg-nordic-50 hover:bg-nordic-100 border border-nordic-200/80 text-xs font-semibold text-nordic-800 transition-colors">
+              <span>Neste del: Skred og ras →</span>
+            </a>
+            <div class="text-xs text-stone-500 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-nordic-600 shrink-0"></span>
+              <span>Hold musepekeren over <strong class="text-nordic-700 font-semibold">uthevede fagbegreper</strong> for forklaring.</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Article Content -->
+      <main class="max-w-3xl space-y-14">
+
+        <!-- 1. Bunnmorene -->
+        <section id="bunnmorene" class="scroll-mt-header">
+          <div class="bg-white border border-stone-200 rounded-2xl p-6 sm:p-10 shadow-xs">
+            <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-nordic-700 mb-4">
+              <span class="bg-nordic-50 border border-nordic-200/70 px-2.5 py-1 rounded-md">Naturgeografi</span>
+              <span class="text-stone-400">/</span>
+              <span>Kapittel 3 · s. 89</span>
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-stone-900 mb-4">Løsmasser og jord fra istiden</h1>
+            <p class="text-lg sm:text-xl text-stone-600 leading-relaxed mb-6">
+              Det er lite løsmasser i Norge sammenliknet med land som ikke har vært nediset. Hos oss har sterk breerosjon fraktet mye ut utenfor kysten, så vi ser ofte naken berggrunn.
+            </p>
+
+            <p class="text-stone-700 leading-relaxed">
+              Da de siste isbreene smeltet ned på slutten av istiden, ble løsmassene som breene førte med seg, liggende igjen som en <button type="button" class="glossary-term" data-term="bunnmorene">bunnmorene</button> spredt utover i terrenget. Bunnmorener er utbredt over store deler av Norge, og <strong>morenejord</strong> er den vanligste jordarten i landet.
+            </p>
+          </div>
+        </section>
+
+        <!-- 2. Endemorener & Raet -->
+        <section id="endemorene" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">s. 89–90</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Endemorener – der isen stoppet, og Raet</h2>
+          </div>
+
+          <div class="space-y-4 text-stone-700 leading-relaxed">
+            <p>
+              I perioder med mye vintersnø og kjølige somre vokser isbreene, og brefronten skyver løsmasser foran seg som en bulldoser. Når klimaet blir mildere og framstøtet stopper, blir det liggende ryggformede løsmasseavsetninger: sidemorener, <button type="button" class="glossary-term" data-term="endemorene">endemorener</button> eller <button type="button" class="glossary-term" data-term="isranddelta">isranddeltaer</button> (der smeltevannelver førte løsmasser ut i havet rett foran isbreen).
+            </p>
+            <p>
+              Den største morenen fra istiden i Norge kalles <button type="button" class="glossary-term" data-term="raet">Raet</button>. Den er synlig mange steder fra Finnmark til Østfold (og fortsetter gjennom Sverige og Finland), og hovedveiene i Østfold og Vestfold ligger til dels oppå denne vollformede ryggen. Raet ble dannet i en ny kald klimaperiode mellom <strong>12 800 og 11 500 år før nåtid</strong>, da brefronten rykket fram etter å ha smeltet tilbake fra Berlin til Indre Oslofjord. Breens tyngde presset jordskorpa ned opptil <strong>150 meter</strong>, slik at havet gikk inn til brefronten og bygde opp store isranddeltaer (som i dag gir viktige sand- og grusressurser), mens finkornet leire ble avsatt utenfor.
+            </p>
+            <div class="bg-stone-50 border border-stone-200 rounded-xl p-5 space-y-2 text-sm">
+              <p class="font-bold text-stone-900">Lokale eksempler fra Telemark:</p>
+              <p><strong>Jomfruland (Kragerø):</strong> En synlig del av Raet som steg opp av havet gjennom landhevingen. Bølger fra Skagerrak har vasket bort finstoff på yttersiden så rullesteinene (bl.a. larvikitt og rombeporfyr) ligger igjen, mens innsiden har sand, skog og jordbruk.</p>
+              <p><strong>Geiteryggen (Skien):</strong> Et stort isranddelta bygd opp til datidens marine grense (ca. 147 moh.) da breelver spylte sand og grus ut i havet – i dag utnyttet som et av Norges viktigste grustak (Skyggestein grustak) og til Skien lufthavn Geiteryggen.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <figure class="overflow-hidden rounded-xl border border-stone-200 bg-white">
+                <img src="Images/telemark-jomfruland.svg" alt="Jomfruland i Kragerø" class="w-full" />
+                <figcaption class="px-3 py-2 text-xs text-stone-500 border-t border-stone-200">Jomfruland i Kragerø (Raet).</figcaption>
+              </figure>
+              <figure class="overflow-hidden rounded-xl border border-stone-200 bg-white">
+                <img src="Images/telemark-geiteryggen.svg" alt="Geiteryggen grustak og isranddelta i Skien" class="w-full" />
+                <figcaption class="px-3 py-2 text-xs text-stone-500 border-t border-stone-200">Geiteryggen i Skien (isranddelta &amp; grustak).</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Marin grense -->
+        <section id="maringrense" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">s. 90–91</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Marin grense og marin leire</h2>
+          </div>
+
+          <div class="space-y-4 text-stone-700 leading-relaxed">
+            <p>
+              Tyngden av innlandsisen presset landet ned – kraftigst der ismassene var tykkest. Da breene smeltet tilbake i kystområdene, oversvømte havet de laveste delene av det som i dag er tørt land. Det høyeste nivået havet har hatt etter siste istid, kaller vi <button type="button" class="glossary-term" data-term="marin-grense">marin grense</button>. Den er høyere enn <strong>200 meter</strong> ved indre Oslofjord (høyeste registrerte i Norge er 220 moh.), opp mot <strong>180 meter</strong> i indre Trondheimsfjorden, men bare <strong>6–8 meter</strong> lengst sør på Jæren.
+            </p>
+            <p>
+              I terrenget under den marine grensen (gammel havbunn) er det avsatt lag av <button type="button" class="glossary-term" data-term="marin-leire">marin leire</button>. Dette skaper en tydelig sammenheng mellom <strong>landbruk</strong> og <strong>kvikkleirefare</strong>: På den ene siden er den marine leira næringsrik og lettdyrket, og utgjør Norges viktigste jordressurser for korndyrking (på Østlandet, i Trøndelag og i lavlandet i Telemark). På den andre siden er det <em>bare</em> under den marine grensen det finnes marin leire – og derfor også bare der ferskvann kan vaske ut saltet og danne ustabil <strong>kvikkleire</strong> (som i Skien, Porsgrunn, på Romerike og i Trøndelag).
+            </p>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <figure class="overflow-hidden rounded-xl border border-stone-200 bg-white">
+                <img src="Images/marin-grense-landbruk.jpg" alt="Kornåkre på marin leire under marin grense" class="w-full h-48 object-cover" />
+                <figcaption class="px-3 py-2 text-xs text-stone-500 border-t border-stone-200">Gyldne kornåkre på flat marin leirjord under den marine grensen, avgrenset av skogkledde åser over grensen.</figcaption>
+              </figure>
+              <figure class="overflow-hidden rounded-xl border border-stone-200 bg-white">
+                <img src="Images/fig-maringrense.svg" alt="Prinsippskisse av marin grense, kornjord og kvikkleire" class="w-full h-48 object-contain bg-white p-1" />
+                <figcaption class="px-3 py-2 text-xs text-stone-500 border-t border-stone-200">Prinsippskisse: Under den marine grensen finnes både kornjord og risiko for kvikkleire.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Raviner -->
+        <section id="raviner" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">s. 91</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Raviner</h2>
+          </div>
+
+          <figure class="overflow-hidden rounded-xl border border-stone-200 bg-white">
+            <img src="Images/stryneelva-landformer.jpg" alt="Norsk jordbrukslandskap og løsmasser" class="w-full h-56 sm:h-64 object-cover" />
+            <figcaption class="px-4 py-2.5 text-xs text-stone-500 border-t border-stone-200/80">
+              Områder med marin leire kan omformes sterkt etter landhevingen – for eksempel ravinelandskapet på Romerike mot elva Leira.
+            </figcaption>
+          </figure>
+
+          <p class="text-stone-700 leading-relaxed">
+            Områder med marin leire kan ha blitt sterkt omformet etter at de steg opp av havet. En spesiell landform som dannes i slike områder med leirjord, er <button type="button" class="glossary-term" data-term="ravine">raviner</button>: dype V-daler som elver og bekker har gravd ut i leirslettene (for eksempel ved gårdene østre og vestre Kjos på Hovin i Ullensaker på Romerike, mot elva Leira).
+          </p>
+        </section>
+
+        <!-- 5. Repetisjonsoppgaver -->
+        <section id="repetisjon" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">Repetisjon · s. 91</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Repetisjonsoppgaver</h2>
+          </div>
+
+          <div class="bg-white border border-stone-200 rounded-xl p-6">
+            <ol class="list-decimal list-inside space-y-2 text-stone-800 font-medium text-sm sm:text-base">
+              <li>Hvordan dannes en bunnmorene? Hva er typisk for morenemateriale?</li>
+              <li>Hva er en endemorene?</li>
+              <li>Hva er Raet, og hvor i landet kan vi finne det? Gjengi kort hvordan det ble dannet.</li>
+              <li>Hva er marin grense? Prøv å finne ut høyden på den marine grensen der du bor. (Høyeste registrerte marin grense i Norge er 220 meter over havet.)</li>
+              <li>Hva er et ravinelandskap?</li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- 6. Ordliste -->
+        <section id="ordliste" class="scroll-mt-header space-y-6 pb-12">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">Begreper</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Ordliste</h2>
+          </div>
+          <div id="glossary-grid" class="grid sm:grid-cols-2 gap-4"></div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Floating Glossary Tooltip -->
+  <div id="glossary-tooltip" role="tooltip" class="hidden-tooltip fixed z-50 max-w-xs sm:max-w-sm bg-stone-900 text-stone-100 rounded-xl p-4 shadow-2xl border border-stone-700">
+    <div class="flex items-start justify-between gap-3 mb-1">
+      <span id="tooltip-title" class="font-serif font-bold text-base text-emerald-300"></span>
+      <button id="tooltip-close" type="button" aria-label="Lukk begrepsforklaring" class="text-stone-400 hover:text-white text-xs px-1">✕</button>
+    </div>
+    <p id="tooltip-body" class="text-xs sm:text-sm text-stone-200 leading-relaxed"></p>
+  </div>
+
+  <script>
+    const GLOSSARY = {
+      'bunnmorene': { title: 'Bunnmorene', definition: 'Løsmasser ført med av isbreene som ble liggende spredt i terrenget da breene smeltet ned.' },
+      'endemorene': { title: 'Endemorene', definition: 'Ryggformet løsmasseavsetning dannet ved at en isbre skjøv løsmasser foran seg som en bulldoser.' },
+      'isranddelta': { title: 'Isranddelta', definition: 'Delta bygd opp av smeltevannelver som førte løsmasser ut i havet rett foran brefronten.' },
+      'raet': { title: 'Raet', definition: 'Den største moreneryggen fra istiden i Norge (dannet 12 800–11 500 år før nåtid), synlig fra Finnmark til Østfold.' },
+      'marin-grense': { title: 'Marin grense', definition: 'Det høyeste nivået havet har hatt etter siste istid (over 200 m i indre Oslofjord, 180 m i Trondheimsfjorden, 6–8 m på Jæren).' },
+      'marin-leire': { title: 'Marin leire', definition: 'Leirjord avsatt på havbunnen under den marine grensen; verdifull jordbruksjord for korn på Østlandet og i Trøndelag.' },
+      'ravine': { title: 'Ravine', definition: 'Dyp V-dal gravd ut av elver og bekker i leirsletter av marin leire (f.eks. på Romerike).' }
+    };
+
+    const grid = document.getElementById('glossary-grid');
+    Object.values(GLOSSARY).forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'bg-white border border-stone-200 rounded-xl p-4 shadow-xs';
+      card.innerHTML = `<p class="font-serif font-bold text-base text-nordic-800 mb-1">${item.title}</p><p class="text-sm text-stone-600 leading-relaxed">${item.definition}</p>`;
+      grid.appendChild(card);
+    });
+
+    const desktopLinks = document.querySelectorAll('#desktop-nav-list a');
+    const mobileList = document.getElementById('mobile-nav-list');
+    desktopLinks.forEach(a => {
+      const li = document.createElement('li');
+      const clone = a.cloneNode(true);
+      clone.addEventListener('click', () => document.getElementById('mobile-drawer').classList.add('hidden'));
+      li.appendChild(clone);
+      mobileList.appendChild(li);
+    });
+
+    const drawer = document.getElementById('mobile-drawer');
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => drawer.classList.remove('hidden'));
+    document.getElementById('mobile-drawer-close').addEventListener('click', () => drawer.classList.add('hidden'));
+    document.getElementById('mobile-drawer-backdrop').addEventListener('click', () => drawer.classList.add('hidden'));
+
+    const sections = document.querySelectorAll('main section[id]');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+      document.getElementById('reading-progress').style.width = `${pct}%`;
+
+      let current = 'bunnmorene';
+      sections.forEach(sec => {
+        if (sec.getBoundingClientRect().top <= 140) current = sec.id;
+      });
+      desktopLinks.forEach(link => {
+        const active = link.dataset.target === current;
+        link.classList.toggle('bg-nordic-50', active);
+        link.classList.toggle('text-nordic-800', active);
+        link.classList.toggle('font-semibold', active);
+      });
+    });
+
+    const tooltip = document.getElementById('glossary-tooltip');
+    const tooltipTitle = document.getElementById('tooltip-title');
+    const tooltipBody = document.getElementById('tooltip-body');
+    let hideTimeout = null;
+    function showTooltip(trigger) {
+      const entry = GLOSSARY[trigger.dataset.term];
+      if (!entry) return;
+      clearTimeout(hideTimeout);
+      tooltipTitle.textContent = entry.title;
+      tooltipBody.textContent = entry.definition;
+      tooltip.classList.remove('hidden-tooltip');
+      tooltip.classList.add('visible-tooltip');
+      const rect = trigger.getBoundingClientRect();
+      const ttRect = tooltip.getBoundingClientRect();
+      let left = Math.max(12, Math.min(rect.left + rect.width / 2 - ttRect.width / 2, window.innerWidth - ttRect.width - 12));
+      let top = rect.top - ttRect.height - 10;
+      if (top < 12) top = rect.bottom + 10;
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+    }
+    function hideTooltip() {
+      tooltip.classList.remove('visible-tooltip');
+      tooltip.classList.add('hidden-tooltip');
+    }
+    document.querySelectorAll('.glossary-term').forEach(btn => {
+      btn.addEventListener('mouseenter', () => showTooltip(btn));
+      btn.addEventListener('mouseleave', () => { hideTimeout = setTimeout(hideTooltip, 150); });
+      btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(btn); });
+    });
+    document.getElementById('tooltip-close').addEventListener('click', hideTooltip);
+    document.addEventListener('click', (e) => {
+      if (!tooltip.contains(e.target) && !e.target.classList.contains('glossary-term')) hideTooltip();
+    });
+  </script>
+</body>
+</html>

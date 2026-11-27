@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" font-family="Inter, system-ui, sans-serif">
+  <rect width="800" height="420" fill="#f8fafc"/>
+  <rect x="20" y="20" width="760" height="380" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="45" y="54" font-size="18" font-weight="700" fill="#0f172a">Fjellskred, sprekkesoner og flodbølgefare (NVE-overvåking)</text>
+  <!-- Fjord -->
+  <path d="M350 280 L755 280 L755 370 L350 370 Z" fill="#7dd3fc"/>
+  <!-- Tsunami wave -->
+  <path d="M360 280 Q415 215 470 275 Q525 245 585 280 Z" fill="#0284c7" opacity="0.65"/>
+  <!-- Mountain -->
+  <path d="M45 370 L45 105 L210 105 L335 280 L380 370 Z" fill="#64748b" stroke="#334155" stroke-width="2.5"/>
+  <!-- Unstable block + crack -->
+  <path d="M185 110 L210 105 L315 250 L255 250 Z" fill="#94a3b8" stroke="#ef4444" stroke-width="3" stroke-dasharray="6 4"/>
+  <!-- Monitoring -->
+  <circle cx="195" cy="96" r="8" fill="#10b981"/>
+  <path d="M195 96 L245 75 M195 96 L150 75" stroke="#10b981" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="195" y="72" font-size="12" font-weight="700" text-anchor="middle" fill="#047857">GPS / Radar / Laser (NVE)</text>
+  <text x="275" y="180" font-size="12" font-weight="700" fill="#dc2626">Ustabilt fjellparti</text>
+  <text x="275" y="196" font-size="11" fill="#7f1d1d">(f.eks. Åkneset 8 cm/år)</text>
+  <text x="460" y="215" font-size="12" font-weight="700" fill="#0369a1">Flodbølge / tsunami</text>
+  <text x="460" y="232" font-size="11" fill="#0c4a6e">(opptil 80 m ved Åkneset)</text>
+  <rect x="445" y="298" width="290" height="58" rx="8" fill="#ffffff" opacity="0.9"/>
+  <text x="460" y="322" font-size="12" font-weight="700" fill="#0f172a">Overvåkede fjell i Norge (2024: 10 stk):</text>
+  <text x="460" y="342" font-size="11" fill="#334155">Mannen/Veslemannen, Åkneset, Indre Nordnes</text>
+</svg>

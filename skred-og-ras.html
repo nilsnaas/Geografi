@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="nb" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skred og ras, sammendrag &amp; oppgaver – Naturgeografi (Kapittel 3)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['Source Serif 4', 'Georgia', 'serif'],
+          },
+          colors: {
+            nordic: {
+              50: '#f4f7f6',
+              100: '#e3ebe8',
+              200: '#c6d8d2',
+              600: '#1f6f66',
+              700: '#185952',
+              800: '#154742',
+              900: '#123a36',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #fafaf9; color: #1c1917; font-feature-settings: "cv02", "cv03", "cv04", "cv11"; }
+    .scroll-mt-header { scroll-margin-top: 2rem; }
+    .glossary-term {
+      font-weight: 700; color: #185952; border-bottom: 1.5px dotted #1f6f66;
+      padding: 0 2px; border-radius: 3px; transition: background-color 150ms ease, color 150ms ease;
+      cursor: help; text-align: left;
+    }
+    .glossary-term:hover, .glossary-term:focus-visible { background-color: #e3ebe8; color: #123a36; outline: none; }
+    #glossary-tooltip { transition: opacity 150ms ease, transform 150ms ease; }
+    #glossary-tooltip.hidden-tooltip { opacity: 0; pointer-events: none; transform: translateY(4px); }
+    #glossary-tooltip.visible-tooltip { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  </style>
+</head>
+<body class="antialiased selection:bg-nordic-100 selection:text-nordic-900">
+
+  <div class="fixed top-0 left-0 right-0 h-1 bg-stone-200 z-50">
+    <div id="reading-progress" class="h-full bg-nordic-600 transition-all duration-150" style="width: 0%"></div>
+  </div>
+
+  <!-- Mobile Header -->
+  <header class="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-stone-200 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0">NN</div>
+      <div>
+        <span class="text-[11px] font-semibold uppercase tracking-wider text-nordic-700 block">Nils sin geografibok · Kap. 3</span>
+        <span class="font-serif font-bold text-lg text-stone-900 leading-tight block">Skred og ras</span>
+      </div>
+    </div>
+    <button id="mobile-menu-btn" type="button" aria-label="Åpne innholdsmeny" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-stone-300 text-sm font-medium text-stone-700 hover:bg-stone-100">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      Innhold
+    </button>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="lg:hidden fixed inset-0 z-50 hidden">
+    <div id="mobile-drawer-backdrop" class="absolute inset-0 bg-stone-900/40 backdrop-blur-xs"></div>
+    <nav class="relative w-72 max-w-[85vw] h-full bg-white border-r border-stone-200 p-6 overflow-y-auto shadow-xl">
+      <div class="flex items-center justify-between mb-6 pb-4 border-b border-stone-200">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0">NN</div>
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-wider text-nordic-700">Nils sin geografibok</p>
+            <p class="font-serif font-bold text-base text-stone-900 leading-tight">Skred og ras</p>
+          </div>
+        </div>
+        <button id="mobile-drawer-close" type="button" aria-label="Lukk meny" class="p-1.5 rounded-md text-stone-500 hover:bg-stone-100">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <ul class="space-y-1 text-sm" id="mobile-nav-list"></ul>
+    </nav>
+  </div>
+
+  <!-- Main Layout Wrapper -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="lg:grid lg:grid-cols-[270px_1fr] lg:gap-12 xl:gap-16 items-start">
+
+      <!-- Left Sticky Sidebar -->
+      <aside class="hidden lg:block sticky top-8">
+        <div class="bg-white border border-stone-200/90 rounded-2xl p-5 shadow-xs">
+          <div class="flex items-center gap-2.5 pb-3.5 mb-3.5 border-b border-stone-200">
+            <div class="w-8 h-8 rounded-lg bg-nordic-800 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shrink-0 shadow-xs">NN</div>
+            <span class="text-xs font-semibold text-stone-800 leading-snug">Nils sin geografibok</span>
+          </div>
+          <div class="pb-4 mb-4 border-b border-stone-200">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-nordic-700 bg-nordic-50 px-2.5 py-1 rounded-full">
+              Kapittel 3 · s. 92–97
+            </span>
+            <h2 class="font-serif text-xl font-bold text-stone-900 mt-2.5">Skred og ras</h2>
+            <p class="text-xs text-stone-500 mt-1">Naturgeografi · Nils sin geografibok</p>
+          </div>
+
+          <nav aria-label="Innholdsfortegnelse">
+            <ul id="desktop-nav-list" class="space-y-1 text-sm">
+              <li><a href="#leirskred" data-target="leirskred" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">1. Leire og kvikkleireskred</a></li>
+              <li><a href="#jordskred" data-target="jordskred" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">2. Jordskred</a></li>
+              <li><a href="#fjellskred" data-target="fjellskred" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">3. Fjellskred &amp; overvåking</a></li>
+              <li><a href="#sammendrag" data-target="sammendrag" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">4. Kapittelsammendrag</a></li>
+              <li><a href="#oppgaver" data-target="oppgaver" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">5. Repetisjons- &amp; arbeidsoppgaver</a></li>
+              <li><a href="#ordliste" data-target="ordliste" class="nav-link block px-3 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100/70 transition-colors">6. Ordliste</a></li>
+            </ul>
+          </nav>
+
+          <div class="mt-5 pt-4 border-t border-stone-200 space-y-2.5">
+            <a href="index.html" class="flex items-center justify-between px-3 py-2 rounded-lg bg-stone-900 hover:bg-stone-800 text-xs font-semibold text-white transition-colors">
+              <span>🌳 Åpne Kunnskapstreet</span>
+            </a>
+            <a href="losmasser.html" class="flex items-center justify-between px-3 py-2 rounded-lg bg-nordic-50 hover:bg-nordic-100 border border-nordic-200/80 text-xs font-semibold text-nordic-800 transition-colors">
+              <span>← Forrige del: Løsmasser</span>
+            </a>
+            <div class="text-xs text-stone-500 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-nordic-600 shrink-0"></span>
+              <span>Hold musepekeren over <strong class="text-nordic-700 font-semibold">uthevede fagbegreper</strong> for forklaring.</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Article Content -->
+      <main class="max-w-3xl space-y-14">
+
+        <!-- 1. Leirskred -->
+        <section id="leirskred" class="scroll-mt-header">
+          <div class="bg-white border border-stone-200 rounded-2xl p-6 sm:p-10 shadow-xs">
+            <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-nordic-700 mb-4">
+              <span class="bg-nordic-50 border border-nordic-200/70 px-2.5 py-1 rounded-md">Naturgeografi</span>
+              <span class="text-stone-400">/</span>
+              <span>Kapittel 3 · s. 92–94</span>
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-stone-900 mb-4">Skred og ras</h1>
+            <p class="text-lg sm:text-xl text-stone-600 leading-relaxed mb-6">
+              Skred og ras betyr det samme: at tyngdekraften beveger jord, stein, fjellblokker eller snø ned en skråning. Geologene skiller mellom leir-, jord- og fjellskred.
+            </p>
+
+            <div class="space-y-4 text-stone-700 leading-relaxed">
+              <p>
+                <strong>Hvorfor er det så mye kvikkleire i Norge?</strong> Under istiden knuste isbreene fjell til fint steinmel – partikler mindre enn 0,002 mm (<strong>leire</strong>). Fordi istyngden presset landet langt ned, lå store deler av dagens lavland under havet (under den marine grensen). Når marin leire ble avsatt i salt havvann, la det seg saltkrystaller mellom de flate leirpartiklene i en åpen, stabil «korthusstruktur». Etter at landet steg, har regn- og grunnvann (ferskvann) piplet gjennom leira i tusenvis av år og vasket ut saltet. Da mister korthusstrukturen «limet» sitt, leira blir ustabil, og vi får <button type="button" class="glossary-term" data-term="kvikkleire">kvikkleire</button>.
+              </p>
+              <p>
+                <strong>Hvordan utløses skred – og hva med Telemark?</strong> Ved elveerosjon i tørrskorpa, graving, fylling eller rystelser kan kvikkleira kollapse og bli en tyntflytende leiresuppe (først et initialras, så hovedraset – omrørt leire etterpå blir tett og aldri kvikk igjen). Også i <strong>Telemark</strong> finnes det mye kvikkleire: Store deler av <strong>Skien og Porsgrunn</strong> langs Skienselva, Porsgrunnselva og Frierfjorden ligger under den marine grensen, med kartlagte soner bl.a. ved Gråtenmoen, Tollnes, Follestad, Klosterøya, Bøle og Nenset. Grunnen er trygg så lenge den ligger i ro, men graving og bygging krever strenge geotekniske undersøkelser.
+              </p>
+              <div class="bg-stone-50 border border-stone-200 rounded-xl p-5 space-y-2 text-sm">
+                <p class="font-bold text-stone-900">Konsekvenser &amp; kjente kvikkleireskred i Norge:</p>
+                <p>Kvikkleireskred kan skje brått selv i nesten flatt terreng og føre til tap av menneskeliv, evakuering av hele nabolag og brudd på hovedveier, jernbane, strøm og vann:</p>
+                <p>• <strong>Ask i Gjerdrum (30. desember 2020):</strong> Et 700 × 300 m stort skred tok med seg bolighus i Akershus; <strong>10 mennesker</strong> (inkludert en gravid kvinne) omkom og over 1000 måtte evakueres.</p>
+                <p>• <strong>Nesvatnet i Levanger, Trøndelag (30. august 2025):</strong> Kvikkleireskred kuttet både ny og gammel <strong>E6</strong> samt <strong>Nordlandsbanen</strong>. Én person omkom, og hovedfartsåren i Trøndelag var stengt i over to måneder med lange omkjøringer via fylkesveier og Sverige.</p>
+                <p>• <strong>Tidligere skred:</strong> Verdal (1893, 116 omkomne), Rissa (1978, største på 1900-tallet og første som ble filmet, 1 omkom) og Sørum (2016, 3 omkomne).</p>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <figure class="overflow-hidden rounded-xl border border-stone-200 bg-white">
+                  <img src="Images/kvikkleire-skredgrop.jpg" alt="Kvikkleireskredgrop sett fra luften" class="w-full h-48 object-cover" />
+                  <figcaption class="px-3 py-2 text-xs text-stone-500 border-t border-stone-200/80">Skålformet kvikkleireskredgrop i flatt jordbruks- og boligterreng med blågrå marin leire.</figcaption>
+                </figure>
+                <figure class="overflow-hidden rounded-xl border border-stone-200 bg-white">
+                  <img src="Images/fig-kvikkleire.svg" alt="Kvikkleirens 4 stadier og skredforløp" class="w-full h-48 object-contain bg-white p-1" />
+                  <figcaption class="px-3 py-2 text-xs text-stone-500 border-t border-stone-200/80">Kvikkleirens fire stadier og forløpet ved et kvikkleireskred.</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Jordskred -->
+        <section id="jordskred" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">s. 94</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Jordskred</h2>
+          </div>
+
+          <p class="text-stone-700 leading-relaxed">
+            I de fleste fjell- og dalsider ligger det et lag av jord (stein, grus og sand dekket av vegetasjon) oppå den faste fjellgrunnen. Ved store mengder nedbør eller kraftig snøsmelting kan jorda bli helt vannmettet og plutselig begynne å bevege seg nedover som en flytende velling – et <button type="button" class="glossary-term" data-term="jordskred">jordskred</button>. Fordi slike skred ikke følger bekker og elveløp, kan de ramme hus og veier på overraskende steder, slik det skjedde under ekstremværet <strong>Hans i 2023</strong>.
+          </p>
+        </section>
+
+        <!-- 3. Fjellskred -->
+        <section id="fjellskred" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">s. 94–95</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Fjell- og steinskred &amp; overvåking</h2>
+          </div>
+
+          <div class="space-y-4 text-stone-700 leading-relaxed">
+            <p>
+              Når mer enn <strong>10 000 kubikkmeter</strong> stein og fjellpartier løsner og raser ut, kalles det <button type="button" class="glossary-term" data-term="fjellskred">fjellskred</button> (mindre mengder kalles steinskred og steinsprang). Vestlandet og Nord-Norge med unge landformer og bratte fjellsider er mest utsatt. Norges største fjellskred hittil var <strong>Tjelleskredet</strong> i Langfjorden i Romsdal i <strong>1756</strong>, da 15 millioner m³ fjell raste ut og lagde 50 meter høye flodbølger.
+            </p>
+            <p>
+              <button type="button" class="glossary-term" data-term="nve">NVE</button> kartlegger sprekkesoner og bruker GPS, radar og laser for å måle bevegelser. I 2024 var ti områder under konstant overvåking, blant annet <strong>Mannen</strong> (Veslemannen raste i sept. 2019 med 50 000–100 000 m³), <strong>Åkneset</strong> i Sunnylvsfjorden (beveger seg opptil 8 cm/år; kan i verste fall utløse opptil 80 m høy flodbølge) og <strong>Indre Nordnes</strong> ved Lyngenfjorden (overvåket siden 2007). Overvåking hindrer ikke skredet, men gjør det mulig å varsle og redde liv.
+            </p>
+            <figure class="overflow-hidden rounded-xl border border-stone-200 bg-white">
+              <img src="Images/fig-fjellskred.svg" alt="Fjellskred og NVE-overvåking" class="w-full" />
+              <figcaption class="px-4 py-2 text-xs text-stone-500 border-t border-stone-200/80">Prinsippskisse: Sprekkesoner, GPS/radar/laser-overvåking og flodbølgefare i fjord.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- 4. Kapittelsammendrag -->
+        <section id="sammendrag" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">s. 96</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Sammendrag: Kapittel 3</h2>
+          </div>
+
+          <div class="bg-white border border-stone-200 rounded-xl p-6 space-y-3 text-sm sm:text-base text-stone-700 leading-relaxed">
+            <p>• <strong>Ytre krefter</strong> er de nedbrytende kreftene på jordoverflata: <strong>forvitring</strong> (fast fjell smuldrer opp mekanisk eller kjemisk) og <strong>erosjon</strong> (en ytre kraft sliter løs, transporterer og avsetter løsmasser).</p>
+            <p>• <strong>Rennende vann</strong> lager både erosjonsformer (canyon, V-dal) og avsetningsformer (elvevifte, elveslette, delta).</p>
+            <p>• <strong>Isbreer</strong> er is og snø i bevegelse som eroderer ved skuring og plukking. Breene under istidene (siste 2,6 millioner år) formet U-daler, fjorder og alpine landskap – og de fleste norske breer smelter nå raskt tilbake.</p>
+            <p>• <strong>Norges landformer</strong> består av både gamle (vidder, heier, skjærgård) og yngre former (strandflate, fjorder, alpine former, elvedaler, deltaer, morener og marine avsetninger).</p>
+            <p>• <strong>Skred og ras</strong> skjer når tyngdekraften beveger jord, stein, fjellblokker eller snø ned en skråning. NVE, NGU og NGI kartlegger og overvåker utsatte områder for å varsle katastrofer og redde liv.</p>
+          </div>
+        </section>
+
+        <!-- 5. Oppgaver -->
+        <section id="oppgaver" class="scroll-mt-header space-y-6">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">s. 96–97</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Repetisjons- og arbeidsoppgaver</h2>
+          </div>
+
+          <div class="bg-white border border-stone-200 rounded-xl p-6 space-y-4">
+            <h3 class="font-serif font-bold text-lg text-stone-900">Repetisjonsoppgaver (s. 96)</h3>
+            <ol class="list-decimal list-inside space-y-1.5 text-stone-800 text-sm sm:text-base">
+              <li>Hva er et skred?</li>
+              <li>Når og hvor ble den marine leira i Norge dannet?</li>
+              <li>Hvordan oppstår kvikkleire? Hvilke deler av landet er mest utsatt for kvikkleireskred?</li>
+              <li>Hva kan utløse kvikkleireskred?</li>
+              <li>Hva kan forårsake jordskred?</li>
+              <li>Hvilke deler av landet er mest utsatt for steinskred? Hvordan kartlegger forskerne faren for slike skred?</li>
+            </ol>
+
+            <h3 class="font-serif font-bold text-lg text-stone-900 pt-4 border-t border-stone-200">Arbeidsoppgaver (s. 96–97)</h3>
+            <ol class="list-decimal list-inside space-y-2 text-stone-700 text-sm">
+              <li><strong>Romsdalen:</strong> Finn landformer dannet av rennende vann (delta, meandersvinger, kroksjø, elveslette, elvevifte, canyon) og iserosjon (tind, egg, botn, U-dal, fjord) på bildet av Romsdalen.</li>
+              <li><strong>Elva Lena (Øst-Sibir):</strong> Finn bredden på deltaet ved hjelp av målestokk i atlas/kart, vegetasjon på deltaet, og hvilken innsjø de sørligste kildene ligger vest for.</li>
+              <li><strong>Tilbaketrekning etter istiden:</strong> Ra-trinnet (11 500 år siden) til Aker-trinnet (10 800 år siden) er litt over 70 km – regn ut hvor mange meter breen smeltet tilbake per år.</li>
+              <li><strong>«Iskanten» i Barentshavet:</strong> Finn et kart og forklar hva den politiske diskusjonen handler om.</li>
+              <li><strong>Finn ut:</strong> Hva var Nordsjøfastlandet / Doggerland, og hvorfor finnes det ikke fjorder langs middelhavskysten?</li>
+              <li><strong>Rosendal-kartet:</strong> Hvordan er fjellvannet (964 moh.) mellom Melderskrin og Laurdalstind dannet?</li>
+              <li><strong>Vansjø:</strong> Se kartet over morenelinjer (s. 90) – hvordan tror du Vansjø øst for Oslofjorden er demmet opp?</li>
+              <li><strong>Skredhistorie:</strong> Søk på NVE Skrednett for skred i ditt nærområde, og finn ut hva som skjedde i Gauldalen i 1345.</li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- 6. Ordliste -->
+        <section id="ordliste" class="scroll-mt-header space-y-6 pb-12">
+          <div class="border-l-4 border-nordic-600 pl-4">
+            <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">Begreper</span>
+            <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Ordliste</h2>
+          </div>
+          <div id="glossary-grid" class="grid sm:grid-cols-2 gap-4"></div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Floating Glossary Tooltip -->
+  <div id="glossary-tooltip" role="tooltip" class="hidden-tooltip fixed z-50 max-w-xs sm:max-w-sm bg-stone-900 text-stone-100 rounded-xl p-4 shadow-2xl border border-stone-700">
+    <div class="flex items-start justify-between gap-3 mb-1">
+      <span id="tooltip-title" class="font-serif font-bold text-base text-emerald-300"></span>
+      <button id="tooltip-close" type="button" aria-label="Lukk begrepsforklaring" class="text-stone-400 hover:text-white text-xs px-1">✕</button>
+    </div>
+    <p id="tooltip-body" class="text-xs sm:text-sm text-stone-200 leading-relaxed"></p>
+  </div>
+
+  <script>
+    const GLOSSARY = {
+      'kvikkleire': { title: 'Kvikkleire', definition: 'Marin leire der saltet er vasket ut av ferskvann, slik at leira kan kollapse til tyntflytende suppe ved belastning eller erosjon.' },
+      'jordskred': { title: 'Jordskred', definition: 'Skred der vannmettet jord oppå fast fjell i en dalside plutselig sklir nedover som en flytende velling.' },
+      'fjellskred': { title: 'Fjellskred', definition: 'Skred der mer enn 10 000 kubikkmeter stein og fjellpartier løsner og raser ut.' },
+      'nve': { title: 'NVE, NGU og NGI', definition: 'Fagetater som kartlegger og overvåker skredfarlige fjellpartier og leirområder for å varsle og redde liv.' }
+    };
+
+    const grid = document.getElementById('glossary-grid');
+    Object.values(GLOSSARY).forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'bg-white border border-stone-200 rounded-xl p-4 shadow-xs';
+      card.innerHTML = `<p class="font-serif font-bold text-base text-nordic-800 mb-1">${item.title}</p><p class="text-sm text-stone-600 leading-relaxed">${item.definition}</p>`;
+      grid.appendChild(card);
+    });
+
+    const desktopLinks = document.querySelectorAll('#desktop-nav-list a');
+    const mobileList = document.getElementById('mobile-nav-list');
+    desktopLinks.forEach(a => {
+      const li = document.createElement('li');
+      const clone = a.cloneNode(true);
+      clone.addEventListener('click', () => document.getElementById('mobile-drawer').classList.add('hidden'));
+      li.appendChild(clone);
+      mobileList.appendChild(li);
+    });
+
+    const drawer = document.getElementById('mobile-drawer');
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => drawer.classList.remove('hidden'));
+    document.getElementById('mobile-drawer-close').addEventListener('click', () => drawer.classList.add('hidden'));
+    document.getElementById('mobile-drawer-backdrop').addEventListener('click', () => drawer.classList.add('hidden'));
+
+    const sections = document.querySelectorAll('main section[id]');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+      document.getElementById('reading-progress').style.width = `${pct}%`;
+
+      let current = 'leirskred';
+      sections.forEach(sec => {
+        if (sec.getBoundingClientRect().top <= 140) current = sec.id;
+      });
+      desktopLinks.forEach(link => {
+        const active = link.dataset.target === current;
+        link.classList.toggle('bg-nordic-50', active);
+        link.classList.toggle('text-nordic-800', active);
+        link.classList.toggle('font-semibold', active);
+      });
+    });
+
+    const tooltip = document.getElementById('glossary-tooltip');
+    const tooltipTitle = document.getElementById('tooltip-title');
+    const tooltipBody = document.getElementById('tooltip-body');
+    let hideTimeout = null;
+    function showTooltip(trigger) {
+      const entry = GLOSSARY[trigger.dataset.term];
+      if (!entry) return;
+      clearTimeout(hideTimeout);
+      tooltipTitle.textContent = entry.title;
+      tooltipBody.textContent = entry.definition;
+      tooltip.classList.remove('hidden-tooltip');
+      tooltip.classList.add('visible-tooltip');
+      const rect = trigger.getBoundingClientRect();
+      const ttRect = tooltip.getBoundingClientRect();
+      let left = Math.max(12, Math.min(rect.left + rect.width / 2 - ttRect.width / 2, window.innerWidth - ttRect.width - 12));
+      let top = rect.top - ttRect.height - 10;
+      if (top < 12) top = rect.bottom + 10;
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+    }
+    function hideTooltip() {
+      tooltip.classList.remove('visible-tooltip');
+      tooltip.classList.add('hidden-tooltip');
+    }
+    document.querySelectorAll('.glossary-term').forEach(btn => {
+      btn.addEventListener('mouseenter', () => showTooltip(btn));
+      btn.addEventListener('mouseleave', () => { hideTimeout = setTimeout(hideTooltip, 150); });
+      btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(btn); });
+    });
+    document.getElementById('tooltip-close').addEventListener('click', hideTooltip);
+    document.addEventListener('click', (e) => {
+      if (!tooltip.contains(e.target) && !e.target.classList.contains('glossary-term')) hideTooltip();
+    });
+  </script>
+</body>
+</html>
