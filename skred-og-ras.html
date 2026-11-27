@@ -30,6 +30,26 @@
         }
       }
     }
+
+    // Dark / Light theme sync across classic pages and Kunnskapstreet
+    const applyClassicTheme = (isDark) => {
+      document.documentElement.classList.toggle('dark-theme', isDark);
+      document.querySelectorAll('.theme-toggle-label').forEach(el => {
+        el.textContent = isDark ? '☀️ Lys modus' : '🌙 Mørk modus';
+      });
+      document.querySelectorAll('.theme-toggle-icon').forEach(el => {
+        el.textContent = isDark ? '☀️' : '🌙';
+      });
+    };
+    const savedClassicTheme = localStorage.getItem('geografi-theme');
+    if (savedClassicTheme === 'dark') applyClassicTheme(true);
+    document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isDark = !document.documentElement.classList.contains('dark-theme');
+        applyClassicTheme(isDark);
+        localStorage.setItem('geografi-theme', isDark ? 'dark' : 'light');
+      });
+    });
   </script>
   <style>
     body { background-color: #fafaf9; color: #1c1917; font-feature-settings: "cv02", "cv03", "cv04", "cv11"; }
@@ -43,6 +63,38 @@
     #glossary-tooltip { transition: opacity 150ms ease, transform 150ms ease; }
     #glossary-tooltip.hidden-tooltip { opacity: 0; pointer-events: none; transform: translateY(4px); }
     #glossary-tooltip.visible-tooltip { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    html.dark-theme body { background-color: #090d16 !important; color: #f1f5f9 !important; }
+    html.dark-theme header,
+    html.dark-theme aside > div,
+    html.dark-theme #mobile-drawer nav,
+    html.dark-theme main .bg-white { background-color: #0f1623 !important; border-color: rgba(148, 163, 184, 0.18) !important; color: #f1f5f9 !important; }
+    html.dark-theme main .bg-stone-50 { background-color: #151e30 !important; border-color: rgba(148, 163, 184, 0.18) !important; color: #e2e8f0 !important; }
+    html.dark-theme main .bg-nordic-50,
+    html.dark-theme aside .bg-nordic-50 { background-color: rgba(16, 185, 129, 0.14) !important; border-color: rgba(16, 185, 129, 0.35) !important; color: #6ee7b7 !important; }
+    html.dark-theme main .bg-amber-50\/70 { background-color: rgba(245, 158, 11, 0.12) !important; border-color: rgba(245, 158, 11, 0.3) !important; color: #fde68a !important; }
+    html.dark-theme .text-stone-900,
+    html.dark-theme .text-stone-800 { color: #f1f5f9 !important; }
+    html.dark-theme .text-stone-700,
+    html.dark-theme .text-stone-600 { color: #cbd5e1 !important; }
+    html.dark-theme .text-stone-500,
+    html.dark-theme .text-stone-400 { color: #94a3b8 !important; }
+    html.dark-theme .text-nordic-900,
+    html.dark-theme .text-nordic-800,
+    html.dark-theme .text-nordic-700 { color: #34d399 !important; }
+    html.dark-theme .text-amber-950\/90,
+    html.dark-theme .text-amber-950,
+    html.dark-theme .text-amber-900 { color: #fde68a !important; }
+    html.dark-theme .border-stone-200,
+    html.dark-theme .border-stone-200\/90,
+    html.dark-theme .border-stone-200\/80,
+    html.dark-theme .border-stone-300 { border-color: rgba(148, 163, 184, 0.18) !important; }
+    html.dark-theme .nav-link:hover { background-color: rgba(148, 163, 184, 0.12) !important; color: #f8fafc !important; }
+    html.dark-theme .nav-link.bg-nordic-50 { background-color: rgba(16, 185, 129, 0.18) !important; color: #6ee7b7 !important; }
+    html.dark-theme .glossary-term { color: #34d399 !important; border-bottom-color: #10b981 !important; }
+    html.dark-theme .glossary-term:hover,
+    html.dark-theme .glossary-term:focus-visible { background-color: rgba(16, 185, 129, 0.18) !important; color: #6ee7b7 !important; }
+    html.dark-theme .theme-toggle-btn { background-color: #151e30 !important; border-color: rgba(148, 163, 184, 0.25) !important; color: #f1f5f9 !important; }
   </style>
 </head>
 <body class="antialiased selection:bg-nordic-100 selection:text-nordic-900">
@@ -263,7 +315,10 @@
             <span class="text-xs font-semibold uppercase tracking-wider text-nordic-700">Begreper</span>
             <h2 class="font-serif text-3xl font-bold text-stone-900 mt-1">Ordliste</h2>
           </div>
-          <div id="glossary-grid" class="grid sm:grid-cols-2 gap-4"></div>
+                    <div id="glossary-grid" class="grid sm:grid-cols-2 gap-4"></div>
+          <p class="text-xs text-stone-500 pt-4 border-t border-stone-200">
+            <strong>Lisens:</strong> Alle fotografiske illustrasjoner og geologiske figurer i <code>Images/</code> er egenproduserte for dette undervisningsopplegget under åpen lisens (CC0 1.0 / CC BY 4.0).
+          </p>
         </section>
 
       </main>

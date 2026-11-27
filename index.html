@@ -1298,9 +1298,17 @@
       setTimeout(() => window.print(), 100);
     });
 
-    document.getElementById('btn-theme').addEventListener('click', () => {
-      const isLight = document.documentElement.classList.toggle('light-theme');
+    const applyThemePreference = (isLight) => {
+      document.documentElement.classList.toggle('light-theme', isLight);
       document.getElementById('theme-icon').textContent = isLight ? '🌙' : '☀️';
+    };
+    const savedTheme = localStorage.getItem('geografi-theme');
+    if (savedTheme === 'light') applyThemePreference(true);
+
+    document.getElementById('btn-theme').addEventListener('click', () => {
+      const isLight = !document.documentElement.classList.contains('light-theme');
+      applyThemePreference(isLight);
+      localStorage.setItem('geografi-theme', isLight ? 'light' : 'dark');
     });
 
     const tooltip = document.getElementById('glossary-tooltip');
