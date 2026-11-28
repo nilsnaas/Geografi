@@ -102,25 +102,23 @@
   <!-- Top Navigation Bar (2 rows) -->
   <header class="panel-surface border-b px-3 sm:px-5 py-2.5 shrink-0 z-30">
     <div class="flex flex-wrap items-center justify-between gap-2.5">
-      <button id="btn-home-brand" type="button" class="flex items-center gap-3 text-left hover:opacity-90 transition-opacity" title="Tilbake til startsiden">
+      <a href="index.html" class="flex items-center gap-3 text-left hover:opacity-90 transition-opacity" title="Tilbake til startsiden">
         <div class="w-8 h-8 rounded-lg bg-emerald-700 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shadow-sm shrink-0">NN</div>
         <div class="leading-tight">
           <div class="flex items-center gap-2">
             <span class="text-[11px] font-semibold uppercase tracking-wider text-emerald-400">Nils sin geografibok</span>
             <span class="text-xs text-sec hidden sm:inline">·</span>
-            <span class="text-xs font-medium text-sec hidden sm:inline">Naturgeografi · Kapittel 3 &amp; 4</span>
+            <span class="text-xs font-medium text-sec hidden sm:inline">Kunnskapstreet</span>
           </div>
-          <h1 class="font-bold text-sm sm:text-base tracking-tight">Naturgeografi · Vg2</h1>
+          <h1 id="header-chap-title" class="font-bold text-sm sm:text-base tracking-tight">Geografi · Kunnskapstreet</h1>
         </div>
-      </button>
+      </a>
 
       <div class="flex flex-wrap items-center gap-2">
-        <button id="btn-welcome" type="button" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors" title="Vis velkomstside og veiledning">🏠 Startside</button>
-
-        <!-- View Switcher: Klassisk sidemeny (standard) vs Kunnskapstre -->
-        <div class="elevated-surface border rounded-lg p-0.5 flex items-center text-xs font-medium" title="Bytt mellom klassisk kapittelmeny og interaktivt kunnskapstre">
-          <button id="view-sidebar" type="button" class="px-2.5 py-1 rounded-md transition-colors bg-emerald-600 text-white font-semibold">📖 Kapittelmeny</button>
-          <button id="view-tree" type="button" class="px-2.5 py-1 rounded-md transition-colors text-sec hover:text-current">🌳 Kunnskapstre</button>
+        <!-- View Switcher: Kunnskapstre (standard) vs Kapittelmeny -->
+        <div class="elevated-surface border rounded-lg p-0.5 flex items-center text-xs font-medium" title="Bytt mellom interaktivt kunnskapstre og kapittelmeny">
+          <button id="view-tree" type="button" class="px-2.5 py-1 rounded-md transition-colors bg-emerald-600 text-white font-semibold">🌳 Kunnskapstre</button>
+          <button id="view-sidebar" type="button" class="px-2.5 py-1 rounded-md transition-colors text-sec hover:text-current">📖 Kapittelmeny</button>
         </div>
 
         <div class="elevated-surface border rounded-lg p-0.5 flex items-center text-xs font-medium" title="Bytt mellom kortversjon og full læreboktekst">
@@ -145,17 +143,15 @@
       </div>
     </div>
 
-    <!-- Row 2: Book Chapter Switcher, Filter Pills & Classic View Links -->
+    <!-- Row 2: Per-Chapter Filter Pills & Tree Switcher (Samfunnsgeografi style) -->
     <div class="flex flex-wrap items-center justify-between gap-2 mt-2.5 pt-2 border-t border-slate-500/15">
-      <div class="flex flex-wrap items-center gap-1.5 text-xs">
-        <button type="button" data-bookchap="3" class="bookchap-pill px-3 py-1 rounded-full border border-emerald-500/60 bg-emerald-500/15 text-emerald-300 font-semibold transition-colors">Kapittel 3 · Ytre krefter</button>
-        <button type="button" data-bookchap="4" class="bookchap-pill px-3 py-1 rounded-full border border-slate-500/25 text-sec hover:border-slate-400/50 transition-colors">Kapittel 4 · Vær og klima</button>
-        <span class="h-3 w-px bg-slate-500/25 mx-1 hidden sm:inline"></span>
-        <button type="button" data-filter="all" class="chapter-pill px-2.5 py-1 rounded-full border border-emerald-500/60 bg-emerald-500/15 text-emerald-300 font-semibold transition-colors">Alle temaer</button>
-      </div>
+      <div id="chapter-filter-bar" class="flex flex-wrap items-center gap-1.5 text-xs"></div>
 
-      <div class="flex flex-wrap items-center gap-1.5 text-[11px]">
-        <a href="index.html" class="bg-emerald-600/20 border border-emerald-500/50 text-emerald-300 px-2.5 py-1 rounded-md hover:bg-emerald-600/30 transition-colors font-semibold">📜 Klassisk visning (hele boka) ↗</a>
+      <div id="tree-switcher-bar" class="flex flex-wrap items-center gap-1.5 text-[11px]">
+        <a href="index.html" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-1 rounded-lg font-medium transition-colors">🏠 Startside</a>
+        <button type="button" data-bookchap="3" class="bookchap-pill px-2.5 py-1 rounded-lg border border-emerald-500 bg-emerald-600 text-white font-semibold transition-colors">🌳 Tre 1 (Kap. 3)</button>
+        <button type="button" data-bookchap="4" class="bookchap-pill px-2.5 py-1 rounded-lg elevated-surface border text-sec hover:text-current font-medium transition-colors">🌳 Tre 2 (Kap. 4)</button>
+        <a id="classic-chap-link" href="index.html#kap3" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-1 rounded-lg font-medium transition-colors">3. Ytre krefter ↗</a>
       </div>
     </div>
   </header>
@@ -1268,8 +1264,10 @@
       treeNodes.innerHTML = '';
       const activePathEdges = getAncestorEdgeSet(activeNodeId);
 
+      const visibleNodes = NODES.filter(n => (n.bookChapter || 3) === activeBookChapter);
+      const visitedInChap = visibleNodes.filter(n => visitedNodes.has(n.id)).length;
       const progEl = document.getElementById('tree-progress-text');
-      if (progEl) progEl.textContent = `${visitedNodes.size} / ${NODES.length} utforsket`;
+      if (progEl) progEl.textContent = `${visitedInChap} / ${visibleNodes.length} utforsket`;
 
       const backdrop = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       backdrop.innerHTML = `
@@ -1302,7 +1300,6 @@
       `;
       treeEdges.appendChild(backdrop);
 
-      const visibleNodes = NODES.filter(n => (n.bookChapter || 3) === activeBookChapter);
       visibleNodes.forEach(node => {
         const isDimmed = activeFilter !== 'all' && node.chapter !== activeFilter;
         node.parents.forEach(pId => {
@@ -1383,22 +1380,67 @@
       document.getElementById('content-pane').scrollTop = 0;
     }
 
-    function updateBookChapterPills() {
+    function renderRow2() {
+      const filterBar = document.getElementById('chapter-filter-bar');
+      if (filterBar) {
+        const groups = CHAPTER_GROUPS.filter(g => g.bookChapter === activeBookChapter);
+        const allBtn = `<button type="button" data-filter="all" class="chapter-pill px-3 py-1 rounded-full border text-xs transition-colors ${activeFilter === 'all' ? 'border-emerald-500/60 bg-emerald-500/15 text-emerald-300 font-semibold' : 'border-slate-500/25 text-sec hover:border-slate-400/50'}">Oversikt (Kap. ${activeBookChapter})</button>`;
+        const groupBtns = groups.map(g => {
+          const on = activeFilter === g.id;
+          return `<button type="button" data-filter="${g.id}" class="chapter-pill px-3 py-1 rounded-full border text-xs transition-colors flex items-center gap-1.5 ${on ? 'border-emerald-500/60 bg-emerald-500/15 text-emerald-300 font-semibold' : 'border-slate-500/25 text-sec hover:border-slate-400/50'}"><span class="w-2 h-2 rounded-full ${g.dot}"></span>${g.title}</button>`;
+        }).join('');
+        filterBar.innerHTML = allBtn + groupBtns;
+
+        filterBar.querySelectorAll('.chapter-pill').forEach(pill => {
+          pill.addEventListener('click', () => {
+            activeFilter = pill.dataset.filter;
+            renderRow2();
+            renderTree();
+            if (activeFilter === 'all') {
+              fitOverview();
+            } else {
+              const firstGroup = CHAPTER_GROUPS.find(g => g.id === activeFilter);
+              if (firstGroup && firstGroup.nodeIds.length) selectNode(firstGroup.nodeIds[0]);
+            }
+          });
+        });
+      }
+
       document.querySelectorAll('.bookchap-pill').forEach(p => {
         const on = Number(p.dataset.bookchap) === activeBookChapter;
         p.className = on
-          ? 'bookchap-pill px-3 py-1 rounded-full border border-emerald-500/60 bg-emerald-500/15 text-emerald-300 font-semibold transition-colors'
-          : 'bookchap-pill px-3 py-1 rounded-full border border-slate-500/25 text-sec hover:border-slate-400/50 transition-colors';
+          ? 'bookchap-pill px-2.5 py-1 rounded-lg border border-emerald-500 bg-emerald-600 text-white font-semibold transition-colors'
+          : 'bookchap-pill px-2.5 py-1 rounded-lg elevated-surface border text-sec hover:text-current font-medium transition-colors';
       });
+
+      const classicLink = document.getElementById('classic-chap-link');
+      if (classicLink) {
+        classicLink.href = `index.html#kap${activeBookChapter}`;
+        classicLink.textContent = activeBookChapter === 3 ? '3. Ytre krefter ↗' : '4. Vær og klima ↗';
+      }
+      const headerTitle = document.getElementById('header-chap-title');
+      if (headerTitle) {
+        headerTitle.textContent = activeBookChapter === 3
+          ? 'Kapittel 3 · Ytre krefter og landformene i Norge'
+          : 'Kapittel 4 · Vær og klima';
+      }
+    }
+
+    function switchBookChapter(chapNum) {
+      activeBookChapter = chapNum;
+      activeFilter = 'all';
+      renderRow2();
+      const firstInChap = NODES.find(n => (n.bookChapter || 3) === chapNum);
+      if (firstInChap) {
+        selectNode(firstInChap.id);
+      } else {
+        renderTree();
+      }
+      setTimeout(fitOverview, 40);
     }
 
     document.querySelectorAll('.bookchap-pill').forEach(pill => {
-      pill.addEventListener('click', () => {
-        activeBookChapter = Number(pill.dataset.bookchap);
-        updateBookChapterPills();
-        renderTree();
-        setTimeout(fitOverview, 30);
-      });
+      pill.addEventListener('click', () => switchBookChapter(Number(pill.dataset.bookchap)));
     });
 
     function selectNode(id) {
@@ -1407,7 +1449,7 @@
       const node = NODES.find(n => n.id === id);
       if (!node) return;
       activeBookChapter = node.bookChapter || 3;
-      updateBookChapterPills();
+      renderRow2();
 
       const welcomeView = document.getElementById('welcome-view');
       const readerView = document.getElementById('node-reader-view');
@@ -1530,12 +1572,14 @@
     });
 
     document.getElementById('btn-prev-node').addEventListener('click', () => {
-      const idx = NODES.findIndex(n => n.id === activeNodeId);
-      selectNode(NODES[(idx - 1 + NODES.length) % NODES.length].id);
+      const chapNodes = NODES.filter(n => (n.bookChapter || 3) === activeBookChapter);
+      const idx = chapNodes.findIndex(n => n.id === activeNodeId);
+      selectNode(chapNodes[(idx - 1 + chapNodes.length) % chapNodes.length].id);
     });
     document.getElementById('btn-next-node').addEventListener('click', () => {
-      const idx = NODES.findIndex(n => n.id === activeNodeId);
-      selectNode(NODES[(idx + 1) % NODES.length].id);
+      const chapNodes = NODES.filter(n => (n.bookChapter || 3) === activeBookChapter);
+      const idx = chapNodes.findIndex(n => n.id === activeNodeId);
+      selectNode(chapNodes[(idx + 1) % chapNodes.length].id);
     });
 
     let isDragging = false, startX = 0, startY = 0;
@@ -1890,18 +1934,11 @@
     document.getElementById('btn-start-kap4')?.addEventListener('click', () => selectNode('n15'));
     document.getElementById('btn-try-tree')?.addEventListener('click', () => setLeftView('tree'));
 
-    showWelcome();
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('kap')) {
-      const k = Number(urlParams.get('kap'));
-      if (k === 3 || k === 4) {
-        activeBookChapter = k;
-        updateBookChapterPills();
-      }
-    }
-    if (urlParams.get('view') === 'tree') {
-      setLeftView('tree');
-    }
+    const paramKap = Number(urlParams.get('kap'));
+    const initialChap = (paramKap === 3 || paramKap === 4) ? paramKap : 3;
+    setLeftView('tree');
+    switchBookChapter(initialChap);
     setTimeout(fitOverview, 50);
   </script>
 </body>
