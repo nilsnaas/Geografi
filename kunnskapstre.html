@@ -108,9 +108,9 @@
           <div class="flex items-center gap-2">
             <span class="text-[11px] font-semibold uppercase tracking-wider text-emerald-400">Nils sin geografibok</span>
             <span class="text-xs text-sec hidden sm:inline">·</span>
-            <span class="text-xs font-medium text-sec hidden sm:inline">Kapittel 3 · Ytre krefter og landformene i Norge</span>
+            <span class="text-xs font-medium text-sec hidden sm:inline">Naturgeografi · Kapittel 3 &amp; 4</span>
           </div>
-          <h1 class="font-bold text-sm sm:text-base tracking-tight">Naturgeografi · Kapittel 3</h1>
+          <h1 class="font-bold text-sm sm:text-base tracking-tight">Naturgeografi · Vg2</h1>
         </div>
       </button>
 
@@ -145,29 +145,17 @@
       </div>
     </div>
 
-    <!-- Row 2: Chapter Filter Pills & Classic View Links -->
+    <!-- Row 2: Book Chapter Switcher, Filter Pills & Classic View Links -->
     <div class="flex flex-wrap items-center justify-between gap-2 mt-2.5 pt-2 border-t border-slate-500/15">
       <div class="flex flex-wrap items-center gap-1.5 text-xs">
-        <button type="button" data-filter="all" class="chapter-pill px-3 py-1 rounded-full border border-emerald-500/60 bg-emerald-500/15 text-emerald-300 font-semibold transition-colors">Oversikt</button>
-        <button type="button" data-filter="forvitring" class="chapter-pill px-3 py-1 rounded-full border border-slate-500/25 text-sec hover:border-slate-400/50 transition-colors flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>Forvitring &amp; erosjon
-        </button>
-        <button type="button" data-filter="elver" class="chapter-pill px-3 py-1 rounded-full border border-slate-500/25 text-sec hover:border-slate-400/50 transition-colors flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-amber-400"></span>Elvelandformer
-        </button>
-        <button type="button" data-filter="isbreer" class="chapter-pill px-3 py-1 rounded-full border border-slate-500/25 text-sec hover:border-slate-400/50 transition-colors flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-sky-400"></span>Isbreer
-        </button>
-        <button type="button" data-filter="norge" class="chapter-pill px-3 py-1 rounded-full border border-slate-500/25 text-sec hover:border-slate-400/50 transition-colors flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-violet-400"></span>Norge &amp; løsmasser
-        </button>
-        <button type="button" data-filter="skred" class="chapter-pill px-3 py-1 rounded-full border border-slate-500/25 text-sec hover:border-slate-400/50 transition-colors flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-rose-400"></span>Skred &amp; ras
-        </button>
+        <button type="button" data-bookchap="3" class="bookchap-pill px-3 py-1 rounded-full border border-emerald-500/60 bg-emerald-500/15 text-emerald-300 font-semibold transition-colors">Kapittel 3 · Ytre krefter</button>
+        <button type="button" data-bookchap="4" class="bookchap-pill px-3 py-1 rounded-full border border-slate-500/25 text-sec hover:border-slate-400/50 transition-colors">Kapittel 4 · Vær og klima</button>
+        <span class="h-3 w-px bg-slate-500/25 mx-1 hidden sm:inline"></span>
+        <button type="button" data-filter="all" class="chapter-pill px-2.5 py-1 rounded-full border border-emerald-500/60 bg-emerald-500/15 text-emerald-300 font-semibold transition-colors">Alle temaer</button>
       </div>
 
       <div class="flex flex-wrap items-center gap-1.5 text-[11px]">
-        <a href="index.html" class="bg-emerald-600/20 border border-emerald-500/50 text-emerald-300 px-2.5 py-1 rounded-md hover:bg-emerald-600/30 transition-colors font-semibold">📜 Klassisk visning (hele kapittelet) ↗</a>
+        <a href="index.html" class="bg-emerald-600/20 border border-emerald-500/50 text-emerald-300 px-2.5 py-1 rounded-md hover:bg-emerald-600/30 transition-colors font-semibold">📜 Klassisk visning (hele boka) ↗</a>
       </div>
     </div>
   </header>
@@ -179,8 +167,8 @@
     <aside id="sidebar-pane" class="panel-surface border rounded-2xl flex flex-col min-h-[260px] lg:min-h-0 overflow-hidden">
       <div class="px-4 py-3 border-b border-slate-500/15 flex items-center justify-between gap-2 shrink-0">
         <div>
-          <p class="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Innhold · Kapittel 3</p>
-          <p id="sidebar-progress-text" class="text-xs text-sec mt-0.5">1 / 14 utforsket</p>
+          <p class="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Innhold · Kapittel 3 &amp; 4</p>
+          <p id="sidebar-progress-text" class="text-xs text-sec mt-0.5">0 / 21 utforsket</p>
         </div>
         <button id="btn-toggle-all-chapters" type="button" class="elevated-surface border px-2.5 py-1 rounded-lg text-[11px] font-medium text-sec hover:text-current transition-colors">Lukk alle</button>
       </div>
@@ -260,7 +248,8 @@
             </div>
 
             <div class="flex flex-wrap items-center gap-2.5 pt-1">
-              <button id="btn-start-reading" type="button" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-semibold shadow-sm transition-colors">Start med 1. Hva er en landform? →</button>
+              <button id="btn-start-reading" type="button" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-semibold shadow-sm transition-colors">Start Kapittel 3 →</button>
+              <button id="btn-start-kap4" type="button" class="px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs sm:text-sm font-semibold shadow-sm transition-colors">Start Kapittel 4 →</button>
               <button id="btn-try-tree" type="button" class="elevated-surface border hover:border-sky-400/60 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-colors">🌳 Prøv Kunnskapstreet</button>
               <a href="index.html" class="elevated-surface border hover:border-emerald-500/50 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-sec hover:text-current transition-colors">📜 Klassisk visning ↗</a>
             </div>
@@ -364,7 +353,32 @@
       'ravine': { title: 'Ravine', definition: 'En dyp, smal bekkedal gravd ut i flate leiravsetninger etter at havbunnen hevet seg til tørt land.' },
       'kvikkleire': { title: 'Kvikkleire', definition: 'Opprinnelig stabil havbunnsleire der saltet mellom leirpartiklene er vasket bort av ferskvann, slik at leira kan bli flytende ved forstyrrelse.' },
       'jordskred': { title: 'Jordskred', definition: 'Utglidning av vannmettet jord og løsmasser i bratte dalsider, ofte utløst av kraftig regn eller rask snøsmelting.' },
-      'fjellskred': { title: 'Fjellskred', definition: 'Større ras i fast fjell der mer enn 10 000 kubikkmeter berg løsner; overvåkes kontinuerlig i utsatte fjellpartier.' }
+      'fjellskred': { title: 'Fjellskred', definition: 'Større ras i fast fjell der mer enn 10 000 kubikkmeter berg løsner; overvåkes kontinuerlig i utsatte fjellpartier.' },
+      'vaer': { title: 'Vær', definition: 'Tilstanden i atmosfæren på et bestemt sted og tidspunkt – det vi opplever akkurat nå av temperatur, vind, skydekke og nedbør.' },
+      'klima': { title: 'Klima', definition: 'Det typiske værmønsteret eller gjennomsnittsværet på et sted over lang tid, vanligvis målt over en 30-års normalperiode.' },
+      'normalperiode': { title: 'Normalperiode', definition: 'En standardisert 30-årsperiode (for eksempel 1991–2020) som meteorologer bruker for å beregne gjennomsnitt og oppdage klimaendringer.' },
+      'klimasystemet': { title: 'Klimasystemet', definition: 'Samspillet mellom atmosfæren, havet, landområdene, snø og is, og biosfæren (alt levende) – drevet av energi fra sola.' },
+      'troposfaeren': { title: 'Troposfæren', definition: 'Det nederste laget i atmosfæren (0–12 km høyde) der nesten all vanndamp finnes og der værfenomener som skyer, vind og nedbør oppstår.' },
+      'drivhuseffekten': { title: 'Drivhuseffekten', definition: 'Naturlig oppvarming der klimagasser i atmosfæren fanger opp varmestråling fra jordoverflaten og sender en del tilbake, slik at snittemperaturen blir ca. +15 °C i stedet for −18 °C.' },
+      'klimagasser': { title: 'Klimagasser', definition: 'Gasser i atmosfæren som absorberer og sender ut varmestråling, særlig vanndamp (H₂O), karbondioksid (CO₂) og metan (CH₄).' },
+      'energibalanse': { title: 'Energibalanse', definition: 'Likevekten mellom solenergien som kommer inn mot jorda og varmestrålingen som sendes tilbake ut i verdensrommet.' },
+      'hoytrykk': { title: 'Høytrykk', definition: 'Et område der kald eller avkjølt luft synker ned mot bakken og skaper høyere lufttrykk, ofte med klart og rolig vær.' },
+      'lavtrykk': { title: 'Lavtrykk', definition: 'Et område der varm luft stiger til værs slik at det blir mindre luft ved bakken; fører ofte til skyer, nedbør og vind.' },
+      'corioliseffekten': { title: 'Corioliseffekten', definition: 'Avbøyning av vind og havstrømmer som skyldes jordrotasjonen: mot høyre på den nordlige halvkule og mot venstre på den sørlige.' },
+      'palandsvind': { title: 'Pålandsvind', definition: 'Lokal kystvind om dagen når sola varmer opp land raskere enn havet, slik at kjølig havluft strømmer inn mot lavtrykket over land.' },
+      'fralandsvind': { title: 'Fralandsvind', definition: 'Lokal kystvind om natta når land avkjøles raskere enn sjøen, slik at luft strømmer fra høytrykket over land ut mot havet.' },
+      'kondensasjon': { title: 'Kondensasjon', definition: 'Overgangen fra usynlig vanndamp til små vanndråper eller iskrystaller når fuktig luft stiger, avkjøles og møter kondensasjonskjerner.' },
+      'konvektiv-nedbor': { title: 'Konvektiv nedbør', definition: 'Bygenedbør (ofte med torden) som oppstår når sola varmer opp bakken en varm dag, slik at fuktig luft stiger raskt til værs og avkjøles.' },
+      'orografisk-nedbor': { title: 'Orografisk nedbør', definition: 'Nedbør som dannes når fuktige luftmasser møter fjell og tvinges oppover, avkjøles og slipper regn eller snø på vindsiden.' },
+      'regnskygge': { title: 'Regnskygge og fønvind', definition: 'Tørt område på lesiden av fjell der lufta synker ned igjen etter å ha gitt fra seg fuktigheten som orografisk nedbør, og blir varm og tørr (fønvind).' },
+      'frontnedbor': { title: 'Frontnedbør', definition: 'Nedbør som oppstår når varm og kald luft møtes og den lette varmlufta presses opp over kaldlufta; vår vanligste nedbørstype.' },
+      'polarfronten': { title: 'Polarfronten', definition: 'Grensesonen rundt ca. 60° nord der mild, fuktig vestavind møter kald polarluft, noe som skaper lavtrykk, sterk vind og frontnedbør.' },
+      'jetstrommen': { title: 'Jetstrømmen', definition: 'Et bånd av svært kraftig vestavind i ca. 10 000 meters høyde over polarfronten som styrker lavtrykk og påvirker flytidene over Atlanterhavet.' },
+      'den-nordatlantiske-strommen': { title: 'Den nordatlantiske strømmen', definition: 'En varm havstrøm (utløper av Golfstrømmen) som frakter varmt vann nordover langs norskekysten og gir oss et langt mildere klima enn breddegraden skulle tilsi.' },
+      'dyphavsstrom': { title: 'Dyphavsstrøm', definition: 'Kald og salt havstrøm som synker ned mot havbunnen i polare strøk på grunn av høy tetthet og strømmer tilbake mot ekvator.' },
+      'klimasone': { title: 'Klimasone', definition: 'Et belte på jorda med omtrent samme temperatur- og nedbørsmønster, for eksempel tropisk, tørt, temperert eller polart klima.' },
+      'kystklima': { title: 'Kystklima', definition: 'Klima preget av nærheten til havet, med milde vintre, relativt kjølige somre, liten temperaturforskjell gjennom året og ofte mye nedbør.' },
+      'innlandsklima': { title: 'Innlandsklima', definition: 'Klima langt fra havet der landjorda raskt varmes opp og kjøles ned, noe som gir kalde vintre, varme somre og mindre nedbør.' }
     };
 
     const g = (term, label) => `<button type="button" class="glossary-term" data-term="${term}">${label}</button>`;
@@ -924,9 +938,257 @@
         },
         reflection: 'Hvorfor er det viktig med strenge regler for graving og fylling i kvikkleiresoner, selv om området ser helt flatt og trygt ut?',
         goal: 'Kunne forklare hvorfor Norge har mye kvikkleire, lokale forhold i Telemark, og konsekvensene av kvikkleireskred.'
+      },
+      {
+        id: 'n15', bookChapter: 4, chapter: 'klima-grunnlag', type: 'hovedstamme', icon: '🌦️',
+        x: 540, y: 745, parents: [],
+        period: 'Kapittel 4', part: '1. Vær vs. klima',
+        title: '1. Vær, klima & 30-års normalperioder',
+        subtitle: 'Forskjellen på øyeblikksværet ute og det langsiktige klimamønsteret på et sted',
+        image: 'Images/klima-bygeskyer.jpg',
+        caption: 'Bygeskyer og regn over norsk kulturlandskap – et øyeblikksbilde av været. · Kilde: Nils',
+        enkel: `
+          <p>${g('vaer', 'Vær')} er det vi opplever akkurat nå av temperatur, vind, skydekke og nedbør. ${g('klima', 'Klima')} er det typiske værmønsteret på et sted over lang tid.</p>
+          <p>For å skille tilfeldige værsvingninger fra reelle klimaendringer måler meteorologer været over en 30-års ${g('normalperiode', 'normalperiode')} (den nyeste er <strong>1991–2020</strong>). Vær og klima former både landskap, økosystemer og hvor vi kan dyrke mat.</p>
+        `,
+        full: `
+          <p>På én og samme junidag kan det snø på fjellovergangene i Finnmark samtidig som folk går i t-skjorte og shorts i Sør-Norge. Dette handler ikke om at klimaet brått har skiftet fra dag til dag, men om forskjellen mellom ${g('vaer', 'vær')} og ${g('klima', 'klima')}: været avgjør hvilke klær du velger i dag, mens klimaet avgjør hvilke klær du trenger i skapet gjennom året.</p>
+          <p><strong>Måling over tid:</strong> Ett enkelt varmt eller kaldt år er ikke nok til å fastslå om klimaet er i endring. Klimaforskere sammenligner derfor temperatur, nedbør og vind over en fastsatt 30-års ${g('normalperiode', 'normalperiode')}. Den gjeldende normalen er <strong>1991–2020</strong>, som avløste den tidligere normalen fra <strong>1961–1990</strong>. Ved å følge både gjennomsnitt og svingninger over flere tiår ser vi de langsiktige trendene.</p>
+          <p><strong>Betydning for natur og samfunn:</strong> Sammenhengen mellom vær og klima påvirker tre hovedområder: (1) <em>Landskapet</em> formes av vind, regn og flom; (2) <em>økosystemene</em> (regnskog, barskog, tundra og ørken) fordeler seg etter temperatur og nedbør; og (3) <em>matproduksjonen</em> styres av vekstsesong og nedbørsmengde.</p>
+          <div class="elevated-surface border border-emerald-500/35 rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">📍 Lokalt eksempel fra Telemark · Vær og jordbruk</p>
+            <p>En kjølig junikveld kan gi nattefrost på <strong>Haukelifjell</strong> i Vinje, mens det samme dag er 22 grader i <strong>Skien</strong>. Samtidig gjør det varme sommerklimaet i <strong>Grenland og Midt-Telemark</strong> at det dyrkes mye korn, frukt og grønnsaker der, mens høyfjellsbygdene lenger vest har et klima som egner seg best til beite og skogbruk.</p>
+          </div>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-sky-400">Vær eller klima? Sjekk forskjellen</p>
+            <p>• <strong>Vær:</strong> «Det høljeregner på vei hjem fra skolen i dag» eller «Det var frost i natt».</p>
+            <p>• <strong>Klima:</strong> «Ved Middelhavet er det tørre, varme somre» eller «Gjennomsnittstemperaturen i Norge har steget sammenlignet med 1961–1990».</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hvorfor bruker meteorologer en 30-års normalperiode når de skal beskrive klimaet?',
+          options: ['Fordi været aldri endrer seg innenfor 30 år', 'Fordi enkeltår svinger mye, så man trenger et 30-års snitt for å se det typiske mønsteret og langsiktige trender', 'Fordi termometre bare varer i 30 år', 'Fordi årstidene skifter hvert 30. år'],
+          correct: 1,
+          feedback: 'Riktig! Været i ett enkelt år kan avvike mye, så 30-årsperioder (som 1991–2020) gir et pålitelig bilde av klimaet.'
+        },
+        reflection: 'Tenk på været der du bor den siste uka. Hvordan skiller det seg fra det typiske klimaet på hjemstedet ditt på denne tiden av året?',
+        goal: 'Kunne skille klart mellom vær og klima, forklare hva en 30-års normalperiode er, og vise hvordan klimaet påvirker landskap, økosystemer og matproduksjon.'
+      },
+      {
+        id: 'n16', bookChapter: 4, chapter: 'klima-grunnlag', type: 'hovedstamme', icon: '☀️',
+        x: 540, y: 560, parents: ['n15'],
+        period: 'Energi & atmosfære', part: '2. Klimasystemet',
+        title: '2. Klimasystemet, energibalansen & drivhuseffekten',
+        subtitle: 'Hvordan sola driver været i troposfæren og hvordan klimagasser holder jorda levelig',
+        image: 'Images/fig-drivhuseffekt.svg',
+        caption: 'Samspillet mellom solinnstråling, refleksjon fra lyse flater og varmestråling fanget av klimagasser. · Kilde: Nils',
+        enkel: `
+          <p>${g('klimasystemet', 'Klimasystemet')} drives av sola og består av fem sammenkoblede deler: atmosfæren, havet, landområdene, snø/is og biosfæren. Alt vær skjer i det nederste luftlaget, ${g('troposfaeren', 'troposfæren')} (0–12 km).</p>
+          <p>Lyse flater (snø og is) reflekterer sollys, mens mørke flater (hav og skog) absorberer energi og sender ut varmestråling. ${g('klimagasser', 'Klimagasser')} som H₂O, CO₂ og CH₄ holder på en del av denne varmen – dette er ${g('drivhuseffekten', 'drivhuseffekten')}.</p>
+        `,
+        full: `
+          <p>Alt vær og klima drives av solenergi gjennom ${g('klimasystemet', 'klimasystemet')}, der energi og stoffer stadig utveksles mellom fem deler: <strong>atmosfæren</strong>, <strong>havet</strong>, <strong>landområdene</strong>, <strong>snø og is</strong>, og <strong>biosfæren</strong> (alt levende). Nesten alt vær oppstår i de nederste 10–12 kilometerne av atmosfæren, kalt ${g('troposfaeren', 'troposfæren')}.</p>
+          <p><strong>Lys mot mørk overflate:</strong> Omtrent halvparten av solstrålingen når ned til jordoverflaten, mens resten absorberes av skyer eller reflekteres av partikler i lufta. Lyse overflater som snø og is reflekterer størstedelen av sollyset tilbake (høy albedo), mens mørkere flater som åpent hav og skog absorberer strålingen og varmes opp. Når havis i Arktis smelter, avdekkes mørkt hav som tar opp enda mer varme – en selvforsterkende tilbakekobling.</p>
+          <p><strong>${g('drivhuseffekten', 'Drivhuseffekten')} og ${g('energibalanse', 'energibalansen')}:</strong> Den oppvarmede jorda sender ut usynlig varmestråling. Selv om lufta hovedsakelig består av nitrogen og oksygen, finnes det små mengder ${g('klimagasser', 'klimagasser')} som vanndamp (H₂O), karbondioksid (CO₂) og metan (CH₄). Disse gassene absorberer varmestråling og sender varme tilbake mot jorda. Uten denne naturlige drivhuseffekten ville gjennomsnittstemperaturen på jorda vært rundt <strong>−18 °C</strong> i stedet for behagelige <strong>+15 °C</strong>. Når innkommende solenergi er lik utgående varmestråling, har vi energibalanse.</p>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-sky-400">Tilbakekobling når isen smelter</p>
+            <p>1. Høyere temperatur fører til at havis og snødekke smelter tidligere på våren.</p>
+            <p>2. Mørkere hav og bar mark absorberer langt mer solstråling enn hvit snø og is.</p>
+            <p>3. Mer absorbert varme gir enda høyere temperatur og raskere smelting.</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hva ville jordas gjennomsnittstemperatur omtrent vært uten den naturlige drivhuseffekten?',
+          options: ['+30 °C', '+15 °C', '0 °C', 'Rundt −18 °C'],
+          correct: 3,
+          feedback: 'Riktig! Den naturlige drivhuseffekten løfter jordas snittemperatur fra cirka −18 °C til rundt +15 °C.'
+        },
+        reflection: 'Hvorfor blir det merkbart varmere på en mørk asfaltplass enn på en snødekt vidde på en solrik vårdag?',
+        goal: 'Kunne forklare de fem delene i klimasystemet, hvordan ulike overflater påvirker absorpsjon av sollys, og hvordan drivhuseffekten og energibalansen fungerer.'
+      },
+      {
+        id: 'n17', bookChapter: 4, chapter: 'vind-nedbor', type: 'hovedstamme', icon: '💨',
+        x: 310, y: 390, parents: ['n16'],
+        period: 'Lufttrykk & vind', part: '3. Vind & coriolis',
+        title: '3. Lufttrykk, vind & corioliseffekten',
+        subtitle: 'Hvorfor luft beveger seg fra høytrykk til lavtrykk, og hvorfor vinden snur langs kysten',
+        image: 'Images/telemark-kyst-landbris.jpg',
+        caption: 'Sommerdag langs Telemarkskysten ved Kragerø og Jomfruland med frisk pålandsvind inn fra sjøen. · Kilde: Nils',
+        enkel: `
+          <p>Når luft varmes opp, utvider den seg, blir lettere og stiger – da dannes ${g('lavtrykk', 'lavtrykk')}. Når luft avkjøles, synker den ned mot bakken og skaper ${g('hoytrykk', 'høytrykk')}.</p>
+          <p>Vind er luft som strømmer fra høytrykk mot lavtrykk. På grunn av jordrotasjonen (${g('corioliseffekten', 'corioliseffekten')}) bøyes vinden av mot høyre på den nordlige halvkule. Langs kysten gir dette ${g('palandsvind', 'pålandsvind')} om dagen og ${g('fralandsvind', 'fralandsvind')} om natta.</p>
+        `,
+        full: `
+          <p><strong>Slik oppstår trykkforskjeller:</strong> Når sola varmer opp lufta ved bakken, beveger luftmolekylene seg raskere. Lufta utvider seg, får lavere tetthet og stiger oppover. Ved jordoverflaten oppstår et «underskudd» av luft, altså et ${g('lavtrykk', 'lavtrykk')}. Der luft derimot avkjøles, trekker den seg sammen, blir tyngre og synker mot bakken – da får vi et «overskudd» av luft og ${g('hoytrykk', 'høytrykk')}.</p>
+          <p><strong>Vind og ${g('corioliseffekten', 'corioliseffekten')}:</strong> Naturen forsøker alltid å utjevne trykkforskjeller, slik at luft strømmer fra høytrykk mot lavtrykk. Men fordi jorda roterer under atmosfæren, blåser ikke vinden i rett linje: på den nordlige halvkule bøyes vinden av mot <strong>høyre</strong>, mens den på den sørlige halvkule bøyes mot <strong>venstre</strong>.</p>
+          <p><strong>Lokal kystvind:</strong> Landjord varmes opp og avkjøles langt raskere enn havvann. På en varm sommerdag blir lufta over land varm og stiger opp (lokalt lavtrykk), slik at kjøligere luft fra sjøen strømmer inn mot land som ${g('palandsvind', 'pålandsvind')}. Om kvelden og natta kjøles bakken raskere ned enn havet; da dannes et lokalt høytrykk over land, og vinden snur ut mot sjøen som ${g('fralandsvind', 'fralandsvind')}.</p>
+          <div class="elevated-surface border border-emerald-500/35 rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">📍 Lokalt eksempel fra Telemark · Sjøbris i Kragerø og Langesund</p>
+            <p>Ute på svabergene ved <strong>Langesund, Valle og Jomfruland</strong> merker båtfolk og badegjester dette tydelig på varme julidager: utpå formiddagen setter en frisk <strong>pålandsvind</strong> («solgangsbris») inn fra Skagerrak når Telemark-fastlandet varmes opp, før den stilner og snur til svak <strong>fralandsvind</strong> sent på kvelden.</p>
+          </div>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-sky-400">Huskeliste: Dag og natt ved kysten</p>
+            <p>• <strong>Om dagen:</strong> Land varmes raskest → luft stiger over land (L) → <strong>pålandsvind</strong> fra hav (H) til land (L).</p>
+            <p>• <strong>Om natta:</strong> Land avkjøles raskest → luft synker over land (H) → <strong>fralandsvind</strong> fra land (H) til hav (L).</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hvilken vei bøyes vinden av på den nordlige halvkule på grunn av corioliseffekten?',
+          options: ['Mot venstre', 'Mot høyre', 'Rett oppover', 'Vinden påvirkes ikke av jordrotasjonen'],
+          correct: 1,
+          feedback: 'Riktig! Jordrotasjonen gjør at vind på den nordlige halvkule bøyes av mot høyre.'
+        },
+        reflection: 'Hvorfor opplever seilere og vindsurfere langs kysten ofte at vinden er sterkest midt på ettermiddagen på solrike sommerdager?',
+        goal: 'Kunne forklare hvordan høytrykk, lavtrykk og vind dannes, hva corioliseffekten gjør, og hvorfor pålands- og fralandsvind snur mellom dag og natt.'
+      },
+      {
+        id: 'n18', bookChapter: 4, chapter: 'vind-nedbor', type: 'fordypning', icon: '🌧️',
+        x: 770, y: 390, parents: ['n16'],
+        period: 'Skyer & nedbør', part: '4. Vannets kretsløp',
+        title: '4. Vannets kretsløp & tre typer nedbør',
+        subtitle: 'Hvorfor fuktig luft må stige for å danne skyer, og forskjellen på konvektiv, orografisk og frontnedbør',
+        image: 'Images/fig-nedborstyper.svg',
+        caption: 'Sammenligning av konvektiv nedbør, orografisk nedbør (med regnskygge) og frontnedbør. · Kilde: Nils',
+        enkel: `
+          <p>All nedbør oppstår når fuktig luft stiger, avkjøles og ${g('kondensasjon', 'kondenserer')} til vanndråper eller iskrystaller rundt små partikler (kondensasjonskjerner) i lufta.</p>
+          <p>Vi skiller mellom tre nedbørstyper etter <em>hvorfor</em> lufta stiger: ${g('konvektiv-nedbor', 'konvektiv nedbør')} (soloppvarming), ${g('orografisk-nedbor', 'orografisk nedbør')} (luft presses over fjell) og ${g('frontnedbor', 'frontnedbør')} (varm luft møter kald luft).</p>
+        `,
+        full: `
+          <p>Vann kretser kontinuerlig mellom hav, atmosfære og land. Fra hav og jordoverflate fordamper usynlig vanndamp. Når fuktig luft stiger til værs og avkjøles, skjer det ${g('kondensasjon', 'kondensasjon')}: vanndampen fester seg på mikroskopiske støv- eller saltpartikler (<em>kondensasjonskjerner</em>) og danner skyer. Når dråper og iskrystaller blir for tunge til å sveve, faller de ned som regn eller snø avhengig av bakketemperaturen.</p>
+          <p>Felles for all nedbør er at fuktig luft stiger og avkjøles, men vi deler nedbør inn i tre typer etter årsaken til stigningen:</p>
+          <p><strong>1. ${g('konvektiv-nedbor', 'Konvektiv nedbør')}:</strong> På varme sommerdager varmer sola opp bakken, slik at fuktig luft stiger raskt rett til værs. Dette bygger opp høye bygeskyer (kumulusskyer) som ofte gir kraftige ettermiddagsbyger med lyn og torden.</p>
+          <p><strong>2. ${g('orografisk-nedbor', 'Orografisk nedbør')}:</strong> Når fuktig luft fra havet møter fjell, tvinges den oppover, avkjøles og slipper mye nedbør på vindsiden (slik som i Bergen). På lesiden synker den tørre lufta ned igjen, varmes opp og skaper ${g('regnskygge', 'regnskygge og fønvind')}.</p>
+          <p><strong>3. ${g('frontnedbor', 'Frontnedbør')}:</strong> Når milde luftmasser fra sør møter kald polarluft ved ${g('polarfronten', 'polarfronten')}, presses den lettere varmlufta opp over kaldlufta. Dette gir både kraftige byger og langvarig regn – den vanligste nedbørstypen i Norge.</p>
+          <div class="elevated-surface border border-emerald-500/35 rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">📍 Lokalt eksempel fra Telemark · Tordenbyger i innlandet og regnskygge</p>
+            <p>I dalgrytene rundt <strong>Notodden, Bø og Sauherad</strong> kan sterk sommervarme utløse klassiske <strong>konvektive ettermiddagsbyger</strong> med torden etter solrike formiddager. Samtidig gjør fjellene i vest at <strong>Øst-Telemark</strong> ofte ligger i en svak <strong>regnskygge</strong> når fuktige vestavinder tømmer seg over Vestlandet og Hardangervidda.</p>
+          </div>
+        `,
+        caseHtml: `
+          <figure class="overflow-hidden rounded-xl border border-slate-500/20 mb-3">
+            <img src="Images/klima-bygeskyer.jpg" alt="Konvektive bygeskyer over norsk dal" class="w-full h-48 object-cover" />
+            <figcaption class="px-3 py-1.5 text-xs text-sec">Konvektiv ettermiddagsbyge under utvikling over en grønn dal. · Kilde: Nils</figcaption>
+          </figure>
+        `,
+        quiz: {
+          q: 'Hvilken nedbørstype er den vanligste i Norge samlet sett, og oppstår når varm og kald luft møtes?',
+          options: ['Konvektiv nedbør', 'Orografisk nedbør', 'Frontnedbør', 'Fønvind'],
+          correct: 2,
+          feedback: 'Riktig! Frontnedbør langs polarfronten er den vanligste nedbørstypen i Norge.'
+        },
+        reflection: 'Hvorfor får Bergen ofte over 200 nedbørsdager i året, mens steder øst for Langfjella (som Skjåk) får svært lite nedbør?',
+        goal: 'Kunne forklare kondensasjon og skydannelse, og skille mellom konvektiv nedbør, orografisk nedbør (med regnskygge/fønvind) og frontnedbør.'
+      },
+      {
+        id: 'n19', bookChapter: 4, chapter: 'klimafaktorer', type: 'hovedstamme', icon: '🌐',
+        x: 310, y: 220, parents: ['n17'],
+        period: 'Globale klimafaktorer', part: '5. Sol & vindbelter',
+        title: '5. Breddegrad, høyde & global vindsirkulasjon',
+        subtitle: 'Hvorfor solinnstrålingen styrer temperatursonene og skaper passatvinder, vestavinder og jetstrøm',
+        image: 'Images/fig-vindsirkulasjon.svg',
+        caption: 'Det globale vindsirkulasjonsmønsteret på den nordlige halvkule med trykksoner og vindbelter. · Kilde: Nils',
+        enkel: `
+          <p>Solinnstrålingen er sterkest ved ekvator og avtar mot polene fordi solstrålene fordeles over et større område jo lenger nord vi kommer. I tillegg synker temperaturen med <strong>ca. 0,5–1 °C per 100 meter</strong> stigning over havet.</p>
+          <p>Global varmetransport skaper faste vindbelter: lavtrykk ved ekvator, ørkenbelter i den subtropiske høytrykkssonen (30°), passatvinder, milde <strong>vestavinder</strong> mot Norge og ${g('polarfronten', 'polarfronten')} ved ca. 60° nord med ${g('jetstrommen', 'jetstrømmen')} høyt over.</p>
+        `,
+        full: `
+          <p><strong>Breddegrad og høyde over havet:</strong> Den viktigste klimafaktoren er hvor mye solenergi et område mottar. Ved ekvator treffer solstrålene nesten rett på en liten flate, mens strålene ved 60° nord treffer på skrå og spres over et langt større areal. Derfor blir det kaldere og større forskjell mellom årstidene jo nærmere polene vi kommer. Samtidig faller temperaturen med omtrent <strong>0,5–1 °C for hver 100 meter</strong> oppover i høyden – slik at selv høye fjell nær ekvator, som Kilimanjaro, har snø på toppen.</p>
+          <p><strong>Global vindsirkulasjon:</strong> Temperaturforskjellen mellom ekvator og polene setter hele atmosfæren i bevegelse:</p>
+          <p>• <strong>Ekvator (0°):</strong> Sterk oppvarming gir stigende luft, lavtrykk, mye skyer og tropisk regnskog.<br>• <strong>Subtropisk høytrykkssone (ca. 30°):</strong> Lufta synker ned igjen, varmes opp og tørker ut – her ligger verdens store ørkener som Sahara.<br>• <strong>Passatvinder og vestavinder:</strong> Fra 30° blåser <em>passatvindene</em> tilbake mot ekvator, mens mild og fuktig <em>vestavind</em> (bøyd mot høyre av ${g('corioliseffekten', 'corioliseffekten')}) blåser over Atlanterhavet inn mot Norge.<br>• <strong>${g('polarfronten', 'Polarfronten')} og ${g('jetstrommen', 'jetstrømmen')} (ca. 60° N):</strong> Her møter mild vestavind de kalde østlige <em>polarvindene</em>. Det gir ustabilt vær med lavtrykk og høst-/vinterstormer langs norskekysten. Omtrent 10 000 meter oppe blåser den kraftige ${g('jetstrommen', 'jetstrømmen')} fra vest mot øst, som både forsterker lavtrykkene og gjør at fly fra USA til Europa bruker kortere tid enn motsatt vei.</p>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-sky-400">Høyden over havet i praksis: Telemark</p>
+            <p>Fra <strong>Skien</strong> (nær havnivå) til toppen av <strong>Gaustatoppen</strong> (1883 moh.) er det nesten 1900 høydemeter. Med et temperaturfall på 0,6–1 °C per 100 meter er det ofte <strong>11 til 18 °C kaldere</strong> på toppen enn nede i dalen samme dag.</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hvorfor ligger mange av verdens største ørkener, som Sahara, rundt 30 grader nord og sør for ekvator?',
+          options: ['Fordi sola skinner bare om vinteren der', 'Fordi luft synker ned i den subtropiske høytrykkssonen, varmes opp og gir tørt, skyfritt vær', 'Fordi det blåser polarvind dit', 'Fordi havstrømmene fryser til is'],
+          correct: 1,
+          feedback: 'Riktig! Synkende luft i den subtropiske høytrykkssonen gir høytrykk, lite skyer og svært lite nedbør.'
+        },
+        reflection: 'Hvorfor sparer et passasjerfly både tid og drivstoff på å fly fra New York til Oslo sammenlignet med å fly fra Oslo til New York?',
+        goal: 'Kunne forklare hvordan breddegrad, høyde over havet og det globale vindsirkulasjonsmønsteret (inkludert jetstrømmen) styrer klimaet.'
+      },
+      {
+        id: 'n20', bookChapter: 4, chapter: 'klimafaktorer', type: 'fordypning', icon: '🌊',
+        x: 770, y: 220, parents: ['n17', 'n18'],
+        period: 'Hav & fjell', part: '6. Havstrømmer & fjellkjeder',
+        title: '6. Havstrømmer & fjellkjeders rolle',
+        subtitle: 'Hvordan Den nordatlantiske strømmen varmer opp Norge, og hvordan Langfjella styrer luftmassene',
+        image: 'Images/fig-forvitring.svg',
+        caption: 'Husk også hvordan fjellkjeder som Langfjella både styrer luftstrømmer og skaper orografisk nedbør. · Kilde: Nils',
+        enkel: `
+          <p>Faste vinder skyver på havvannet og skaper havstrømmer. ${g('den-nordatlantiske-strommen', 'Den nordatlantiske strømmen')} (en utløper av Golfstrømmen) frakter enorme mengder varmt vann til norskekysten og holder Barentshavet delvis isfritt.</p>
+          <p>I nord blir det kalde, salte vannet tyngre, synker ned og danner en ${g('dyphavsstrom', 'dyphavsstrøm')} sørover. Samtidig gjør nord–sør-retningen på <strong>Langfjella</strong> at kald polarluft lett kan strømme sørover i landet, og mild luft nordover.</p>
+        `,
+        full: `
+          <p><strong>Varme havstrømmer og ${g('den-nordatlantiske-strommen', 'Den nordatlantiske strømmen')}:</strong> Permanente vindbelter setter verdenshavene i bevegelse. Fra Det karibiske hav fører Golfstrømmen og dens forlengelse, Den nordatlantiske strømmen, enorme mengder varmt vann nordover langs hele norskekysten og opp mot Svalbard. Varmetransporten inn i Norskehavet tilsvarer rundt 50 ganger hele verdens energiforbruk! Takket være dette varme vannet og milde vestavinder har <strong>Røst i Nordland</strong> en januar-middel på <strong>0 °C</strong>, mens <strong>Noatak i Alaska</strong> på samme breddegrad (67,5° N) har <strong>−26 °C</strong>. Dessuten holder strømmen kysten av Finnmark og deler av Barentshavet isfrie om vinteren.</p>
+          <p><strong>${g('dyphavsstrom', 'Dyphavsstrømmen')}:</strong> Når overflatevannet gir fra seg varme til lufta i nord og blandes med kaldt, salt vann i polare strøk, får det høyere massetetthet. Det tunge vannet synker mot havbunnen og strømmer sørover som en dyp havstrøm tilbake mot ekvator – en global havsirkulasjon som fordeler varme på jorda.</p>
+          <p><strong>Fjell og fjellkjeder:</strong> Fjellkjeder styrer vindretningen. Fordi den skandinaviske fjellkjeden (<strong>Langfjella</strong>) går fra nord til sør, fungerer den ikke som en vegg mot nordavind. Dermed kan bitende kald polarluft strømme langt sørover i Norge og Europa, mens mild vestavinds- og sønnavindsluft også kan nå helt opp til Svalbard. På tvers hindrer fjellene derimot fuktige vestavinder fra å passere uten å gi fra seg regn først.</p>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-sky-400">Sammenligning på 67,5° nord</p>
+            <p>• <strong>Røst (Nordland, Norge):</strong> Ca. <strong>0 °C</strong> i snitt i januar – varmet av Den nordatlantiske strømmen og vestavind.</p>
+            <p>• <strong>Noatak (Alaska, USA):</strong> Ca. <strong>−26 °C</strong> i snitt i januar – uten tilsvarende varm havstrøm og med kontinentalt preg.</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hvorfor synker havvannet ned til bunnen i polare strøk og danner en dyphavsstrøm tilbake mot ekvator?',
+          options: ['Fordi vannet blir varmt og lett', 'Fordi vannet blir kaldt og salt, får større tetthet og blir tyngre', 'Fordi vinden trykker det ned med orkan styrke', 'Fordi ferskvann er tyngre enn saltvann'],
+          correct: 1,
+          feedback: 'Riktig! Avkjølt og salt havvann har høy massetetthet, synker mot bunnen og driver dyphavsstrømmen sørover.'
+        },
+        reflection: 'Hva ville skjedd med klimaet, fiskeriene og jordbruket i Norge dersom Den nordatlantiske strømmen ble svekket?',
+        goal: 'Kunne forklare hvordan havstrømmer (spesielt Den nordatlantiske strømmen og dyphavsstrømmer) og fjellkjeder som Langfjella påvirker klimaet i Norge.'
+      },
+      {
+        id: 'n21', bookChapter: 4, chapter: 'klimasoner', type: 'hovedstamme', icon: '🗺️',
+        x: 540, y: 95, parents: ['n19', 'n20'],
+        period: 'Klimasoner & Norge', part: '7. Kyst vs. innland',
+        title: '7. Klimasoner, kyst- og innlandsklima i Norge',
+        subtitle: 'Temperert og polart klima i Norge, og hvorfor Telemark rommer nesten alle norske klimatyper',
+        image: 'Images/telemark-gausta-vinter.jpg',
+        caption: 'Vinterdag over Hardangervidda og Gaustatoppen i Telemark med kaldt høyfjells- og arktisk preg. · Kilde: Nils',
+        enkel: `
+          <p>Jorda deles inn i ${g('klimasone', 'klimasoner')} ut fra temperatur og nedbør: tropisk, tørt, varmtemperert (middelhavsklima), kaldtemperert og polart. Nesten hele Norge ligger i den <strong>tempererte klimasonen</strong>, mens høyfjellet, deler av Finnmark og Svalbard har <strong>polart klima</strong> (varmeste måned under 10 °C).</p>
+          <p>Innenfor Norge skiller vi mellom ${g('kystklima', 'kystklima')} (milde vintre, kjølige somre, mye nedbør) og ${g('innlandsklima', 'innlandsklima')} (kalde vintre, varme somre, mindre nedbør).</p>
+        `,
+        full: `
+          <p><strong>Verdens ${g('klimasone', 'klimasoner')}:</strong> Fra ekvator mot polene går vi gjennom tropisk klima (varmt og fuktig), tørt klima (subtropiske ørkener), varmtemperert middelhavsklima (milde vintre, tørre somre), kaldtemperert klima (tydelige årstider) og polart klima. Hvis den globale temperaturen stiger, forskyves grensene mellom klimasonene mot polene, slik at planter og dyr må tilpasse seg eller flytte.</p>
+          <p><strong>Norges to klimasoner:</strong> Det meste av Norge fra Oslofjorden til Troms ligger nord i den <strong>tempererte klimasonen</strong>, der nesten alt norsk jordbruk og skogbruk foregår. Lengst nord i Finnmark, på Svalbard og i høyfjellet finner vi <strong>polart (arktisk) klima</strong> – sonen «uten sommer», der varmeste måned har gjennomsnittstemperatur under <strong>10 °C</strong>.</p>
+          <p><strong>${g('kystklima', 'Kystklima')} vs. ${g('innlandsklima', 'innlandsklima')}:</strong> Fordi havet varmes opp og kjøles ned mye saktere enn landjorda, har kystbyer som <strong>Bergen</strong> milde vintre (+1,3 °C i januar) og relativt kjølige somre, samt over 200 nedbørsdager i året. I innlandet styrer bakken temperaturen langt mer: <strong>Lillehammer</strong> har rundt −9 °C i januar, og både varme- og kulderekordene ligger i innlandet (<strong>Nesbyen</strong> +35,6 °C; <strong>Røros</strong> under −40 °C; <strong>Karasjok</strong> −51,4 °C). Østlandet og steder som <strong>Skjåk</strong> i Gudbrandsdalen ligger i regnskyggen øst for Langfjella og får svært lite årsnedbør.</p>
+          <div class="elevated-surface border border-emerald-500/35 rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">📍 Lokalt eksempel fra Telemark · Et fylke med hele klimaspennet</p>
+            <p>Telemark viser kontrasten mellom kyst, innland og høyfjell på kort avstand: (1) <strong>Kragerø og Bamble-kysten</strong> har mildt <em>kystklima</em> med tidlig vår og lite frost; (2) <strong>Grenland, Midt-Telemark og Notodden</strong> får varmere somre med preg av <em>innlandsklima</em> som gir landets tidligste frukt- og kornhøst; (3) oppe i <strong>Vinje, Tinn og på Hardangervidda/Gaustatoppen</strong> råder et kaldt høyfjells- og <em>polart klima</em> der snøen ligger langt utover sommeren.</p>
+          </div>
+        `,
+        caseHtml: `
+          <figure class="overflow-hidden rounded-xl border border-slate-500/20 mb-3">
+            <img src="Images/telemark-klimaprofil.svg" alt="Telemark som klimaprofil fra kyst til høyfjell" class="w-full bg-white p-2" />
+            <figcaption class="px-3 py-1.5 text-xs text-sec">Klimaprofil gjennom Telemark fra kystklima ved Skagerrak til polart høyfjellspreg på Gaustatoppen. · Kilde: Nils</figcaption>
+          </figure>
+        `,
+        quiz: {
+          q: 'Hva kjennetegner et typisk kystklima sammenlignet med innlandsklima i Norge?',
+          options: ['Kalde vintre og svært varme somre', 'Milde vintre, relativt kjølige somre og mindre temperaturforskjell gjennom året', 'Ingen nedbør om høsten', 'Varmeste måned alltid under 10 °C'],
+          correct: 1,
+          feedback: 'Riktig! Havet holder godt på varmen om høsten/vinteren og varmes sakte opp om våren, noe som demper temperatursvingningene.'
+        },
+        reflection: 'Hvis du både ønsker deg mild vinter og varm sommer i Norge, hvorfor er det vanskelig å få begge deler på samme sted?',
+        goal: 'Kunne plassere Norge i verdens klimasoner og forklare forskjellen på kystklima og innlandsklima, inkludert lokale variasjoner i Telemark.'
       }
     ];
     // 3. State
+    let activeBookChapter = 3;
     let activeNodeId = null;
     let readingMode = 'full';
     let activeTab = 'fagstoff';
@@ -970,7 +1232,11 @@
       elver: 'Elver',
       isbreer: 'Isbreer',
       norge: 'Norge',
-      skred: 'Skred'
+      skred: 'Skred',
+      'klima-grunnlag': 'Grunnlag',
+      'vind-nedbor': 'Vind & regn',
+      'klimafaktorer': 'Faktorer',
+      'klimasoner': 'Soner'
     };
 
     function applyTransform() {
@@ -1036,10 +1302,11 @@
       `;
       treeEdges.appendChild(backdrop);
 
-      NODES.forEach(node => {
+      const visibleNodes = NODES.filter(n => (n.bookChapter || 3) === activeBookChapter);
+      visibleNodes.forEach(node => {
         const isDimmed = activeFilter !== 'all' && node.chapter !== activeFilter;
         node.parents.forEach(pId => {
-          const parent = NODES.find(n => n.id === pId);
+          const parent = visibleNodes.find(n => n.id === pId);
           if (!parent) return;
           const dx = node.x - parent.x;
           const dy = node.y - parent.y;
@@ -1116,11 +1383,31 @@
       document.getElementById('content-pane').scrollTop = 0;
     }
 
+    function updateBookChapterPills() {
+      document.querySelectorAll('.bookchap-pill').forEach(p => {
+        const on = Number(p.dataset.bookchap) === activeBookChapter;
+        p.className = on
+          ? 'bookchap-pill px-3 py-1 rounded-full border border-emerald-500/60 bg-emerald-500/15 text-emerald-300 font-semibold transition-colors'
+          : 'bookchap-pill px-3 py-1 rounded-full border border-slate-500/25 text-sec hover:border-slate-400/50 transition-colors';
+      });
+    }
+
+    document.querySelectorAll('.bookchap-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        activeBookChapter = Number(pill.dataset.bookchap);
+        updateBookChapterPills();
+        renderTree();
+        setTimeout(fitOverview, 30);
+      });
+    });
+
     function selectNode(id) {
       activeNodeId = id;
       visitedNodes.add(id);
       const node = NODES.find(n => n.id === id);
       if (!node) return;
+      activeBookChapter = node.bookChapter || 3;
+      updateBookChapterPills();
 
       const welcomeView = document.getElementById('welcome-view');
       const readerView = document.getElementById('node-reader-view');
@@ -1479,12 +1766,20 @@
     });
 
     const CHAPTER_GROUPS = [
-      { id: 'forvitring', title: '3.1 Forvitring og erosjon', dot: 'bg-emerald-400', nodeIds: ['n1', 'n2', 'n3', 'n4'] },
-      { id: 'elver', title: '3.2 Elvelandformer', dot: 'bg-amber-400', nodeIds: ['n5', 'n6', 'n7'] },
-      { id: 'isbreer', title: '3.3 Isbreer', dot: 'bg-sky-400', nodeIds: ['n8', 'n9', 'n10'] },
-      { id: 'norge', title: '3.4 Norges landformer & løsmasser', dot: 'bg-violet-400', nodeIds: ['n11', 'n12'] },
-      { id: 'skred', title: '3.5 Skred og ras', dot: 'bg-rose-400', nodeIds: ['n13', 'n14'] }
+      { id: 'forvitring', bookChapter: 3, title: '3.1 Forvitring og erosjon', dot: 'bg-emerald-400', nodeIds: ['n1', 'n2', 'n3', 'n4'] },
+      { id: 'elver', bookChapter: 3, title: '3.2 Elvelandformer', dot: 'bg-amber-400', nodeIds: ['n5', 'n6', 'n7'] },
+      { id: 'isbreer', bookChapter: 3, title: '3.3 Isbreer', dot: 'bg-sky-400', nodeIds: ['n8', 'n9', 'n10'] },
+      { id: 'norge', bookChapter: 3, title: '3.4 Norges landformer & løsmasser', dot: 'bg-violet-400', nodeIds: ['n11', 'n12'] },
+      { id: 'skred', bookChapter: 3, title: '3.5 Skred og ras', dot: 'bg-rose-400', nodeIds: ['n13', 'n14'] },
+      { id: 'klima-grunnlag', bookChapter: 4, title: '4.1 Vær, klima & drivhuseffekt', dot: 'bg-sky-400', nodeIds: ['n15', 'n16'] },
+      { id: 'vind-nedbor', bookChapter: 4, title: '4.2 Vind & nedbørstyper', dot: 'bg-emerald-400', nodeIds: ['n17', 'n18'] },
+      { id: 'klimafaktorer', bookChapter: 4, title: '4.3 Hva bestemmer klimaet?', dot: 'bg-amber-400', nodeIds: ['n19', 'n20'] },
+      { id: 'klimasoner', bookChapter: 4, title: '4.4 Klimasoner & Norge', dot: 'bg-violet-400', nodeIds: ['n21'] }
     ];
+    const BOOK_CHAPTER_TITLES = {
+      3: 'Kapittel 3 · Ytre krefter',
+      4: 'Kapittel 4 · Vær og klima'
+    };
     const expandedGroups = new Set(CHAPTER_GROUPS.map(g => g.id));
     let leftViewMode = 'sidebar'; // 'sidebar' | 'tree'
 
@@ -1494,7 +1789,12 @@
       const progSide = document.getElementById('sidebar-progress-text');
       if (progSide) progSide.textContent = `${visitedNodes.size} / ${NODES.length} utforsket`;
 
+      let lastBookChap = null;
       container.innerHTML = CHAPTER_GROUPS.map(group => {
+        const chapHeader = group.bookChapter !== lastBookChap
+          ? `<p class="px-1 pt-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-emerald-400">${BOOK_CHAPTER_TITLES[group.bookChapter]}</p>`
+          : '';
+        lastBookChap = group.bookChapter;
         const isOpen = expandedGroups.has(group.id);
         const hasActive = group.nodeIds.includes(activeNodeId);
         const itemsHtml = group.nodeIds.map(nid => {
@@ -1510,7 +1810,7 @@
           `;
         }).join('');
 
-        return `
+        return chapHeader + `
           <div class="elevated-surface border rounded-xl overflow-hidden ${hasActive ? 'border-emerald-500/40' : ''}">
             <button type="button" data-group="${group.id}" class="sidebar-group-btn w-full px-3 py-2.5 flex items-center justify-between gap-2 text-left hover:bg-slate-500/10 transition-colors">
               <span class="flex items-center gap-2 text-xs font-bold tracking-tight min-w-0">
@@ -1587,6 +1887,7 @@
     document.getElementById('btn-welcome')?.addEventListener('click', showWelcome);
     document.getElementById('btn-home-brand')?.addEventListener('click', showWelcome);
     document.getElementById('btn-start-reading')?.addEventListener('click', () => selectNode('n1'));
+    document.getElementById('btn-start-kap4')?.addEventListener('click', () => selectNode('n15'));
     document.getElementById('btn-try-tree')?.addEventListener('click', () => setLeftView('tree'));
 
     showWelcome();

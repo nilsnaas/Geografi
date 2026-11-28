@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <marker id="arrW" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#0f172a"/>
+    </marker>
+    <marker id="arrSky" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#0284c7"/>
+    </marker>
+  </defs>
+
+  <rect width="820" height="420" rx="16" fill="#f1f5f9"/>
+  <text x="24" y="34" fill="#0f172a" font-size="18" font-weight="700">Global vindsirkulasjon (nordlige halvkule)</text>
+  <text x="24" y="53" fill="#475569" font-size="12">Trykkforskjeller og jordrotasjonen (corioliseffekten) skaper faste vindbelter fra ekvator til polene</text>
+
+  <!-- Halvkule -->
+  <path d="M110,360 A260,260 0 0,1 630,360 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+
+  <!-- Breddegrader -->
+  <line x1="110" y1="360" x2="630" y2="360" stroke="#0f172a" stroke-width="1.5"/>
+  <text x="72" y="364" fill="#0f172a" font-size="11.5" font-weight="700">0° Ekvator</text>
+
+  <line x1="145" y1="230" x2="595" y2="230" stroke="#475569" stroke-width="1" stroke-dasharray="5 4"/>
+  <text x="64" y="234" fill="#334155" font-size="11.5" font-weight="700">30° N</text>
+
+  <line x1="240" y1="135" x2="500" y2="135" stroke="#dc2626" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="64" y="139" fill="#b91c1c" font-size="11.5" font-weight="700">60° N</text>
+  <text x="512" y="139" fill="#b91c1c" font-size="11.5" font-weight="700">Polarfronten</text>
+
+  <text x="370" y="90" text-anchor="middle" fill="#0f172a" font-size="11.5" font-weight="700">90° Nordpolen (H)</text>
+
+  <!-- Trykksoner -->
+  <circle cx="370" cy="348" r="13" fill="#ef4444"/><text x="370" y="352" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">L</text>
+  <circle cx="370" cy="230" r="13" fill="#0284c7"/><text x="370" y="234" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">H</text>
+  <circle cx="370" cy="135" r="13" fill="#ef4444"/><text x="370" y="139" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">L</text>
+
+  <!-- Vindpiler (bøyd mot høyre) -->
+  <!-- Passatvind: 30° -> 0° mot vest -->
+  <path d="M270,248 Q245,295 215,342" fill="none" stroke="#0f172a" stroke-width="2.5" marker-end="url(#arrW)"/>
+  <path d="M475,248 Q450,295 420,342" fill="none" stroke="#0f172a" stroke-width="2.5" marker-end="url(#arrW)"/>
+  <text x="370" y="300" text-anchor="middle" fill="#0f172a" font-size="12" font-weight="700">Passatvinder (NØ → SV)</text>
+
+  <!-- Vestavind: 30° -> 60° mot øst -->
+  <path d="M230,214 Q265,172 305,148" fill="none" stroke="#0f172a" stroke-width="2.5" marker-end="url(#arrW)"/>
+  <path d="M430,214 Q465,172 505,148" fill="none" stroke="#0f172a" stroke-width="2.5" marker-end="url(#arrW)"/>
+  <text x="370" y="186" text-anchor="middle" fill="#0f172a" font-size="12" font-weight="700">Vestavinder (SV → NØ)</text>
+
+  <!-- Polarvind: 90° -> 60° mot vest -->
+  <path d="M350,104 Q320,115 295,128" fill="none" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrSky)"/>
+  <path d="M415,104 Q390,115 365,128" fill="none" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrSky)"/>
+
+  <!-- Forklaringsboks høyre -->
+  <g transform="translate(595, 165)">
+    <rect width="205" height="195" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="14" y="24" fill="#0f172a" font-size="12" font-weight="700">Hovedsoner</text>
+    <text x="14" y="46" fill="#b91c1c" font-size="11" font-weight="700">Ekvator (0° · L):</text>
+    <text x="14" y="61" fill="#334155" font-size="10.5">Varm luft stiger → regnskog.</text>
+
+    <text x="14" y="88" fill="#0369a1" font-size="11" font-weight="700">Subtropisk høytrykk (30° · H):</text>
+    <text x="14" y="103" fill="#334155" font-size="10.5">Luft synker → tørt (Sahara).</text>
+
+    <text x="14" y="130" fill="#0f172a" font-size="11" font-weight="700">Vestavindsbeltet (30°–60°):</text>
+    <text x="14" y="145" fill="#334155" font-size="10.5">Mild, fuktig luft mot Norge.</text>
+
+    <text x="14" y="172" fill="#b91c1c" font-size="11" font-weight="700">Polarfronten (ca. 60° · L):</text>
+    <text x="14" y="187" fill="#334155" font-size="10.5">Kald og varm luft møtes.</text>
+  </g>
+</svg>

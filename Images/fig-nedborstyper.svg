@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 380" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <marker id="arrBlue" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#0284c7"/>
+    </marker>
+    <marker id="arrRed" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#ef4444"/>
+    </marker>
+  </defs>
+
+  <rect width="840" height="380" rx="16" fill="#f8fafc"/>
+  <text x="24" y="34" fill="#0f172a" font-size="18" font-weight="700">Tre hovedtyper nedbør</text>
+  <text x="24" y="53" fill="#475569" font-size="12">All nedbør dannes når fuktig luft stiger, avkjøles og kondenserer – men årsaken til stigningen er ulik</text>
+
+  <!-- Panel 1: Konvektiv -->
+  <g transform="translate(20, 72)">
+    <rect width="252" height="288" rx="12" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="126" y="24" text-anchor="middle" fill="#1e3a8a" font-size="13.5" font-weight="700">1. Konvektiv nedbør</text>
+    <circle cx="42" cy="58" r="18" fill="#facc15"/>
+    <path d="M105,98 Q120,62 150,75 Q180,55 198,85 Q218,90 210,115 L98,115 Z" fill="#94a3b8"/>
+    <path d="M115,122 L108,148 M140,122 L133,150 M165,122 L158,148 M190,122 L183,148" stroke="#0284c7" stroke-width="2" stroke-dasharray="4 3"/>
+    <path d="M150,118 L142,135 L154,135 L146,154" fill="none" stroke="#eab308" stroke-width="2.5"/>
+    <rect x="0" y="218" width="252" height="70" rx="0" fill="#22c55e" opacity="0.22"/>
+    <line x1="0" y1="218" x2="252" y2="218" stroke="#16a34a" stroke-width="3"/>
+    <line x1="95" y1="210" x2="95" y2="155" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrRed)"/>
+    <line x1="205" y1="210" x2="205" y2="155" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrRed)"/>
+    <text x="126" y="242" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">Sola varmer opp bakken</text>
+    <text x="126" y="258" text-anchor="middle" fill="#334155" font-size="10.5">Varm luft stiger raskt til værs.</text>
+    <text x="126" y="273" text-anchor="middle" fill="#334155" font-size="10.5">Gir sommerbyger, lyn og torden.</text>
+  </g>
+
+  <!-- Panel 2: Orografisk -->
+  <g transform="translate(294, 72)">
+    <rect width="252" height="288" rx="12" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="126" y="24" text-anchor="middle" fill="#1e3a8a" font-size="13.5" font-weight="700">2. Orografisk nedbør</text>
+    <polygon points="50,218 128,96 205,218" fill="#64748b"/>
+    <polygon points="105,132 128,96 151,132 136,125 128,134 119,125" fill="#f8fafc"/>
+    <path d="M46,90 Q66,64 96,74 Q118,68 124,94 L42,94 Z" fill="#94a3b8"/>
+    <path d="M55,100 L49,130 M74,100 L68,132 M93,100 L87,130" stroke="#0284c7" stroke-width="2" stroke-dasharray="4 3"/>
+    <path d="M12,188 Q52,182 88,116" fill="none" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrBlue)"/>
+    <path d="M148,112 Q185,155 232,188" fill="none" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrRed)"/>
+    <text x="200" y="140" text-anchor="middle" fill="#b91c1c" font-size="10" font-weight="700">Fønvind &amp;</text>
+    <text x="200" y="152" text-anchor="middle" fill="#b91c1c" font-size="10" font-weight="700">regnskygge</text>
+    <line x1="0" y1="218" x2="252" y2="218" stroke="#16a34a" stroke-width="3"/>
+    <text x="126" y="242" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">Fuktig luft møter fjell</text>
+    <text x="126" y="258" text-anchor="middle" fill="#334155" font-size="10.5">Presses opp på lo-siden og regner ut.</text>
+    <text x="126" y="273" text-anchor="middle" fill="#334155" font-size="10.5">Tørr og varmere luft på lesiden.</text>
+  </g>
+
+  <!-- Panel 3: Frontnedbør -->
+  <g transform="translate(568, 72)">
+    <rect width="252" height="288" rx="12" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="126" y="24" text-anchor="middle" fill="#1e3a8a" font-size="13.5" font-weight="700">3. Frontnedbør</text>
+    <path d="M0,218 L0,132 Q80,140 142,218 Z" fill="#3b82f6" opacity="0.24"/>
+    <path d="M0,132 Q80,140 142,218" fill="none" stroke="#1d4ed8" stroke-width="2.5"/>
+    <text x="48" y="195" text-anchor="middle" fill="#1e40af" font-size="10.5" font-weight="700">Kald luft</text>
+    <path d="M84,96 Q104,68 134,80 Q162,64 176,94 Q192,98 186,114 L80,114 Z" fill="#94a3b8"/>
+    <path d="M95,120 L88,150 M115,120 L108,150 M135,120 L128,150 M155,120 L148,150" stroke="#0284c7" stroke-width="2" stroke-dasharray="4 3"/>
+    <path d="M230,185 Q172,182 128,125" fill="none" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrRed)"/>
+    <text x="196" y="168" text-anchor="middle" fill="#b91c1c" font-size="10.5" font-weight="700">Varm luft</text>
+    <line x1="0" y1="218" x2="252" y2="218" stroke="#16a34a" stroke-width="3"/>
+    <text x="126" y="242" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">Varm og kald luft møtes</text>
+    <text x="126" y="258" text-anchor="middle" fill="#334155" font-size="10.5">Varm luft presses opp over kald luft.</text>
+    <text x="126" y="273" text-anchor="middle" fill="#334155" font-size="10.5">Vanligst langs polarfronten i Norge.</text>
+  </g>
+</svg>
