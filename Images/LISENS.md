@@ -7,6 +7,15 @@ Alle bilder og illustrasjoner i mappen `Images/` er **egenproduserte** for dette
   - `flom-elveslette.jpg`
   - `frostforvitring-fjell.jpg`
   - `havstrommer-fjellkjeder.jpg`
+  - `info-breerosjon.jpg`
+  - `info-bretyper.jpg`
+  - `info-elvelandformer.jpg`
+  - `info-fjellskred.jpg`
+  - `info-fjordprofil.jpg`
+  - `info-forvitring.jpg`
+  - `info-kvikkleire.jpg`
+  - `info-maringrense.jpg`
+  - `info-telemark-jomfruland.jpg`
   - `kalksteinshule.jpg`
   - `klima-bygeskyer.jpg`
   - `kvikkleire-skredgrop.jpg`
