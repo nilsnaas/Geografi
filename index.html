@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Klassisk lesning · Geografi – Nils sin geografibok</title>
+  <title>Nils sin geografibok · Vg2 – Læringsplattform</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,20 +23,20 @@
   </script>
   <style>
     :root {
-      --bg-app: #f5f5f4;
-      --bg-panel: #ffffff;
-      --bg-elevated: #fafaf9;
-      --border-subtle: rgba(120, 113, 108, 0.22);
-      --text-primary: #1c1917;
-      --text-secondary: #57534e;
-    }
-    html.dark-theme {
-      --bg-app: #090d16;
-      --bg-panel: #0f1623;
-      --bg-elevated: #151e30;
+      --bg-app: #090e17;
+      --bg-panel: #101827;
+      --bg-elevated: #172133;
       --border-subtle: rgba(148, 163, 184, 0.16);
       --text-primary: #f1f5f9;
       --text-secondary: #94a3b8;
+    }
+    html.light-theme {
+      --bg-app: #f5f5f4;
+      --bg-panel: #ffffff;
+      --bg-elevated: #f8fafc;
+      --border-subtle: rgba(120, 113, 108, 0.22);
+      --text-primary: #1c1917;
+      --text-secondary: #57534e;
     }
     body {
       background-color: var(--bg-app);
@@ -47,12 +47,12 @@
     .panel-surface { background-color: var(--bg-panel); border-color: var(--border-subtle); }
     .elevated-surface { background-color: var(--bg-elevated); border-color: var(--border-subtle); }
     .text-sec { color: var(--text-secondary); }
-    .scroll-mt-header { scroll-margin-top: 5.5rem; }
+    .scroll-mt-header { scroll-margin-top: 2rem; }
     .glossary-term {
-      font-weight: 700; color: #185952; border-bottom: 1.5px dotted #1f6f66;
+      font-weight: 700; color: #34d399; border-bottom: 1.5px dotted #10b981;
       padding: 0 2px; border-radius: 3px; cursor: help; transition: background-color 150ms ease;
     }
-    html.dark-theme .glossary-term { color: #34d399; border-bottom-color: #10b981; }
+    html.light-theme .glossary-term { color: #185952; border-bottom-color: #1f6f66; }
     .glossary-term:hover { background-color: rgba(16, 185, 129, 0.16); }
     #glossary-tooltip { transition: opacity 150ms ease, transform 150ms ease; }
     #glossary-tooltip.hidden-tooltip { opacity: 0; pointer-events: none; transform: translateY(4px); }
@@ -68,80 +68,103 @@
 </head>
 <body class="min-h-screen flex flex-col">
 
-  <!-- Top reading progress bar -->
-  <div class="fixed top-0 left-0 right-0 h-1 bg-slate-500/20 z-50">
-    <div id="reading-progress" class="h-full bg-emerald-500 transition-all duration-150" style="width: 0%"></div>
-  </div>
-
-  <!-- Top Navigation Bar (Identical structure & look to index.html) -->
-  <header class="sticky top-0 panel-surface border-b px-3 sm:px-5 py-2.5 shrink-0 z-30">
-    <div class="flex flex-wrap items-center justify-between gap-2.5">
-      <div class="flex items-center gap-3">
-        <a href="#startside" class="flex items-center gap-3 hover:opacity-90 transition-opacity" title="Tilbake til startsiden">
-          <div class="w-8 h-8 rounded-lg bg-emerald-700 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shadow-sm shrink-0">NN</div>
-          <div class="leading-tight">
-            <div class="flex items-center gap-2">
-              <span class="text-[11px] font-semibold uppercase tracking-wider text-emerald-500">Nils sin geografibok</span>
-              <span class="text-xs text-sec hidden sm:inline">·</span>
-              <span class="text-xs font-medium text-sec hidden sm:inline">Naturgeografi · Kapittel 3 &amp; 4</span>
-            </div>
-            <h1 class="font-bold text-sm sm:text-base tracking-tight">Naturgeografi · Vg2</h1>
-          </div>
-        </a>
+  <!-- Mobile Top Bar (only on < lg screens) -->
+  <header class="lg:hidden sticky top-0 panel-surface border-b px-4 py-3 z-30 flex items-center justify-between gap-2">
+    <a href="#startside" class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white font-serif font-bold text-xs flex items-center justify-center shrink-0">NN</div>
+      <div class="leading-tight">
+        <p class="text-xs font-bold">Nils sin geografibok</p>
+        <p class="text-[10px] uppercase tracking-wider text-sec">Læringsplattform</p>
       </div>
-
-      <div class="flex flex-wrap items-center gap-2">
-        <a href="#startside" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors">🏠 Startside</a>
-        <a href="kunnskapstre.html?view=tree" class="elevated-surface border hover:border-sky-400/60 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors">🌳 Kunnskapstre ↗</a>
-
-        <div class="elevated-surface border rounded-lg p-0.5 flex items-center text-xs font-medium" title="Bytt mellom kortversjon og full læreboktekst">
-          <button id="mode-enkel" type="button" class="px-2.5 py-1 rounded-md transition-colors text-sec hover:text-current">Enkel</button>
-          <button id="mode-full" type="button" class="px-2.5 py-1 rounded-md transition-colors bg-emerald-600 text-white font-semibold">Full</button>
-        </div>
-
-        <button id="btn-ordliste" type="button" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors hidden sm:inline-flex">Ordliste</button>
-        <button id="btn-print" type="button" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors hidden md:inline-flex">PDF / Skriv ut</button>
-        <button id="mobile-menu-btn" type="button" class="lg:hidden elevated-surface border px-2.5 py-1.5 rounded-lg text-xs font-medium">☰ Meny</button>
-
-        <button id="btn-theme" type="button" aria-label="Bytt mellom mørkt og lyst tema" title="Bytt mellom mørkt og lyst tema" class="elevated-surface border hover:border-emerald-500/50 p-1.5 rounded-lg text-xs transition-colors">
-          <span id="theme-icon">🌙</span>
-        </button>
-      </div>
+    </a>
+    <div class="flex items-center gap-2">
+      <button id="mobile-theme-btn" type="button" class="elevated-surface border px-2.5 py-1.5 rounded-lg text-xs">☀️</button>
+      <button id="mobile-menu-btn" type="button" class="elevated-surface border px-3 py-1.5 rounded-lg text-xs font-semibold">☰ Meny</button>
     </div>
   </header>
 
   <!-- Mobile Drawer -->
   <div id="mobile-drawer" class="lg:hidden fixed inset-0 z-50 hidden">
-    <div id="mobile-drawer-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-xs"></div>
-    <nav class="relative w-80 max-w-[88vw] h-full panel-surface border-r p-4 overflow-y-auto shadow-xl">
-      <div class="flex items-center justify-between mb-3 pb-3 border-b border-slate-500/15">
-        <p class="text-xs font-bold uppercase tracking-wider text-emerald-500">Innhold · Kapittel 3</p>
-        <button id="mobile-drawer-close" type="button" class="elevated-surface border px-2 py-1 rounded-lg text-xs">✕</button>
+    <div id="mobile-drawer-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-xs"></div>
+    <nav class="relative w-80 max-w-[88vw] h-full panel-surface border-r p-4 overflow-y-auto shadow-xl flex flex-col justify-between gap-4">
+      <div>
+        <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-500/15">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white font-serif font-bold text-xs flex items-center justify-center">NN</div>
+            <div>
+              <p class="text-xs font-bold">Nils sin geografibok</p>
+              <p class="text-[10px] uppercase tracking-wider text-sec">Læringsplattform</p>
+            </div>
+          </div>
+          <button id="mobile-drawer-close" type="button" class="elevated-surface border px-2 py-1 rounded-lg text-xs">✕</button>
+        </div>
+        <div id="mobile-nav-list" class="space-y-2"></div>
       </div>
-      <div id="mobile-nav-list" class="space-y-2"></div>
+      <div class="pt-3 border-t border-slate-500/15 space-y-2">
+        <p class="text-[10px] font-bold uppercase tracking-wider text-sec">Visning &amp; verktøy</p>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <a href="kunnskapstre.html?view=tree&kap=3" class="elevated-surface border px-2.5 py-2 rounded-xl text-center font-medium">🌳 Tre (Kap. 3)</a>
+          <a href="kunnskapstre.html?view=tree&kap=4" class="elevated-surface border px-2.5 py-2 rounded-xl text-center font-medium">🌳 Tre (Kap. 4)</a>
+          <a href="#startside" class="mobile-close-link elevated-surface border px-2.5 py-2 rounded-xl text-center font-medium">🏠 Startside</a>
+          <button type="button" onclick="window.print()" class="bg-emerald-700 text-white px-2.5 py-2 rounded-xl text-center font-semibold">📄 PDF</button>
+        </div>
+      </div>
     </nav>
   </div>
 
-  <!-- Main Workspace (Identical sidebar style to index.html + full classic scroll page) -->
-  <div class="max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-[310px_1fr] xl:grid-cols-[330px_1fr] gap-5 items-start">
+  <!-- Main Workspace -->
+  <div class="max-w-[1380px] w-full mx-auto px-3 sm:px-6 py-5 lg:py-6 grid grid-cols-1 lg:grid-cols-[295px_1fr] gap-6 items-start">
 
-    <!-- LEFT SIDEBAR (Same accordion menu as index.html) -->
-    <aside class="hidden lg:flex panel-surface border rounded-2xl flex-col sticky top-20 max-h-[calc(100vh-6rem)] overflow-hidden">
-      <div class="px-4 py-3 border-b border-slate-500/15 flex items-center justify-between gap-2 shrink-0">
-        <div>
-          <p class="text-[11px] font-bold uppercase tracking-wider text-emerald-500">Innhold · Kapittel 3 &amp; 4</p>
-          <p id="sidebar-progress-text" class="text-xs text-sec mt-0.5">21 temaer</p>
-        </div>
-        <button id="btn-toggle-all-chapters" type="button" class="elevated-surface border px-2.5 py-1 rounded-lg text-[11px] font-medium text-sec hover:text-current transition-colors">Lukk alle</button>
+    <!-- LEFT SIDEBAR (Matching Samfunnsgeografi platform card) -->
+    <aside class="hidden lg:flex panel-surface border rounded-2xl flex-col sticky top-5 max-h-[calc(100vh-2.5rem)] overflow-hidden shadow-lg">
+      <!-- Brand + Theme Toggle -->
+      <div class="p-4 border-b border-slate-500/15 flex items-center justify-between gap-2 shrink-0">
+        <a href="#startside" class="flex items-center gap-2.5 min-w-0 hover:opacity-90 transition-opacity">
+          <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shadow-sm shrink-0">NN</div>
+          <div class="min-w-0 leading-tight">
+            <p class="text-sm font-bold truncate">Nils sin geografibok</p>
+            <p class="text-[10px] font-semibold uppercase tracking-wider text-sec">Læringsplattform</p>
+          </div>
+        </a>
+        <button id="btn-theme" type="button" aria-label="Bytt mellom mørkt og lyst tema" title="Bytt mellom mørkt og lyst tema" class="elevated-surface border hover:border-emerald-500/50 w-8 h-8 rounded-full text-xs flex items-center justify-center shrink-0 transition-colors">
+          <span id="theme-icon">☀️</span>
+        </button>
       </div>
-      <nav id="desktop-nav-list" aria-label="Kapittelmeny" class="flex-1 overflow-y-auto p-3 space-y-2"></nav>
-      <div class="px-4 py-2.5 border-t border-slate-500/15 text-[11px] text-sec shrink-0">
-        <span class="block font-semibold text-emerald-500">Kilde: Nils</span>
-        Hold over <strong class="text-emerald-500">uthevede begreper</strong> for forklaring.
+
+      <!-- Reading Progress -->
+      <div class="px-4 py-3 border-b border-slate-500/15 shrink-0">
+        <div class="flex items-center justify-between text-xs mb-1.5">
+          <span class="text-sec font-medium">Lesefremdrift</span>
+          <span id="progress-pct" class="font-bold text-emerald-400">0 %</span>
+        </div>
+        <div class="h-1.5 w-full rounded-full bg-slate-500/20 overflow-hidden">
+          <div id="reading-progress" class="h-full bg-emerald-500 transition-all duration-150 rounded-full" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Chapters Navigation -->
+      <nav id="desktop-nav-list" aria-label="Kapittelmeny" class="flex-1 overflow-y-auto p-3.5 space-y-2.5"></nav>
+
+      <!-- Bottom Tools: VISNING & VERKTØY -->
+      <div class="p-3.5 border-t border-slate-500/15 space-y-2.5 shrink-0">
+        <p class="text-[10px] font-bold uppercase tracking-wider text-sec px-0.5">Visning &amp; verktøy</p>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <a href="kunnskapstre.html?view=tree&kap=3" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-2 rounded-xl font-medium text-center transition-colors truncate">🌳 Tre (Kap. 3)</a>
+          <a href="kunnskapstre.html?view=tree&kap=4" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-2 rounded-xl font-medium text-center transition-colors truncate">🌳 Tre (Kap. 4)</a>
+          <a href="#startside" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-2 rounded-xl font-medium text-center transition-colors">🏠 Startside</a>
+          <button id="btn-print" type="button" class="bg-emerald-700 hover:bg-emerald-600 text-white px-2.5 py-2 rounded-xl font-semibold text-center transition-colors">📄 PDF</button>
+        </div>
+        <div class="flex items-center justify-between gap-2 pt-1">
+          <div class="elevated-surface border rounded-xl p-0.5 flex items-center text-[11px] font-medium flex-1">
+            <button id="mode-enkel" type="button" class="flex-1 py-1 rounded-lg transition-colors text-sec hover:text-current">Enkel</button>
+            <button id="mode-full" type="button" class="flex-1 py-1 rounded-lg transition-colors bg-emerald-600 text-white font-semibold">Full</button>
+          </div>
+          <button id="btn-ordliste" type="button" class="elevated-surface border hover:border-emerald-500/50 px-3 py-1.5 rounded-xl text-[11px] font-medium transition-colors">📖 Ordliste</button>
+        </div>
       </div>
     </aside>
 
-    <!-- RIGHT MAIN CONTENT (Full classic reading layout) -->
+    <!-- RIGHT MAIN CONTENT -->
     <main id="classic-main" class="min-w-0 space-y-8"></main>
   </div>
 
@@ -1044,59 +1067,80 @@
       { id: 'klimasoner', bookChapter: 4, title: '4.4 Klimasoner & Norge', dot: 'bg-violet-400', nodeIds: ['n21'] }
     ];
 
-    const expandedGroups = new Set(CHAPTER_GROUPS.map(gr => gr.id));
+    const BOOK_CHAPTERS = [
+      {
+        num: 3,
+        id: 'kap3',
+        firstNode: 'n1',
+        title: 'Ytre krefter og landformene i Norge',
+        shortTitle: 'Ytre krefter',
+        partsLabel: '5 deler',
+        desc: 'Forvitring, elvelandformer, isbreer, Norges gamle og unge landformer, marin grense, Telemark-eksempler og skredfare.'
+      },
+      {
+        num: 4,
+        id: 'kap4',
+        firstNode: 'n15',
+        title: 'Vær og klima',
+        shortTitle: 'Vær og klima',
+        partsLabel: '4 deler',
+        desc: 'Vær vs. klima, klimasystemet, drivhuseffekten, vind og nedbørstyper, havstrømmer og klimasoner i Norge.'
+      }
+    ];
+
+    const expandedChapters = new Set([3]);
     let activeSectionId = 'startside';
     let readingMode = 'full';
-
-    const BOOK_CHAPTER_TITLES = {
-      3: 'Kapittel 3 · Ytre krefter',
-      4: 'Kapittel 4 · Vær og klima'
-    };
 
     function renderClassicNav(targetId, closeDrawerOnClick = false) {
       const el = document.getElementById(targetId);
       if (!el) return;
-      const startLink = `<a href="#startside" data-target="startside" class="nav-link block px-3 py-2.5 rounded-xl text-xs font-bold border transition-colors ${activeSectionId === 'startside' ? 'bg-emerald-600 text-white border-emerald-600' : 'elevated-surface text-sec hover:text-current'}">🏠 Startside &amp; veiledning</a>`;
-      let lastBookChap = null;
-      const groupsHtml = CHAPTER_GROUPS.map(group => {
-        const chapHeader = group.bookChapter !== lastBookChap
-          ? `<p class="px-1 pt-2.5 pb-1 text-[10px] font-bold uppercase tracking-wider text-emerald-500">${BOOK_CHAPTER_TITLES[group.bookChapter]}</p>`
-          : '';
-        lastBookChap = group.bookChapter;
-        const isOpen = expandedGroups.has(group.id);
-        const hasActive = group.nodeIds.includes(activeSectionId);
-        const itemsHtml = group.nodeIds.map(nid => {
-          const n = NODES.find(x => x.id === nid);
-          if (!n) return '';
-          const isActive = activeSectionId === n.id;
+
+      const chaptersHtml = BOOK_CHAPTERS.map(ch => {
+        const isOpen = expandedChapters.has(ch.num);
+        const groups = CHAPTER_GROUPS.filter(gr => gr.bookChapter === ch.num);
+        const hasActive = groups.some(gr => gr.nodeIds.includes(activeSectionId)) || activeSectionId === ch.id;
+
+        const subItemsHtml = groups.map(group => {
+          const nodeLinks = group.nodeIds.map(nid => {
+            const n = NODES.find(x => x.id === nid);
+            if (!n) return '';
+            const isActive = activeSectionId === n.id;
+            return `<a href="#${n.id}" data-target="${n.id}" class="nav-link block w-full text-left px-2.5 py-1.5 rounded-lg text-[11px] transition-colors leading-snug ${isActive ? 'bg-emerald-600 text-white font-semibold' : 'text-sec hover:text-current hover:bg-slate-500/10'}">${n.title}</a>`;
+          }).join('');
           return `
-            <a href="#${n.id}" data-target="${n.id}" class="nav-link block w-full text-left px-3 py-2 rounded-lg text-xs transition-colors leading-snug ${isActive ? 'bg-emerald-600 text-white font-semibold shadow-sm' : 'hover:bg-slate-500/10 text-sec hover:text-current'}">${n.title}</a>
+            <div class="pt-1.5">
+              <p class="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-400/90 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full ${group.dot}"></span>${group.title}
+              </p>
+              <div class="space-y-0.5 pl-1">${nodeLinks}</div>
+            </div>
           `;
         }).join('');
-        return chapHeader + `
-          <div class="elevated-surface border rounded-xl overflow-hidden ${hasActive ? 'border-emerald-500/40' : ''}">
-            <button type="button" data-group="${group.id}" class="classic-group-btn w-full px-3 py-2.5 flex items-center justify-between gap-2 text-left hover:bg-slate-500/10 transition-colors">
-              <span class="flex items-center gap-2 text-xs font-bold tracking-tight min-w-0">
-                <span class="w-2 h-2 rounded-full ${group.dot} shrink-0"></span>
-                <span class="truncate">${group.title}</span>
+
+        return `
+          <div class="elevated-surface border rounded-xl overflow-hidden transition-colors ${hasActive ? 'border-emerald-500/50' : ''}">
+            <button type="button" data-chap="${ch.num}" class="chap-acc-btn w-full px-3 py-2.5 flex items-center justify-between gap-2.5 text-left hover:bg-slate-500/10 transition-colors">
+              <span class="flex items-center gap-2.5 min-w-0">
+                <span class="w-6 h-6 rounded-md bg-emerald-500/20 text-emerald-400 font-bold text-xs flex items-center justify-center shrink-0">${ch.num}</span>
+                <span class="text-xs font-semibold truncate">${ch.shortTitle}</span>
               </span>
-              <span class="text-xs text-sec shrink-0">${isOpen ? '▾' : '▸'}</span>
+              <span class="text-xs text-sec shrink-0">${isOpen ? '▾' : '›'}</span>
             </button>
-            <div class="${isOpen ? 'block' : 'hidden'} px-2 pb-2 pt-0.5 space-y-1 border-t border-slate-500/10">
-              ${itemsHtml}
+            <div class="${isOpen ? 'block' : 'hidden'} px-2 pb-2.5 border-t border-slate-500/10 space-y-1">
+              ${subItemsHtml}
             </div>
           </div>
         `;
       }).join('');
 
-      const glossaryLink = `<a href="#ordliste" data-target="ordliste" class="nav-link block px-3 py-2.5 rounded-xl text-xs font-bold border transition-colors ${activeSectionId === 'ordliste' ? 'bg-emerald-600 text-white border-emerald-600' : 'elevated-surface text-sec hover:text-current'}">📖 Samlet ordliste</a>`;
-      el.innerHTML = startLink + groupsHtml + glossaryLink;
+      el.innerHTML = chaptersHtml;
 
-      el.querySelectorAll('.classic-group-btn').forEach(btn => {
+      el.querySelectorAll('.chap-acc-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          const gid = btn.dataset.group;
-          if (expandedGroups.has(gid)) expandedGroups.delete(gid);
-          else expandedGroups.add(gid);
+          const cnum = Number(btn.dataset.chap);
+          if (expandedChapters.has(cnum)) expandedChapters.delete(cnum);
+          else expandedChapters.add(cnum);
           renderClassicNav('desktop-nav-list', false);
           renderClassicNav('mobile-nav-list', true);
         });
@@ -1111,47 +1155,70 @@
 
     function renderClassicContent() {
       const main = document.getElementById('classic-main');
-      const introHeader = `
-        <section id="startside" class="scroll-mt-header panel-surface border rounded-2xl p-6 sm:p-9 shadow-xs">
-          <div class="grid grid-cols-1 md:grid-cols-[230px_1fr] xl:grid-cols-[260px_1fr] gap-6 lg:gap-8 items-center">
+      const heroSection = `
+        <section id="startside" class="scroll-mt-header panel-surface border rounded-2xl p-6 sm:p-10 shadow-lg">
+          <div class="grid grid-cols-1 md:grid-cols-[240px_1fr] xl:grid-cols-[270px_1fr] gap-7 lg:gap-10 items-center">
             <div class="mx-auto md:mx-0">
-              <img src="Images/cover-geografi.jpg" alt="Omslag til Geografi for videregående skole vg2 (LK20) av Nils" class="w-52 sm:w-56 md:w-full rounded-2xl shadow-xl border border-slate-500/25 object-cover" />
+              <div class="bg-white p-2 rounded-2xl shadow-2xl">
+                <img src="Images/cover-geografi.jpg" alt="Omslag til Geografi for videregående skole vg2 (LK20) av Nils" class="w-52 sm:w-60 md:w-full rounded-xl object-cover" />
+              </div>
             </div>
 
-            <div class="space-y-4">
+            <div class="space-y-5">
               <div>
-                <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-emerald-500 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-1 rounded-full mb-2">Nils sin geografibok · Vg2 · LK20</span>
-                <h1 class="font-serif text-2xl sm:text-4xl font-bold tracking-tight">Velkommen til Naturgeografi: Kapittel 3 &amp; 4</h1>
-                <p class="text-sm sm:text-base text-sec mt-2 leading-relaxed">
-                  Utforsk <strong>Kapittel 3: Ytre krefter og landformene i Norge</strong> og <strong>Kapittel 4: Vær og klima</strong> – med figurer, lokale eksempler fra Telemark, ordforklaringer og arbeidsoppgaver.
+                <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-3 py-1 rounded-full mb-3">Fellesfag Vg2 · LK20</span>
+                <h1 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight">Velkommen til Geografi</h1>
+                <p class="text-sm sm:text-base text-sec mt-2.5 leading-relaxed">
+                  Dette er din digitale læringsplattform i geografi. Her utforsker du sammenhenger mellom ytre krefter, norske landformer, vær, klima og lokale eksempler fra Telemark.
                 </p>
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div class="elevated-surface border rounded-xl p-4 space-y-1.5">
-                  <p class="text-xs font-bold uppercase tracking-wider text-emerald-500">1. Velg kapittel i menyen til venstre</p>
-                  <p class="text-xs sm:text-sm text-sec leading-relaxed">
-                    Bruk <strong>kapittelmenyen til venstre</strong> (Kapittel 3 og 4) for å hoppe rett til ønsket tema, eller scroll nedover for å lese fortløpende.
+              <div class="elevated-surface border rounded-2xl p-4 sm:p-5 space-y-3">
+                <p class="text-xs font-bold uppercase tracking-wider text-current">Slik bruker du boken:</p>
+                <div class="space-y-2.5 text-xs sm:text-sm text-sec leading-relaxed">
+                  <p>
+                    <span class="mr-1.5">📖</span>
+                    <strong class="text-current">Velg kapittel i menyen til venstre:</strong> Klikk på et kapittel for å lese i klassisk bokvisning med begrepsforklaringer, figurer, lokale eksempler og oppgaver.
                   </p>
-                </div>
-                <div class="elevated-surface border rounded-xl p-4 space-y-1.5">
-                  <p class="text-xs font-bold uppercase tracking-wider text-sky-500">2. Bytt visningsmåte med Kunnskapstreet</p>
-                  <p class="text-xs sm:text-sm text-sec leading-relaxed">
-                    Vil du utforske hvordan prosessene henger sammen visuelt? Klikk på <strong>🌳 Kunnskapstre</strong> for å åpne den interaktive kartvisningen.
+                  <p>
+                    <span class="mr-1.5">🌳</span>
+                    <strong class="text-current">Bytt visningsmåte med Kunnskapstreet:</strong> Ønsker du å se hvordan temaer og prosesser henger sammen på tvers? Klikk på <strong>Kunnskapstreet</strong> i menyen (eller knappen under) for en visuell og interaktiv oversikt.
                   </p>
                 </div>
               </div>
 
-              <div class="elevated-surface border rounded-xl px-4 py-3 text-xs text-sec leading-relaxed">
-                <strong class="text-emerald-500">Tips:</strong> Øverst kan du bytte mellom <strong>Enkel</strong> og <strong>Full</strong> tekst, og holde musepekeren over <strong class="text-emerald-500">uthevede fagbegreper</strong> for forklaring.
-              </div>
-
-              <div class="flex flex-wrap items-center gap-2.5 pt-1">
-                <a href="#n1" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-semibold shadow-sm transition-colors">Start Kapittel 3: Ytre krefter ↓</a>
-                <a href="#n15" class="px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs sm:text-sm font-semibold shadow-sm transition-colors">Start Kapittel 4: Vær og klima ↓</a>
-                <a href="kunnskapstre.html?view=tree" class="elevated-surface border hover:border-sky-400/60 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-colors">🌳 Prøv Kunnskapstreet ↗</a>
+              <div class="space-y-2.5 pt-1">
+                <div>
+                  <a href="#n1" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-semibold shadow-sm transition-colors">Start med Kapittel 3: Ytre krefter →</a>
+                </div>
+                <div class="flex flex-wrap items-center gap-2.5">
+                  <a href="kunnskapstre.html?view=tree&kap=3" class="elevated-surface border border-amber-500/30 hover:border-emerald-500/50 px-4 py-2 rounded-xl text-xs font-semibold transition-colors">🌳 Kunnskapstre (Kap. 3)</a>
+                  <a href="kunnskapstre.html?view=tree&kap=4" class="elevated-surface border border-amber-500/30 hover:border-emerald-500/50 px-4 py-2 rounded-xl text-xs font-semibold transition-colors">🌳 Kunnskapstre (Kap. 4)</a>
+                </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <!-- Kapitler i boken -->
+        <section class="space-y-3">
+          <div class="flex items-center justify-between px-1">
+            <h2 class="font-serif text-xl sm:text-2xl font-bold">Kapitler i boken</h2>
+            <span class="text-xs text-sec">${BOOK_CHAPTERS.length} kapitler tilgjengelig</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            ${BOOK_CHAPTERS.map(ch => `
+              <a href="#${ch.firstNode}" class="panel-surface border hover:border-emerald-500/50 rounded-2xl p-5 flex flex-col justify-between gap-3 transition-all hover:-translate-y-0.5 shadow-sm">
+                <div>
+                  <div class="flex items-center justify-between gap-2 mb-3">
+                    <span class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold text-xs flex items-center justify-center">${ch.num}</span>
+                    <span class="text-xs text-sec font-medium">${ch.partsLabel} · Åpne →</span>
+                  </div>
+                  <h3 class="font-serif text-lg font-bold mb-1.5">${ch.title}</h3>
+                  <p class="text-xs sm:text-sm text-sec leading-relaxed">${ch.desc}</p>
+                </div>
+              </a>
+            `).join('')}
           </div>
         </section>
       `;
@@ -1161,7 +1228,7 @@
         const bc = n.bookChapter || 3;
         const chapBanner = bc !== prevBookChap ? `
           <div id="kap${bc}" class="scroll-mt-header panel-surface border border-emerald-500/35 rounded-2xl px-6 py-5 shadow-xs">
-            <p class="text-xs font-bold uppercase tracking-wider text-emerald-500">Kapittel ${bc}</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">Kapittel ${bc}</p>
             <h2 class="font-serif text-2xl sm:text-3xl font-bold mt-1">${bc === 3 ? 'Ytre krefter og landformene i Norge' : 'Vær og klima'}</h2>
           </div>
         ` : '';
@@ -1169,7 +1236,7 @@
         return chapBanner + `
         <section id="${n.id}" class="scroll-mt-header panel-surface border rounded-2xl p-6 sm:p-9 shadow-xs space-y-5">
           <div class="border-l-4 border-emerald-500 pl-4">
-            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-500">${n.part}</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-400">${n.part}</span>
             <h2 class="font-serif text-2xl sm:text-3xl font-bold mt-1">${n.title}</h2>
             <p class="text-sm text-sec mt-1">${n.subtitle}</p>
           </div>
@@ -1188,7 +1255,7 @@
           </div>
 
           <div class="elevated-surface border rounded-xl p-4 text-xs sm:text-sm text-sec space-y-1">
-            <p class="font-bold uppercase tracking-wider text-emerald-500 text-xs">Læringsfokus &amp; refleksjon</p>
+            <p class="font-bold uppercase tracking-wider text-emerald-400 text-xs">Læringsfokus &amp; refleksjon</p>
             <p><strong>Kompetansemål:</strong> ${n.goal}</p>
             <p><strong>Tenk over:</strong> ${n.reflection}</p>
           </div>
@@ -1199,13 +1266,13 @@
       const glossarySection = `
         <section id="ordliste" class="scroll-mt-header panel-surface border rounded-2xl p-6 sm:p-9 space-y-6">
           <div class="border-l-4 border-emerald-500 pl-4">
-            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-500">Begreper</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-400">Begreper</span>
             <h2 class="font-serif text-2xl sm:text-3xl font-bold mt-1">Samlet ordliste</h2>
           </div>
           <div class="grid sm:grid-cols-2 gap-4">
             ${Object.values(GLOSSARY).map(item => `
               <div class="elevated-surface border rounded-xl p-4">
-                <p class="font-serif font-bold text-base text-emerald-500 mb-1">${item.title}</p>
+                <p class="font-serif font-bold text-base text-emerald-400 mb-1">${item.title}</p>
                 <p class="text-sm text-sec leading-relaxed">${item.definition}</p>
               </div>
             `).join('')}
@@ -1213,46 +1280,35 @@
         </section>
       `;
 
-      main.innerHTML = introHeader + topicSections + glossarySection;
+      main.innerHTML = heroSection + topicSections + glossarySection;
       bindTooltips();
-    }
-
-    const btnToggleAll = document.getElementById('btn-toggle-all-chapters');
-    if (btnToggleAll) {
-      btnToggleAll.addEventListener('click', () => {
-        if (expandedGroups.size === CHAPTER_GROUPS.length) {
-          expandedGroups.clear();
-          btnToggleAll.textContent = 'Åpne alle';
-        } else {
-          CHAPTER_GROUPS.forEach(gr => expandedGroups.add(gr.id));
-          btnToggleAll.textContent = 'Lukk alle';
-        }
-        renderClassicNav('desktop-nav-list', false);
-        renderClassicNav('mobile-nav-list', true);
-      });
     }
 
     const btnEnkel = document.getElementById('mode-enkel');
     const btnFull = document.getElementById('mode-full');
     function setReadingMode(mode) {
       readingMode = mode;
-      btnEnkel.className = mode === 'enkel' ? 'px-2.5 py-1 rounded-md transition-colors bg-emerald-600 text-white font-semibold' : 'px-2.5 py-1 rounded-md transition-colors text-sec hover:text-current';
-      btnFull.className = mode === 'full' ? 'px-2.5 py-1 rounded-md transition-colors bg-emerald-600 text-white font-semibold' : 'px-2.5 py-1 rounded-md transition-colors text-sec hover:text-current';
+      btnEnkel.className = mode === 'enkel' ? 'flex-1 py-1 rounded-lg transition-colors bg-emerald-600 text-white font-semibold' : 'flex-1 py-1 rounded-lg transition-colors text-sec hover:text-current';
+      btnFull.className = mode === 'full' ? 'flex-1 py-1 rounded-lg transition-colors bg-emerald-600 text-white font-semibold' : 'flex-1 py-1 rounded-lg transition-colors text-sec hover:text-current';
       renderClassicContent();
     }
-    btnEnkel.addEventListener('click', () => setReadingMode('enkel'));
-    btnFull.addEventListener('click', () => setReadingMode('full'));
+    btnEnkel?.addEventListener('click', () => setReadingMode('enkel'));
+    btnFull?.addEventListener('click', () => setReadingMode('full'));
 
     const drawer = document.getElementById('mobile-drawer');
-    document.getElementById('mobile-menu-btn').addEventListener('click', () => drawer.classList.remove('hidden'));
-    document.getElementById('mobile-drawer-close').addEventListener('click', () => drawer.classList.add('hidden'));
-    document.getElementById('mobile-drawer-backdrop').addEventListener('click', () => drawer.classList.add('hidden'));
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => drawer.classList.remove('hidden'));
+    document.getElementById('mobile-drawer-close')?.addEventListener('click', () => drawer.classList.add('hidden'));
+    document.getElementById('mobile-drawer-backdrop')?.addEventListener('click', () => drawer.classList.add('hidden'));
+    document.querySelectorAll('.mobile-close-link').forEach(a => a.addEventListener('click', () => drawer.classList.add('hidden')));
 
     window.addEventListener('scroll', () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
-      document.getElementById('reading-progress').style.width = `${pct}%`;
+      const pct = docHeight > 0 ? Math.min(100, Math.max(0, Math.round((scrollTop / docHeight) * 100))) : 0;
+      const progBar = document.getElementById('reading-progress');
+      const progPct = document.getElementById('progress-pct');
+      if (progBar) progBar.style.width = `${pct}%`;
+      if (progPct) progPct.textContent = `${pct} %`;
 
       const sections = document.querySelectorAll('main section[id]');
       let current = 'startside';
@@ -1262,18 +1318,18 @@
       if (current !== activeSectionId) {
         activeSectionId = current;
         const ownerGroup = CHAPTER_GROUPS.find(gr => gr.nodeIds.includes(current));
-        if (ownerGroup) expandedGroups.add(ownerGroup.id);
+        if (ownerGroup) expandedChapters.add(ownerGroup.bookChapter);
         renderClassicNav('desktop-nav-list', false);
         renderClassicNav('mobile-nav-list', true);
       }
     });
 
     const modalBackdrop = document.getElementById('modal-backdrop');
-    document.getElementById('btn-ordliste').addEventListener('click', () => {
+    document.getElementById('btn-ordliste')?.addEventListener('click', () => {
       document.getElementById('modal-title').textContent = 'Ordliste · Sentrale fagbegreper';
       document.getElementById('modal-body').innerHTML = `<div class="grid sm:grid-cols-2 gap-3">${Object.values(GLOSSARY).map(item => `
         <div class="elevated-surface border rounded-xl p-4">
-          <p class="font-serif font-bold text-base text-emerald-500 mb-1">${item.title}</p>
+          <p class="font-serif font-bold text-base text-emerald-400 mb-1">${item.title}</p>
           <p class="text-xs text-sec leading-relaxed">${item.definition}</p>
         </div>
       `).join('')}</div>`;
@@ -1281,7 +1337,7 @@
     });
     document.getElementById('modal-close').addEventListener('click', () => modalBackdrop.classList.add('hidden'));
     modalBackdrop.addEventListener('click', (e) => { if (e.target === modalBackdrop) modalBackdrop.classList.add('hidden'); });
-    document.getElementById('btn-print').addEventListener('click', () => window.print());
+    document.getElementById('btn-print')?.addEventListener('click', () => window.print());
 
     const tooltip = document.getElementById('glossary-tooltip');
     const tooltipTitle = document.getElementById('tooltip-title');
@@ -1319,17 +1375,23 @@
       if (!tooltip.contains(e.target) && !e.target.classList.contains('glossary-term')) hideTooltip();
     });
 
-    const applyClassicTheme = (isDark) => {
-      document.documentElement.classList.toggle('dark-theme', isDark);
-      document.getElementById('theme-icon').textContent = isDark ? '☀️' : '🌙';
+    const applyClassicTheme = (isLight) => {
+      document.documentElement.classList.toggle('light-theme', isLight);
+      const icon = isLight ? '🌙' : '☀️';
+      const desktopIcon = document.getElementById('theme-icon');
+      const mobileBtn = document.getElementById('mobile-theme-btn');
+      if (desktopIcon) desktopIcon.textContent = icon;
+      if (mobileBtn) mobileBtn.textContent = icon;
     };
     const savedTheme = localStorage.getItem('geografi-theme');
-    if (savedTheme === 'dark') applyClassicTheme(true);
-    document.getElementById('btn-theme').addEventListener('click', () => {
-      const isDark = !document.documentElement.classList.contains('dark-theme');
-      applyClassicTheme(isDark);
-      localStorage.setItem('geografi-theme', isDark ? 'dark' : 'light');
-    });
+    if (savedTheme === 'light') applyClassicTheme(true);
+    const toggleTheme = () => {
+      const isLight = !document.documentElement.classList.contains('light-theme');
+      applyClassicTheme(isLight);
+      localStorage.setItem('geografi-theme', isLight ? 'light' : 'dark');
+    };
+    document.getElementById('btn-theme')?.addEventListener('click', toggleTheme);
+    document.getElementById('mobile-theme-btn')?.addEventListener('click', toggleTheme);
 
     renderClassicContent();
     renderClassicNav('desktop-nav-list', false);

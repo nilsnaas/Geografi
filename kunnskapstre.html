@@ -1891,7 +1891,15 @@
     document.getElementById('btn-try-tree')?.addEventListener('click', () => setLeftView('tree'));
 
     showWelcome();
-    if (new URLSearchParams(window.location.search).get('view') === 'tree') {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('kap')) {
+      const k = Number(urlParams.get('kap'));
+      if (k === 3 || k === 4) {
+        activeBookChapter = k;
+        updateBookChapterPills();
+      }
+    }
+    if (urlParams.get('view') === 'tree') {
       setLeftView('tree');
     }
     setTimeout(fitOverview, 50);
