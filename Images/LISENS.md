@@ -9,13 +9,23 @@ Alle bilder og illustrasjoner i mappen `Images/` er **egenproduserte** for dette
   - `havstrommer-fjellkjeder.jpg`
   - `info-breerosjon.jpg`
   - `info-bretyper.jpg`
+  - `info-drivhuseffekt.jpg`
   - `info-elvelandformer.jpg`
   - `info-fjellskred.jpg`
   - `info-fjordprofil.jpg`
   - `info-forvitring.jpg`
+  - `info-karbonkretslop.jpg`
+  - `info-klimaendring-temp.jpg`
   - `info-kvikkleire.jpg`
+  - `info-langskip-brevik.jpg`
   - `info-maringrense.jpg`
+  - `info-nedborstyper.jpg`
+  - `info-telemark-geiteryggen.jpg`
   - `info-telemark-jomfruland.jpg`
+  - `info-telemark-klimaprofil.jpg`
+  - `info-telemark-nissedal.jpg`
+  - `info-tilbakekobling.jpg`
+  - `info-vindsirkulasjon.jpg`
   - `kalksteinshule.jpg`
   - `klima-bygeskyer.jpg`
   - `kvikkleire-skredgrop.jpg`
