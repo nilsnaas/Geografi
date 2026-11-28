@@ -6,6 +6,7 @@ Alle bilder og illustrasjoner i mappen `Images/` er **egenproduserte** for dette
   - `cover-geografi.jpg`
   - `flom-elveslette.jpg`
   - `frostforvitring-fjell.jpg`
+  - `havstrommer-fjellkjeder.jpg`
   - `kalksteinshule.jpg`
   - `klima-bygeskyer.jpg`
   - `kvikkleire-skredgrop.jpg`

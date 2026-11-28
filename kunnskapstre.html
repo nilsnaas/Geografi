@@ -1123,8 +1123,8 @@
         period: 'Hav & fjell', part: '6. Havstrømmer & fjellkjeder',
         title: '6. Havstrømmer & fjellkjeders rolle',
         subtitle: 'Hvordan Den nordatlantiske strømmen varmer opp Norge, og hvordan Langfjella styrer luftmassene',
-        image: 'Images/fig-forvitring.svg',
-        caption: 'Husk også hvordan fjellkjeder som Langfjella både styrer luftstrømmer og skaper orografisk nedbør. · Kilde: Nils',
+        image: 'Images/havstrommer-fjellkjeder.jpg',
+        caption: 'Den nordatlantiske strømmen frakter varmt havvann nordover, mens kaldt og salt vann synker til en dyphavsstrøm. Samtidig styrer Langfjella luftstrømmene over Norge. · Kilde: Nils',
         enkel: `
           <p>Faste vinder skyver på havvannet og skaper havstrømmer. ${g('den-nordatlantiske-strommen', 'Den nordatlantiske strømmen')} (en utløper av Golfstrømmen) frakter enorme mengder varmt vann til norskekysten og holder Barentshavet delvis isfritt.</p>
           <p>I nord blir det kalde, salte vannet tyngre, synker ned og danner en ${g('dyphavsstrom', 'dyphavsstrøm')} sørover. Samtidig gjør nord–sør-retningen på <strong>Langfjella</strong> at kald polarluft lett kan strømme sørover i landet, og mild luft nordover.</p>
@@ -1433,8 +1433,8 @@
       const imgEl = document.getElementById('node-image');
       imgEl.src = node.image;
       imgEl.alt = node.title;
-      imgEl.className = node.image.endsWith('.svg')
-        ? 'w-full h-56 sm:h-64 object-contain bg-white p-2'
+      imgEl.className = (node.image.endsWith('.svg') || node.image.includes('havstrommer-fjellkjeder'))
+        ? 'w-full max-h-80 object-contain bg-[#f5f3ee] p-1'
         : 'w-full h-56 sm:h-64 object-cover';
       document.getElementById('node-caption').textContent = node.caption;
       document.getElementById('node-goal').textContent = node.goal;
