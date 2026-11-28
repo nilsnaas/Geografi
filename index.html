@@ -273,8 +273,8 @@
         period: 'Kapittel 3', part: '1. Grunnlaget',
         title: '1. Hva er en landform? Indre vs. ytre krefter',
         subtitle: 'Samspillet mellom kreftene som bygger opp landet og kreftene som sliter det ned',
-        image: 'Images/stryneelva-landformer.jpg',
-        caption: 'Stryneelva i Vestland slynger seg over en fruktbar dalbunn formet av rennende vann. · Kilde: Nils',
+        image: 'Images/telemark-gausta-rjukan.jpg',
+        caption: 'Gaustatoppen og Vestfjorddalen i Telemark – høye fjell reist av indre krefter og skåret ut av ytre krefter. · Kilde: Nils',
         enkel: `
           <p>En ${g('landform', 'landform')} er et kjennetegn i terrenget, for eksempel en dal, en fjord eller en sandbanke. Jordoverflaten formes hele tiden av to motstridende krefter: ${g('indre-krefter', 'indre krefter')} som løfter landet opp, og ${g('ytre-krefter', 'ytre krefter')} som tærer det ned.</p>
           <p>Alt materiale som brytes ned på land, fraktes etter hvert ut i havet og synker til bunns, der det over millioner av år kan presses sammen til ${g('sedimentare-bergarter', 'sedimentære bergarter')}.</p>
@@ -362,10 +362,10 @@
           </div>
         `,
         caseHtml: `
-          <figure class="overflow-hidden rounded-xl border border-slate-500/20">
-            <img src="Images/info-forvitring.jpg" alt="Kjemisk forvitring i kalkstein" class="w-full bg-white p-2" />
-            <figcaption class="px-3 py-1.5 text-xs text-sec">Skisse av karstlandskap: synkehull, underjordisk elv og dryppstein i kalkstein. · Kilde: Nils</figcaption>
-          </figure>
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-sky-400">Karstlandskap i kalkstein</p>
+            <p>Når svakt surt regnvann trenger ned i sprekker i kalkstein, utvides sprekkene over tid til <strong>synkehull</strong>, underjordiske bekker og dryppsteinsgrotter med <strong>stalaktitter</strong> (fra taket) og <strong>stalagmitter</strong> (fra gulvet).</p>
+          </div>
         `,
         quiz: {
           q: 'Hvorfor dannes det lettere grotter og underjordiske elver i kalkstein enn i granitt?',
@@ -538,8 +538,8 @@
         period: 'Istid & klima', part: '8. Isbreer & istider',
         title: '8. Istider, bredannelse & bretyper',
         subtitle: 'Klimasvingninger i kvartær, plastisk is, massebalanse og de fire hovedtypene isbreer',
-        image: 'Images/nigardsbreen-isbre.jpg',
-        caption: 'Nigardsbreen er en dalbre som siger ned fra platåbreen Jostedalsbreen. · Kilde: Nils',
+        image: 'Images/info-bretyper.jpg',
+        caption: 'Oversikt over de fire hovedtypene isbreer: innlandsis, platåbre, dalbre og botnbre. · Kilde: Nils',
         enkel: `
           <p>I kvartærtiden (siste 2,6 mill. år) har klimaet vekslet rundt <strong>50 ganger</strong> mellom istider og varmere perioder. Siste istid var på sitt kaldeste for ca. 22 000 år siden; for 11 600 år siden kom Golfstrømmen tilbake, og for ca. 8000 år siden var landet trolig isfritt.</p>
           <p>En ${g('isbre', 'isbre')} oppstår når snø blir til <strong>plastisk</strong> is som siger nedover. Vi skiller mellom fire hovedtyper: <strong>botnbre</strong>, <strong>dalbre</strong>, <strong>platåbre</strong> og <strong>innlandsis</strong>.</p>
@@ -551,10 +551,6 @@
           <p>• <strong>Botnbre:</strong> En liten isbre som ligger i en skålformet grop (en <em>botn</em>) oppe i en fjellside med bratte vegger bak og på sidene. Breen graver selv ut botnen og er den vanligste småbreen i norske fjell.<br>• <strong>Dalbre:</strong> En lang, tungeformet isbre som siger nedover en dal fra et høyfjellsområde eller en platåbre – for eksempel <strong>Nigardsbreen</strong>, <strong>Briksdalsbreen</strong> og <strong>Engabreen</strong>.<br>• <strong>Platåbre:</strong> En stor, sammenhengende iskappe som dekker et helt fjellplatå og sender ut dalbreer i dalene rundt. <strong>Jostedalsbreen</strong> er Fastlands-Europas største, og andre kjente i Norge er Hardangerjøkulen, Folgefonna og Svartisen.<br>• <strong>Innlandsis:</strong> Den aller største bretypen – flere kilometer tykke iskapper som dekker hele landområder eller kontinenter, slik vi ser på <strong>Grønland</strong> og i <strong>Antarktis</strong> i dag, og som dekket Nord-Europa under istidene.</p>
         `,
         caseHtml: `
-          <figure class="overflow-hidden rounded-xl border border-slate-500/20 mb-3">
-            <img src="Images/info-bretyper.jpg" alt="De fire hovedtypene isbreer" class="w-full bg-white p-2" />
-            <figcaption class="px-3 py-1.5 text-xs text-sec">Oversikt over de fire bretypene: botnbre, dalbre, platåbre og innlandsis. · Kilde: Nils</figcaption>
-          </figure>
           <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
             <p class="text-xs font-bold uppercase tracking-wider text-sky-400">Hovedpunkter i istidshistorien</p>
             <p><strong>ca. 22 000 år siden:</strong> Kaldest under siste istid (isen nådde Tyskland/Polen).</p>
@@ -590,10 +586,6 @@
           <div class="elevated-surface border border-emerald-500/35 rounded-xl p-4 space-y-2.5 text-sm">
             <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">📍 Lokalt eksempel fra Telemark · Vestfjorddalen, Rjukan &amp; Gaustatoppen</p>
             <p><strong>Vestfjorddalen</strong> ned mot Tinnsjå ved Rjukan er en klassisk, trang <strong>U-dal</strong> med 700–800 meter bratte fjellsider gravd ut av isbreer under istidene. Rett over dalen rager <strong>Gaustatoppen (1883 moh.)</strong> fordi den harde kvartsitten sto imot erosjon, mens isbreer og frostforvitring skar ut botner og rygger rundt toppen.</p>
-            <figure class="overflow-hidden rounded-lg border border-slate-500/20">
-              <img src="Images/telemark-gausta-rjukan.jpg" alt="Gaustatoppen og U-dalen Vestfjorddalen ved Rjukan i Telemark" class="w-full h-44 object-cover" />
-              <figcaption class="px-3 py-1.5 text-xs text-sec">Gaustatoppen over U-dalen Vestfjorddalen ved Rjukan i Tinn, Telemark · Kilde: Nils</figcaption>
-            </figure>
           </div>
         `,
         caseHtml: `
