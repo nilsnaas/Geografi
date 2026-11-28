@@ -151,6 +151,7 @@
         <a href="index.html" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-1 rounded-lg font-medium transition-colors">🏠 Startside</a>
         <button type="button" data-bookchap="3" class="bookchap-pill px-2.5 py-1 rounded-lg border border-emerald-500 bg-emerald-600 text-white font-semibold transition-colors">🌳 Tre 1 (Kap. 3)</button>
         <button type="button" data-bookchap="4" class="bookchap-pill px-2.5 py-1 rounded-lg elevated-surface border text-sec hover:text-current font-medium transition-colors">🌳 Tre 2 (Kap. 4)</button>
+        <button type="button" data-bookchap="5" class="bookchap-pill px-2.5 py-1 rounded-lg elevated-surface border text-sec hover:text-current font-medium transition-colors">🌳 Tre 3 (Kap. 5)</button>
         <a id="classic-chap-link" href="index.html#kap3" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-1 rounded-lg font-medium transition-colors">3. Ytre krefter ↗</a>
       </div>
     </div>
@@ -374,7 +375,21 @@
       'dyphavsstrom': { title: 'Dyphavsstrøm', definition: 'Kald og salt havstrøm som synker ned mot havbunnen i polare strøk på grunn av høy tetthet og strømmer tilbake mot ekvator.' },
       'klimasone': { title: 'Klimasone', definition: 'Et belte på jorda med omtrent samme temperatur- og nedbørsmønster, for eksempel tropisk, tørt, temperert eller polart klima.' },
       'kystklima': { title: 'Kystklima', definition: 'Klima preget av nærheten til havet, med milde vintre, relativt kjølige somre, liten temperaturforskjell gjennom året og ofte mye nedbør.' },
-      'innlandsklima': { title: 'Innlandsklima', definition: 'Klima langt fra havet der landjorda raskt varmes opp og kjøles ned, noe som gir kalde vintre, varme somre og mindre nedbør.' }
+      'innlandsklima': { title: 'Innlandsklima', definition: 'Klima langt fra havet der landjorda raskt varmes opp og kjøles ned, noe som gir kalde vintre, varme somre og mindre nedbør.' },
+      'global-oppvarming': { title: 'Global oppvarming', definition: 'Den langsiktige økningen i jordas gjennomsnittstemperatur sammenlignet med førindustriell tid (1850–1930), drevet hovedsakelig av menneskeskapte klimagassutslipp.' },
+      'ekstremvaer': { title: 'Ekstremvær', definition: 'Værhendelser som sjelden oppstår og som kan medføre fare for liv og store materielle skader, som styrtregn, flom, hetebølger, tørke og storm.' },
+      'milankovic-sykluser': { title: 'Milanković-sykluser', definition: 'Regelmessige astronomiske endringer i jordas bane rundt sola, jordaksens helning og aksens vingling, som styrer istider og mellomistider over tusener av år.' },
+      'el-nino': { title: 'El Niño & La Niña', definition: 'Naturlige hav- og værfenomener i Stillehavet: El Niño gir ekstra varmt overflatevann og høyere global temperatur, mens La Niña gir kaldere vann og demper temperaturen.' },
+      'karbonets-kretslop': { title: 'Karbonets kretsløp', definition: 'Den naturlige bevegelsen av karbon mellom atmosfæren, planter og jordsmonn, verdenshavene og lagrene i jordskorpa (kull, olje, gass og kalkstein).' },
+      'iskjerneprover': { title: 'Iskjerneprøver', definition: 'Sylindere av gammel is boret ut fra isbreer (som 2,8 km ned i Antarktis, 1,2 millioner år tilbake) der innestengte luftbobler avslører fortidens CO₂-nivå og temperatur.' },
+      'klimamodeller': { title: 'Klimamodeller', definition: 'Avanserte dataprogrammer som bruker matematiske ligninger for klimasystemet til å beregne hvordan klimaet vil utvikle seg over tid ved ulike utslippsnivåer.' },
+      'tilbakekobling': { title: 'Tilbakekobling', definition: 'Mekanismer der en klimaendring forsterker seg selv (positiv tilbakekobling, som issmelting/albedo og tinende permafrost) eller demper seg selv (negativ tilbakekobling).' },
+      'vippepunkt': { title: 'Vippepunkt', definition: 'En kritisk terskel der endringer i et økosystem eller klimasystem blir selvforsterkende og varige (irreversible), selv om utslippene senere kuttes.' },
+      'permafrost': { title: 'Permafrost', definition: 'Bakke som er frossen hele året (f.eks. i Sibir, Alaska, Canada og på Svalbard), og som lagrer enorme mengder organisk karbon og metan.' },
+      'havforsuring': { title: 'Havforsuring', definition: 'At havvannet blir surere når det tar opp store mengder CO₂ fra atmosfæren, noe som gjør det vanskelig for organismer med kalkskall og korallrev å overleve.' },
+      'klimatilpasning': { title: 'Klimatilpasning', definition: 'Tiltak og løsninger i samfunnet for å begrense skader fra klimaendringene, som flomsonekart, flomvern, overvannshåndtering og naturbaserte grøntområder.' },
+      'parisavtalen': { title: 'Parisavtalen', definition: 'Den globale klimaavtalen fra 2015 (194 land) som har som mål å begrense oppvarmingen til godt under 2 °C, helst 1,5 °C, og gjøre verden klimanøytral.' },
+      'karbonfangst': { title: 'Karbonfangst (CCS / Langskip)', definition: 'Teknologi for å fange CO₂ fra industri før gassen slipper ut i lufta, frakte den og lagre den permanent dypt under havbunnen – som ved Heidelberg Materials i Brevik.' }
     };
 
     const g = (term, label) => `<button type="button" class="glossary-term" data-term="${term}">${label}</button>`;
@@ -1181,6 +1196,256 @@
         },
         reflection: 'Hvis du både ønsker deg mild vinter og varm sommer i Norge, hvorfor er det vanskelig å få begge deler på samme sted?',
         goal: 'Kunne plassere Norge i verdens klimasoner og forklare forskjellen på kystklima og innlandsklima, inkludert lokale variasjoner i Telemark.'
+      },
+      {
+        id: 'n22', bookChapter: 5, chapter: 'klima-oppvarming', type: 'hovedstamme', icon: '🌡️',
+        x: 540, y: 745, parents: [],
+        period: 'Kapittel 5', part: '1. Global oppvarming',
+        title: '1. Global oppvarming & ekstremvær',
+        subtitle: '2024 passerte 1,5 °C over førindustrielt nivå – og oppvarmingen skjer raskest i nord',
+        image: 'Images/fig-klimaendring-temp.svg',
+        caption: 'Sammenligning av målt oppvarming globalt (+1,5 °C), i Norge (+2,7 °C) og på Svalbard, samt naturlige vs. menneskeskapte årsaker. · Kilde: Nils',
+        enkel: `
+          <p>${g('global-oppvarming', 'Global oppvarming')} betyr at jordas gjennomsnittstemperatur stiger over tid. I 2024 var verdenssnittet for første gang <strong>1,5 °C varmere</strong> enn i perioden 1850–1930, og tiåret 2015–2024 er det varmeste som er målt.</p>
+          <p>Oppvarmingen er ujevnt fordelt: I Norge har temperaturen økt med <strong>2,7 °C</strong> siden 1900, og på Svalbard har vintertemperaturen steget med nesten <strong>8 °C</strong> siden 1971. Varmere klima gir også oftere ${g('ekstremvaer', 'ekstremvær')}.</p>
+        `,
+        full: `
+          <p>Når vi snakker om ${g('global-oppvarming', 'global oppvarming')}, handler det ikke om enkeltstående varme sommerdager, men om en tydelig langsiktig trend: hvert tiår siden 1950 har vært varmere enn tiåret før, og 2024 ble det første kalenderåret som nådde <strong>1,5 °C</strong> over førindustrielt gjennomsnitt (1850–1930). Samtidig skjer oppvarmingen raskere over land enn over hav, og langt kraftigere i nord: Europa varmes opp dobbelt så raskt som verdenssnittet, Norge har blitt rundt <strong>2,7 °C</strong> varmere siden 1900, og på Svalbard har vintertemperaturen steget med nesten <strong>8 °C</strong> siden 1971.</p>
+          <p><strong>${g('ekstremvaer', 'Ekstremvær')} verden over og hjemme:</strong> Selv 1,5 °C oppvarming setter i gang store endringer i atmosfæren. I 2024 førte dette til temperaturer på 50 °C og vannmangel i New Delhi, dødelige hetebølger i Mexico og Saudi-Arabia, ødeleggende skogbranner i Los Angeles, Bolivia og Venezuela, og katastrofal ekstremflom i Valencia i Spania. Når været truer liv og verdier, kaller vi det ekstremvær.</p>
+          <div class="elevated-surface border border-emerald-500/35 rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">📍 Lokalt eksempel · Hjalmar Johansen vgs og Skien</p>
+            <p>For elever ved <strong>Hjalmar Johansen vgs</strong> i Skien merkes klimaendringene særlig gjennom kortere og mer ustabile vintre i Grenland, der nedbøren oftere faller som regn eller sludd i stedet for snø på Klosterskogen og i Skien fritidspark – samtidig som høsten oftere byr på kraftige regnskyll.</p>
+          </div>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-amber-400">FNs bærekraftsmål 13: Stoppe klimaendringene</p>
+            <p>Enkeltår eller én hetebølge beviser ikke klimaendringer alene, men når perioden <strong>2015–2024</strong> samlet er det varmeste tiåret som noensinne er registrert, viser det en klar global oppvarming som krever umiddelbar handling.</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hvor mye har temperaturen i Norge omtrent steget siden år 1900 sammenlignet med den globale økningen på 1,5 °C?',
+          options: ['Mindre enn globalt snitt (+0,5 °C)', 'Omtrent likt (+1,5 °C)', 'Mer enn globalt snitt (+2,7 °C)', 'Temperaturen i Norge har sunket'],
+          correct: 2,
+          feedback: 'Riktig! Oppvarmingen går raskere på nordlige breddegrader: i Norge har temperaturen økt med rundt 2,7 °C siden år 1900.'
+        },
+        reflection: 'Hvorfor er det ikke nok å se på været én enkelt sommerdag når vi skal vurdere om klimaet endrer seg?',
+        goal: 'Kunne forklare hva global oppvarming og ekstremvær er, og hvorfor oppvarmingen slår sterkere ut i Norge og Arktis enn i verdenssnittet.'
+      },
+      {
+        id: 'n23', bookChapter: 5, chapter: 'klima-oppvarming', type: 'fordypning', icon: '🌋',
+        x: 310, y: 560, parents: ['n22'],
+        period: 'Naturlige årsaker', part: '2. Naturlig variasjon',
+        title: '2. Naturlige klimaendringer før og nå',
+        subtitle: 'Milanković-sykluser, platedrift, asteroider, vulkanutbrudd og El Niño – og hvorfor de ikke forklarer dagens fart',
+        image: 'Images/info-telemark-jomfruland.jpg',
+        caption: 'Naturlige istider skapt av Milanković-sykluser la igjen Raet og Jomfruland i Telemark, men dagens oppvarming skjer opptil 20 ganger raskere. · Kilde: Nils',
+        enkel: `
+          <p>Klimaet har alltid variert naturlig på grunn av ${g('milankovic-sykluser', 'Milanković-sykluser')} (endringer i jordbane og aksehelning som skaper istider), platedrift, asteroider, store vulkanutbrudd og ${g('el-nino', 'El Niño / La Niña')}.</p>
+          <p>Men disse prosessene er enten altfor langsomme eller bare kortvarige svingninger. Dagens temperaturøkning skjer opptil <strong>20 ganger raskere</strong> enn oppvarmingen i slutten av siste istid.</p>
+        `,
+        full: `
+          <p>Jordas klima har endret seg mange ganger lenge før mennesket bygde fabrikker. Men når forskere undersøker de naturlige driverne, ser de at ingen av dem kan forklare den bratte temperaturstigningen etter 1750:</p>
+          <p>• <strong>${g('milankovic-sykluser', 'Milanković-sykluser')}:</strong> Regelmessige variasjoner i jordbanens form (ellipse vs. sirkel), jordaksens helning og aksens vingling endrer hvor mye sollys som treffer nordlige breddegrader om sommeren. Dette styrer istider og mellomistider over titusener av år, men går altfor sakte til å forklare endringer på få tiår.<br>• <strong>Platedrift &amp; asteroider:</strong> Kontinentene flytter seg sakte gjennom klimasonene (om 35 millioner år ligger Oslo på Trondheims breddegrad), mens store asteroidenedslag (som Yucatán for 65 mill. år siden) ga støvskyer og brå nedkjøling.<br>• <strong>Vulkanutbrudd:</strong> Store utbrudd sender svovel og aske opp i atmosfæren og kjøler jorda i 1–3 år – for eksempel Tambora i 1815 («året uten sommer» i 1816) og Pinatubo i 1991 (−0,4 °C).<br>• <strong>${g('el-nino', 'El Niño og La Niña')}:</strong> I Stillehavet kan varmt overflatevann presse bort det kalde oppvellingsvannet utenfor Peru (El Niño, som i 1998, 2015–16 og 2023–24), noe som midlertidig løfter globaltemperatur og rammer fiskeriene, før La Niña kjøler noe ned igjen.</p>
+          <div class="elevated-surface border border-emerald-500/35 rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">📍 Lokalt eksempel · Istidssporene i Grenland</p>
+            <p>Da du lærte om <strong>Geiteryggen i Skien</strong> og <strong>Jomfruland i Kragerø</strong> i kapittel 3, så du resultatet av naturlige Milanković-sykluser som avsluttet siste istid for rundt 11 500 år siden. Forskjellen i dag er tempoet: oppvarmingen nå går opptil <strong>20 ganger raskere</strong> enn da innlandsisen smeltet i Telemark.</p>
+          </div>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-sky-400">Kort sjekk: Naturlig vs. menneskeskapt</p>
+            <p>• <strong>Vulkanutbrudd:</strong> Kjøler jorda i 1–2 år.<br>• <strong>El Niño / La Niña:</strong> Gir varme eller kjølige enkeltår.<br>• <strong>Milanković &amp; platedrift:</strong> Tar titusener til millioner av år.<br>• <strong>Resultat:</strong> Bare utslipp av klimagasser forklarer den raske oppvarmingen siden den industrielle revolusjonen.</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hvordan påvirker et svært stort vulkanutbrudd (som Pinatubo i 1991) den globale temperaturen de første 1–2 årene?',
+          options: ['Temperaturen stiger kraftig med 3 °C', 'Aske og svovel reflekterer sollys, slik at jorda blir midlertidig kaldere', 'Det utløser umiddelbart en ny istid i 10 000 år', 'Det påvirker bare havstrømmene ved ekvator'],
+          correct: 1,
+          feedback: 'Riktig! Partikler og svovel høyt i atmosfæren reflekterer solstråling tilbake og gir en kortvarig avkjøling.'
+        },
+        reflection: 'Hva ville du svart dersom noen hevder at «klimaet alltid har endret seg naturlig, så dagens oppvarming er også naturlig»?',
+        goal: 'Kunne gjøre rede for naturlige årsaker til klimaendringer (Milanković, platedrift, vulkaner, El Niño) og forklare hvorfor de ikke forklarer dagens raske oppvarming.'
+      },
+      {
+        id: 'n24', bookChapter: 5, chapter: 'klima-utslipp', type: 'hovedstamme', icon: '🏭',
+        x: 770, y: 560, parents: ['n22'],
+        period: 'Utslipp & måling', part: '3. Karbon & utslipp',
+        title: '3. Karbonets kretsløp, utslipp & måling',
+        subtitle: 'Hvordan fossile brensler og arealbruk endrer karbonkretsløpet, norske utslippskilder og iskjernearkiv',
+        image: 'Images/fig-karbonkretslop.svg',
+        caption: 'Karbonets kretsløp og hvordan forbrenning av fossile brensler (70 %) og avskoging/arealbruk (30 %) øker CO₂ i atmosfæren. · Kilde: Nils',
+        enkel: `
+          <p>I ${g('karbonets-kretslop', 'karbonets kretsløp')} utveksles karbon mellom atmosfæren, skog og jordsmonn, havet og jordskorpa. Omtrent <strong>70 %</strong> av menneskeskapte CO₂-utslipp kommer fra fossile brensler (kull, olje, gass), og <strong>30 %</strong> fra avskoging og endret arealbruk.</p>
+          <p>CO₂-nivået har økt med <strong>52 %</strong> siden 1750. Vi vet dette gjennom direkte målinger siden 1850/1950-tallet (bl.a. Mauna Loa og Svalbard), 4000 havbøyer, ${g('iskjerneprover', 'iskjerneprøver')} (1,2 mill. år tilbake) og ${g('klimamodeller', 'klimamodeller')}.</p>
+        `,
+        full: `
+          <p><strong>${g('karbonets-kretslop', 'Karbonets kretsløp')}:</strong> Karbon lagres naturlig i levende planter, i jordsmonnet (særlig i taigaen og frossen ${g('permafrost', 'permafrost')}), i havvannet og dypt nede i jordskorpa som kull, olje, gass og kalkstein. Når vi brenner fossile brensler, flytter vi gammelt karbon opp i atmosfæren (ca. 70 % av CO₂-utslippene). Resten (ca. 30 %) skyldes avskoging, jordbruk og nedbygging av natur – også i Norge bygges det ned skog tilsvarende rundt 7000 fotballbaner årlig. Til sammen har CO₂-innholdet økt med <strong>52 % siden 1750</strong> og er nå høyere enn på minst to millioner år, selv om havet og plantene har tatt opp rundt halvparten av utslippene våre.</p>
+          <p><strong>Globale og norske utslipp:</strong> Globalt slipper <strong>Kina</strong> ut mest totalt (bl.a. fra vareproduksjon for vestlige land), mens <strong>USA</strong> ligger høyest per innbygger. I <strong>Norge</strong> er de største utslippskildene olje- og gassutvinning, transport (der tungtransport/varebiler har økt mens elbiler kutter utslipp fra personbiler), industri og jordbruk (metan fra husdyr og gjødsel). I tillegg skaper varene vi importerer utslipp i utlandet.</p>
+          <p><strong>Hvordan vi måler og beregner:</strong> Vi måler dagens klima med værstasjoner (siden 1850), satellitter, nesten 4000 havbøyer og målestasjoner som Mauna Loa på Hawaii, Agder og Zeppelin på Svalbard. Fortidens klima leses av i ${g('iskjerneprover', 'iskjerneprøver')} – i Antarktis har forskere boret 2,8 km ned i isen til luftbobler som er <strong>1,2 millioner år gamle</strong> – og framtiden beregnes med avanserte ${g('klimamodeller', 'klimamodeller')}.</p>
+          <div class="elevated-surface border border-emerald-500/35 rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">📍 Lokalt eksempel · Herøya, tungtransport og Farte i Grenland</p>
+            <p>Ser du utover <strong>Porsgrunn og Skien</strong>, ser du norske utslippsutfordringer i praksis: prosessindustrien på <strong>Herøya</strong> og godstransporten langs <strong>E18 og riksvei 36</strong> står for store lokale utslipp. Samtidig viser satsingen på elektriske bybusser (<strong>Farte</strong>) til Hjalmar Johansen vgs og utbygging av gang- og sykkelveier i Bypakke Grenland hvordan transportutslipp kan kuttes lokalt.</p>
+          </div>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-sky-400">Klimaarkivet i isen</p>
+            <p>Hvert årlig snølag som presses til is fanger små luftbobler fra den tiden snøen falt. Dermed kan forskere måle nøyaktig hvor mye CO₂ og metan som fantes i lufta for over én million år siden.</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Omtrent hvor stor andel av de menneskeskapte CO₂-utslippene kommer fra henholdsvis fossile brensler og avskoging/arealendringer?',
+          options: ['50 % fossile brensler og 50 % havet', '70 % fossile brensler og 30 % avskoging/arealendringer', '10 % fossile brensler og 90 % vulkaner', '95 % fra personbiler alene'],
+          correct: 1,
+          feedback: 'Riktig! Rundt 70 % kommer fra kull, olje og gass, og rundt 30 % fra avskoging, jordbruk og arealendringer.'
+        },
+        reflection: 'Hvorfor gir det et skjevt bilde å bare se på utslippene innenfor Norges grenser uten å regne med verken oljeeksporten vår eller varene vi importerer fra Kina?',
+        goal: 'Kunne forklare karbonets kretsløp, hovedkildene til globale og norske klimagassutslipp, og hvordan klimaendringer måles og modelleres.'
+      },
+      {
+        id: 'n25', bookChapter: 5, chapter: 'klima-konsekvenser', type: 'hovedstamme', icon: '🧊',
+        x: 310, y: 380, parents: ['n23', 'n24'],
+        period: 'Natur & hav', part: '4. Tilbakekobling & hav',
+        title: '4. Tilbakekoblinger, is, permafrost & hav',
+        subtitle: 'Albedo-effekten, tinende permafrost, havforsuring, svekket Golfstrøm og stigende havnivå',
+        image: 'Images/fig-tilbakekobling.svg',
+        caption: 'Når havis og snø smelter, absorberer mørkt hav opptil 90 % av solenergien – en selvforsterkende tilbakekobling. · Kilde: Nils',
+        enkel: `
+          <p>En ${g('tilbakekobling', 'tilbakekobling')} oppstår når oppvarming setter i gang prosesser som forsterker seg selv: når havis smelter, absorberer mørkt hav opptil <strong>90 %</strong> av solenergien (mot snøens 10–20 %), og når ${g('permafrost', 'permafrost')} tiner, slippes metan og CO₂ ut.</p>
+          <p>Havet har tatt opp over <strong>90 % av overskuddsvarmen</strong> siden 1970, men varmere hav gir marine hetebølger, ${g('havforsuring', 'havforsuring')}, mulig svekkelse av Den nordatlantiske strømmen og <strong>havnivåstigning</strong> (10–50 cm i Norge mot 2100).</p>
+        `,
+        full: `
+          <p><strong>${g('tilbakekobling', 'Tilbakekoblinger')} og ${g('vippepunkt', 'vippepunkter')}:</strong> I klimasystemet kan én endring utløse nye endringer. Når temperaturen stiger, fordamper mer vanndamp (en klimagass) som gir ytterligere oppvarming. Når havis i Arktis smelter, byttes lyse flater (som bare tar opp 10–20 % av sollyset) ut med mørkt hav (som tar opp opptil 90 %). Og når ${g('permafrost', 'permafrosten')} i Sibir, Alaska, Canada og på Svalbard tiner, frigjøres store mengder metan og CO₂. Passer oppvarmingen mellom 1,5 og 2 °C, frykter forskere at vi krysser kritiske ${g('vippepunkt', 'vippepunkter')} der skadene blir varige – for eksempel at nesten alle varmtvannskorallrev går tapt, eller at smeltingen på Grønland og i Antarktis ikke kan stanses.</p>
+          <p><strong>Isbreer i endring:</strong> Også norske breer krymper raskt (Nigardsbreen har trukket seg tilbake 500 m på litt over ti år), noe som påvirker både reiseliv og vannkraftverk som bruker smeltevann. Globalt truer bresmelting i Himalaya og Andesfjellene vannforsyningen til millioner.</p>
+          <p><strong>Havet blir varmere, surere og høyere:</strong> Verdenshavene har tatt opp over 90 % av overskuddsvarmen siden 1970 og rundt halvparten av CO₂-utslippene våre. Men varmere hav tar opp mindre CO₂, gir marine hetebølger (4–5 °C over normalen i Barentshavet i august 2024) og skaper ${g('havforsuring', 'havforsuring')} som løser opp kalkskall hos plankton, krepsdyr og koraller. Samtidig kan smeltevann fra Grønland gjøre havvannet mindre salt og svekke dypvannsdannelsen som driver Den nordatlantiske strømmen. Når is på land smelter og varmere havvann utvider seg, stiger havnivået – opptil 80 cm globalt, og <strong>10–50 cm langs norskekysten</strong> (dempet noe av landhevingen etter istiden).</p>
+          <div class="elevated-surface border border-emerald-500/35 rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">📍 Lokalt eksempel · Havnivå i Porsgrunn, Skien og Kragerø</p>
+            <p>Langs <strong>Frierfjorden</strong>, i <strong>Porsgrunn sentrum</strong> og på bryggene i <strong>Kragerø og Langesund</strong> dempes havnivåstigningen noe av landhevingen i Telemark. Likevel gjør kombinasjonen av høyere havnivå og kraftigere høststormer (stormflo) at kommunene må sikre havneområder, veier og lavtliggende industri på Herøya.</p>
+          </div>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-rose-400">Hvorfor stiger havet?</p>
+            <p>1. <strong>Smelting av is på land</strong> (isbreer, Grønlandsisen og Antarktis – i teorien opptil ~65 m hvis alt smeltet).<br>2. <strong>Termisk utvidelse:</strong> Varmere havvann tar rett og slett større plass enn kaldt vann.</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hvorfor øker oppvarmingen i Arktis ekstra raskt når havisen smelter om våren og sommeren?',
+          options: ['Fordi isen inneholder varmt vann', 'Fordi mørkt havvann som kommer til syne absorberer opptil 90 % av solenergien i stedet for å reflektere den', 'Fordi sola kommer nærmere Nordpolen', 'Fordi vinden slutter å blåse i Arktis'],
+          correct: 1,
+          feedback: 'Riktig! Overgangen fra lys, reflekterende is (10–20 % absorpsjon) til mørkt hav (opptil 90 % absorpsjon) skaper en kraftig positiv tilbakekobling.'
+        },
+        reflection: 'Hva skjer med fiskeriene og økosystemene i Norskehavet og Barentshavet når fiskearter som torsk flytter lenger nordover i et varmere hav?',
+        goal: 'Kunne forklare positive tilbakekoblinger (albedo og permafrost), vippepunkter, havforsuring og årsakene til havnivåstigning.'
+      },
+      {
+        id: 'n26', bookChapter: 5, chapter: 'klima-konsekvenser', type: 'motperspektiv', icon: '⛈️',
+        x: 770, y: 380, parents: ['n24'],
+        period: 'Samfunn & ulikhet', part: '5. Ekstremvær & mat',
+        title: '5. Ekstremvær, naturmangfold, mat & ulikhet',
+        subtitle: 'Flom og tørke, arter som må flytte oppover i høyden, matsikkerhet og hvorfor fattige land rammes hardest',
+        image: 'Images/flom-elveslette.jpg',
+        caption: 'Varmere luft holder på mer vanndamp og øker faren for styrtregn og flom på elvesletter – også i Norge. · Kilde: Nils',
+        enkel: `
+          <p>Varmere luft kan holde på mer vanndamp, noe som gir både flere dager med <strong>styrtregn og flom</strong> (som ekstremværet Hans i 2023) og mer alvorlig <strong>tørke</strong> i allerede tørre strøk.</p>
+          <p>I naturen kryper tregrensen oppover og arter presses mot polene. Globalt kan oppvarming over <strong>2 °C</strong> svekke matproduksjonen kraftig, øke dødsfall fra hetebølger og skape millioner av <strong>klimaflyktninger</strong> – der de fattigste landene rammes hardest.</p>
+        `,
+        full: `
+          <p><strong>Mer ekstremvær i Norge og globalt:</strong> Når atmosfæren blir varmere, fordamper mer vann og lufta holder på mer fuktighet. Dermed får våte områder mer styrtregn og flom (som katastrofeflommene i Spania, Sentral-Europa og Pakistan i 2024, og <strong>Vesleofsen 1995</strong> og <strong>Hans 2023</strong> i Norge), mens tørre områder som Middelhavet og store deler av Afrika rammes av lengre tørkeperioder. Samtidig øker skadene fordi byer med mye asfalt ikke klarer å suge opp vannet.</p>
+          <p><strong>Naturmangfold, mat og helse:</strong> Klimaendringene er en hovedtrussel mot naturmangfoldet. Arter som lever i kulde (som isbjørn på havis og fjellarter i Norge) har få steder å flytte når tregrensen kryper oppover og klimasonene forskyves nordover. I Norge kan lengre vekstsesong gi bedre vilkår for hvete, men tørke, styrtregn og nye skadedyr skaper problemer. Globalt vil over <strong>2 °C oppvarming</strong> gi kraftig fall i kornavlinger (hvete, ris og mais) og matmangel, samtidig som hetebølger allerede tok nær 50 000 liv i Europa i 2023.</p>
+          <p><strong>Klimaurettferdighet:</strong> De fattigste landene har sluppet ut minst, men rammes hardest fordi de mangler penger til flomvern, solide boliger og forsikring. I lavtliggende, tettbygde land som <strong>Bangladesh</strong> og i storbyer som <strong>New Delhi</strong> truer flom, havstigning og 50-graders hete med å gjøre områder ubeboelige og skape mange klimaflyktninger.</p>
+          <div class="elevated-surface border border-emerald-500/35 rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">📍 Lokalt eksempel · Landbruk og natur i Telemark</p>
+            <p>I <strong>Midt-Telemark og Sauherad</strong> kan en lengre vekstsesong gi muligheter for nye frukt- og kornsorter, men tørkesommeren 2018 og våte høster viser sårbarheten i lokalt landbruk. Oppe på <strong>Lifjell og Hardangervidda</strong> kryper bjørke- og barskoggrensen sakte oppover, noe som krymper leveområdene til fjellrev og villrein.</p>
+          </div>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-rose-400">Klima og naturmangfold spiller på lag</p>
+            <p>Intakte skoger, myrer og våtmarker tar opp karbon og demper flom – så å ta vare på naturen hjelper oss både med å bremse klimaendringene og beskytte samfunnet mot ekstremvær.</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hvorfor rammer klimaendringene fattige land hardest, selv om rike land historisk har hatt størst utslipp?',
+          options: ['Fordi det aldri regner i rike land', 'Fordi mange fattige land ligger i utsatte soner (tørke/flom/kyst) og har dårligere økonomi til vern, boliger og tilpasning', 'Fordi klimagassene bare samler seg over ekvator', 'Fordi rike land ikke påvirkes av ekstremvær'],
+          correct: 1,
+          feedback: 'Riktig! Kombinasjonen av geografisk sårbarhet, stor befolkningstetthet i lavtliggende områder og manglende ressurser til klimatilpasning gjør fattige land langt mer sårbare.'
+        },
+        reflection: 'Diskuter påstanden: «Fattige land er mest utsatt for klimaendringer – derfor har rike land som Norge et særlig ansvar for å hjelpe med både utslippskutt og tilpasning.»',
+        goal: 'Kunne forklare hvordan klimaendringer påvirker ekstremvær, naturmangfold, matproduksjon, helse og global ulikhet.'
+      },
+      {
+        id: 'n27', bookChapter: 5, chapter: 'klima-losninger', type: 'hovedstamme', icon: '🏙️',
+        x: 310, y: 180, parents: ['n25', 'n26'],
+        period: 'Tilpasning lokalt', part: '6. Klimatilpasning',
+        title: '6. Klimatilpasning i kommuner & på skolen',
+        subtitle: 'NVEs flomsonekart, overvann i asfaltbyer og naturbaserte løsninger i Skien, Porsgrunn og rundt Hjalmar Johansen vgs',
+        image: 'Images/telemark-boelva-delta.jpg',
+        caption: 'Elver og tettsteder i Telemark krever god arealplanlegging, grønne friområder og flomsonekart for å håndtere framtidens styrtregn. · Kilde: Nils',
+        enkel: `
+          <p>Fordi klimagasser blir i atmosfæren i hundrevis av år, må samfunnet drive ${g('klimatilpasning', 'klimatilpasning')} for å tåle varmere vær, havstigning og styrtregn.</p>
+          <p>Norske kommuner bruker NVEs <strong>flomsonekart</strong> (200-årsflom), bygger flomvern og lager planer for <strong>overvann</strong> der mye asfalt hindrer vannet i å synke ned – blant annet gjennom <strong>naturbaserte løsninger</strong> som grønne tak, åpne bekker og regnbed.</p>
+        `,
+        full: `
+          <p><strong>Hvorfor ${g('klimatilpasning', 'klimatilpasning')} haster:</strong> Selv om vi kutter utslipp nå, vil CO₂ som allerede er sluppet ut varme jorda i flere hundre år. Derfor krever også Parisavtalen at alle land og kommuner planlegger for å begrense skader fra flom, stormflo, skred og tørke.</p>
+          <p><strong>Verktøy i norske kommuner:</strong></p>
+          <p>• <strong>Flomsonekart og arealplanlegging:</strong> NVE lager flomsonekart som viser hvor vannet vil nå ved en 200-årsflom. Kommunene må hindre ny bygging på utsatte elvesletter, sikre eksisterende bygg med flomvern (slik som på Bryggen i Bergen) eller i ytterste fall flytte boliger.<br>• <strong>Overvann i byer:</strong> Asfalt, tak og betong hindrer regnet i å trekke ned i jorda, slik at styrtregn raskt gir kjelleroversvømmelser. Kommuner krever derfor bedre overvannsrør og oppsamlingskummer.<br>• <strong>Naturbaserte løsninger:</strong> Ved å erstatte asfalt med grøntområder, åpne bekker, vannspeil, regnbed og grønne tak og vegger kan naturen suge opp regnvannet, kjøle ned byen i hetebølger og skape trivelige møteplasser.</p>
+          <div class="elevated-surface border border-emerald-500/35 rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">📍 Lokalt eksempel · Hjalmar Johansen vgs og Skien / Porsgrunn</p>
+            <p>Rundt <strong>Hjalmar Johansen vgs</strong> på Klosterskogen og ved <strong>Skien fritidspark</strong> ser vi hvordan grøntområder, skog og åpne gressflater hjelper bakken med å suge opp styrtregn – i motsetning til asfalterte sentrumsgater nede i <strong>Skien</strong> og <strong>Porsgrunn</strong> langs Skienselva. Når Skien kommune planlegger nye bygg og veier nær Børsesjø, Falkumelva og Skienselva, brukes NVEs flomsonekart og Kommunalbankens klimarisiko-data aktivt for å unngå flomskader.</p>
+          </div>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">Oppdrag for Skien / Porsgrunn</p>
+            <p>Sjekk <strong>klimarisiko.kommunalbanken.no</strong> for Skien eller Porsgrunn kommune: hvilke klimautfordringer ventes fram mot 2100? Tenk deg at du skal tegne om uteområdet ved <strong>Hjalmar Johansen vgs</strong> med regnbed, trær og grønne tak – hvordan vil det hindre overvann?</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hva er en «naturbasert løsning» for å håndtere styrtregn i byer som Skien og Porsgrunn?',
+          options: ['Å asfaltere alle parker og skolegårder', 'Å bruke grøntområder, åpne bekker, regnbed og grønne tak slik at vegetasjon og jord suger opp og bremser vannet', 'Å pumpe alt regnvannet inn i nærmeste kjeller', 'Å kutte ned trærne langs elva'],
+          correct: 1,
+          feedback: 'Riktig! Naturbaserte løsninger etterligner naturens eget vannkretsløp, demper flomtopper og gir samtidig grønnere bomiljøer.'
+        },
+        reflection: 'Hvordan kan skolegården eller nærområdet rundt Hjalmar Johansen vgs gjøres enda bedre rustet mot både kraftige regnskyll og varme sommerdager?',
+        goal: 'Kunne forklare hva klimatilpasning er, og gi konkrete eksempler på flomsonekart, overvannshåndtering og naturbaserte løsninger i Skien/Telemark.'
+      },
+      {
+        id: 'n28', bookChapter: 5, chapter: 'klima-losninger', type: 'fordypning', icon: '🤝',
+        x: 770, y: 180, parents: ['n25', 'n26'],
+        period: 'Globalt & Brevik', part: '7. Paris & Langskip',
+        title: '7. Parisavtalen & karbonfangst i Brevik (Langskip)',
+        subtitle: 'Globalt klimasamarbeid, styrker og svakheter ved Parisavtalen, og verdensledende CO₂-fangst i Porsgrunn',
+        image: 'Images/fig-langskip-brevik.svg',
+        caption: 'Langskip: CO₂ fanges ved Heidelberg Materials i Brevik (Porsgrunn), fraktes med skip til Øygarden og lagres 2600 m under Nordsjøen. · Kilde: Nils',
+        enkel: `
+          <p>${g('parisavtalen', 'Parisavtalen')} (2015, 194 land) har som mål å holde oppvarmingen godt under <strong>2 °C</strong> og helst under <strong>1,5 °C</strong>, med klimanøytralitet i andre halvdel av århundret. Norge har som mål 50–55 % kutt innen 2030 og 90–95 % innen 2050.</p>
+          <p>For å fjerne utslipp fra tungindustri trengs ${g('karbonfangst', 'karbonfangst og lagring (CCS)')}. I det norske <strong>Langskip</strong>-prosjektet fanges CO₂ fra sementfabrikken til <strong>Heidelberg Materials i Brevik</strong> i Porsgrunn og lagres 2600 meter under havbunnen i Nordsjøen.</p>
+        `,
+        full: `
+          <p><strong>${g('parisavtalen', 'Parisavtalen')}:</strong> Etter 21 FN-klimatoppmøter – bygget på kunnskapen fra FNs klimapanel (IPCC) – ble 194 land enige om Parisavtalen i 2015. Målet er å begrense temperaturøkningen til godt under <strong>2 °C</strong> (for å unngå farlige, irreversible endringer) og helst ned mot <strong>1,5 °C</strong> (et krav fra sårbare øystater). Det krever 40–50 % globale utslippskutt innen 2030 (mot 2010) og klimanøytralitet senere i århundret, samt et klimafond der rike land hjelper fattige land. Norges mål er 50–55 % kutt innen 2030 (mot 1990) og 90–95 % innen 2050.</p>
+          <p><strong>Svakheter og utfordringer:</strong> Hvert land bestemmer selv sine egne utslippsmål, og det finnes ingen juridisk straff om målene ikke nås (bare krav om rapportering og økte ambisjoner hvert femte år). Dessuten er internasjonal skipsfart og flytrafikk holdt utenfor, USA trakk seg ut igjen i 2025, og globale utslipp har fortsatt å øke – selv om FNs klimapanel understreker at det fortsatt er teknisk mulig å snu utviklingen med fornybar energi, skogvern og karbonfangst.</p>
+          <p><strong>${g('karbonfangst', 'Karbonfangst og lagring (CCS / Langskip)')}:</strong> Enkelte næringer, som sementproduksjon, slipper ut CO₂ fra selve den kjemiske prosessen selv om de bruker ren strøm. Løsningen er å fange CO₂ før den går ut i lufta og lagre den permanent dypt i berggrunnen.</p>
+          <div class="elevated-surface border border-emerald-500/35 rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">📍 Lokalt eksempel · Heidelberg Materials i Brevik (Porsgrunn)</p>
+            <p>Bare en kort busstur fra Skien og Hjalmar Johansen vgs ligger <strong>Brevik i Porsgrunn</strong> – midtpunktet i Norges største klimasatsing, <strong>Langskip</strong>. På sementfabrikken til <strong>Heidelberg Materials</strong> fanges CO₂ fra røykgassen, gjøres flytende og fraktes med spesialskip til mellomlageret i <strong>Øygarden</strong> ved Bergen, før den pumpes i rør ut i Nordsjøen og lagres <strong>2600 meter under havbunnen</strong> (basert på norsk erfaring fra Sleipnerfeltet siden 1996).</p>
+          </div>
+        `,
+        caseHtml: `
+          <div class="elevated-surface border rounded-xl p-4 space-y-2 text-sm">
+            <p class="text-xs font-bold uppercase tracking-wider text-sky-400">Styrker og svakheter ved Parisavtalen</p>
+            <p><strong>Styrker:</strong> Samler nesten hele verden (194 land), setter tydelige temperaturmål (1,5 / 2 °C), krever opptrapping hvert 5. år og inkluderer klimafond for fattige land.<br><strong>Svakheter:</strong> Frivillige kutt uten straff, internasjonale fly/skip er utelatt, og samlede løfter er foreløpig ikke nok.</p>
+          </div>
+        `,
+        quiz: {
+          q: 'Hva skjer med CO₂-gassen som fanges fra sementfabrikken i Brevik i Porsgrunn gjennom Langskip-prosjektet?',
+          options: ['Den slippes ut igjen over Nordsjøen', 'Den fraktes med skip til Øygarden og pumpes ned til permanent lagring 2600 meter under havbunnen', 'Den brukes til å fryse ned isbreene i Telemark', 'Den blandes inn i drikkevannet'],
+          correct: 1,
+          feedback: 'Riktig! I Langskip fanges CO₂ i Brevik, sendes med skip til Øygarden og lagres trygt 2600 meter under havbunnen i Nordsjøen.'
+        },
+        reflection: 'Hvorfor er karbonfangst i Brevik viktig for hele verden, ikke bare for utslippene i Porsgrunn og Norge?',
+        goal: 'Kunne vurdere styrker og svakheter ved Parisavtalen, og forklare hvordan karbonfangst og lagring fungerer i Langskip-prosjektet i Brevik.'
       }
     ];
     // 3. State
@@ -1232,7 +1497,11 @@
       'klima-grunnlag': 'Grunnlag',
       'vind-nedbor': 'Vind & regn',
       'klimafaktorer': 'Faktorer',
-      'klimasoner': 'Soner'
+      'klimasoner': 'Soner',
+      'klima-oppvarming': 'Oppvarming',
+      'klima-utslipp': 'Utslipp',
+      'klima-konsekvenser': 'Følger',
+      'klima-losninger': 'Løsninger'
     };
 
     function applyTransform() {
@@ -1416,13 +1685,15 @@
       const classicLink = document.getElementById('classic-chap-link');
       if (classicLink) {
         classicLink.href = `index.html#kap${activeBookChapter}`;
-        classicLink.textContent = activeBookChapter === 3 ? '3. Ytre krefter ↗' : '4. Vær og klima ↗';
+        classicLink.textContent = activeBookChapter === 3 ? '3. Ytre krefter ↗' : activeBookChapter === 4 ? '4. Vær og klima ↗' : '5. Klimaendringer ↗';
       }
       const headerTitle = document.getElementById('header-chap-title');
       if (headerTitle) {
         headerTitle.textContent = activeBookChapter === 3
           ? 'Kapittel 3 · Ytre krefter og landformene i Norge'
-          : 'Kapittel 4 · Vær og klima';
+          : activeBookChapter === 4
+            ? 'Kapittel 4 · Vær og klima'
+            : 'Kapittel 5 · Klimaendringer';
       }
     }
 
@@ -1818,11 +2089,16 @@
       { id: 'klima-grunnlag', bookChapter: 4, title: '4.1 Vær, klima & drivhuseffekt', dot: 'bg-sky-400', nodeIds: ['n15', 'n16'] },
       { id: 'vind-nedbor', bookChapter: 4, title: '4.2 Vind & nedbørstyper', dot: 'bg-emerald-400', nodeIds: ['n17', 'n18'] },
       { id: 'klimafaktorer', bookChapter: 4, title: '4.3 Hva bestemmer klimaet?', dot: 'bg-amber-400', nodeIds: ['n19', 'n20'] },
-      { id: 'klimasoner', bookChapter: 4, title: '4.4 Klimasoner & Norge', dot: 'bg-violet-400', nodeIds: ['n21'] }
+      { id: 'klimasoner', bookChapter: 4, title: '4.4 Klimasoner & Norge', dot: 'bg-violet-400', nodeIds: ['n21'] },
+      { id: 'klima-oppvarming', bookChapter: 5, title: '5.1 Global oppvarming & årsaker', dot: 'bg-amber-400', nodeIds: ['n22', 'n23'] },
+      { id: 'klima-utslipp', bookChapter: 5, title: '5.2 Karbonkretsløp & utslipp', dot: 'bg-rose-400', nodeIds: ['n24'] },
+      { id: 'klima-konsekvenser', bookChapter: 5, title: '5.3 Konsekvenser for natur & folk', dot: 'bg-sky-400', nodeIds: ['n25', 'n26'] },
+      { id: 'klima-losninger', bookChapter: 5, title: '5.4 Tilpasning, Paris & Brevik', dot: 'bg-emerald-400', nodeIds: ['n27', 'n28'] }
     ];
     const BOOK_CHAPTER_TITLES = {
       3: 'Kapittel 3 · Ytre krefter',
-      4: 'Kapittel 4 · Vær og klima'
+      4: 'Kapittel 4 · Vær og klima',
+      5: 'Kapittel 5 · Klimaendringer'
     };
     const expandedGroups = new Set(CHAPTER_GROUPS.map(g => g.id));
     let leftViewMode = 'sidebar'; // 'sidebar' | 'tree'
@@ -1936,7 +2212,7 @@
 
     const urlParams = new URLSearchParams(window.location.search);
     const paramKap = Number(urlParams.get('kap'));
-    const initialChap = (paramKap === 3 || paramKap === 4) ? paramKap : 3;
+    const initialChap = (paramKap === 3 || paramKap === 4 || paramKap === 5) ? paramKap : 3;
     setLeftView('tree');
     switchBookChapter(initialChap);
     setTimeout(fitOverview, 50);

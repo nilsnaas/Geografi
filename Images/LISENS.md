@@ -42,9 +42,13 @@ Alle bilder og illustrasjoner i mappen `Images/` er **egenproduserte** for dette
   - `fig-fjellskred.svg`
   - `fig-fjordprofil.svg`
   - `fig-forvitring.svg`
+  - `fig-karbonkretslop.svg`
+  - `fig-klimaendring-temp.svg`
   - `fig-kvikkleire.svg`
+  - `fig-langskip-brevik.svg`
   - `fig-maringrense.svg`
   - `fig-nedborstyper.svg`
+  - `fig-tilbakekobling.svg`
   - `fig-vindsirkulasjon.svg`
   - `telemark-geiteryggen.svg`
   - `telemark-jomfruland.svg`

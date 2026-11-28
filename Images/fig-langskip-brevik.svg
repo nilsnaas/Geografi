@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 340" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <marker id="arrL" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#0284c7"/>
+    </marker>
+  </defs>
+  <rect width="820" height="340" rx="16" fill="#f5f3ee"/>
+  <text x="24" y="34" fill="#0f172a" font-size="18" font-weight="700">Karbonfangst og lagring (Langskip) – fra Brevik til Nordsjøen</text>
+  <text x="24" y="54" fill="#475569" font-size="12">CO₂ fanges før den slipper ut av pipa og lagres trygt 2600 meter under havbunnen</text>
+
+  <!-- Steg 1: Brevik -->
+  <rect x="24" y="88" width="220" height="210" rx="12" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <text x="134" y="114" text-anchor="middle" fill="#047857" font-size="13" font-weight="700">1. Fangst i Brevik (Porsgrunn)</text>
+  <rect x="65" y="155" width="75" height="65" fill="#cbd5e1" stroke="#64748b"/>
+  <rect x="148" y="128" width="22" height="92" fill="#94a3b8" stroke="#475569"/>
+  <path d="M159,125 Q172,110 185,120" fill="none" stroke="#0284c7" stroke-width="3" stroke-dasharray="4 3"/>
+  <text x="134" y="246" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">Heidelberg Materials</text>
+  <text x="134" y="264" text-anchor="middle" fill="#334155" font-size="10.5">Fanger CO₂ fra sement-</text>
+  <text x="134" y="279" text-anchor="middle" fill="#334155" font-size="10.5">produksjonen i Telemark.</text>
+
+  <line x1="248" y1="190" x2="294" y2="190" stroke="#0284c7" stroke-width="3" marker-end="url(#arrL)"/>
+
+  <!-- Steg 2: Transport -->
+  <rect x="300" y="88" width="220" height="210" rx="12" fill="#ffffff" stroke="#0284c7" stroke-width="2"/>
+  <text x="410" y="114" text-anchor="middle" fill="#0369a1" font-size="13" font-weight="700">2. Skip til Øygarden</text>
+  <rect x="315" y="195" width="190" height="32" rx="4" fill="#bae6fd"/>
+  <path d="M350,195 L365,172 L455,172 L470,195 Z" fill="#0369a1"/>
+  <rect x="378" y="156" width="58" height="16" rx="3" fill="#e2e8f0"/>
+  <text x="410" y="246" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">Flytende CO₂ i tanker</text>
+  <text x="410" y="264" text-anchor="middle" fill="#334155" font-size="10.5">Fraktes sjøveien til</text>
+  <text x="410" y="279" text-anchor="middle" fill="#334155" font-size="10.5">mellomlager ved Bergen.</text>
+
+  <line x1="524" y1="190" x2="570" y2="190" stroke="#0284c7" stroke-width="3" marker-end="url(#arrL)"/>
+
+  <!-- Steg 3: Lagring -->
+  <rect x="576" y="88" width="220" height="210" rx="12" fill="#ffffff" stroke="#1e40af" stroke-width="2"/>
+  <text x="686" y="114" text-anchor="middle" fill="#1e3a8a" font-size="13" font-weight="700">3. Lagring i Nordsjøen</text>
+  <rect x="592" y="135" width="188" height="40" fill="#0284c7" opacity="0.25"/>
+  <rect x="592" y="175" width="188" height="48" fill="#d6d3d1"/>
+  <line x1="686" y1="135" x2="686" y2="205" stroke="#1e3a8a" stroke-width="4"/>
+  <ellipse cx="686" cy="208" rx="48" ry="12" fill="#1e40af" opacity="0.7"/>
+  <text x="686" y="246" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">2600 m under havbunnen</text>
+  <text x="686" y="264" text-anchor="middle" fill="#334155" font-size="10.5">Pumpes i rør ned i tette</text>
+  <text x="686" y="279" text-anchor="middle" fill="#334155" font-size="10.5">bergformasjoner permanent.</text>
+</svg>
