@@ -77,19 +77,22 @@
   <header class="sticky top-0 panel-surface border-b px-3 sm:px-5 py-2.5 shrink-0 z-30">
     <div class="flex flex-wrap items-center justify-between gap-2.5">
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-lg bg-emerald-700 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shadow-sm shrink-0">NN</div>
-        <div class="leading-tight">
-          <div class="flex items-center gap-2">
-            <span class="text-[11px] font-semibold uppercase tracking-wider text-emerald-500">Nils sin geografibok</span>
-            <span class="text-xs text-sec hidden sm:inline">·</span>
-            <span class="text-xs font-medium text-sec hidden sm:inline">Kapittel 3 · Klassisk lesning</span>
+        <a href="#startside" class="flex items-center gap-3 hover:opacity-90 transition-opacity" title="Tilbake til startsiden">
+          <div class="w-8 h-8 rounded-lg bg-emerald-700 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shadow-sm shrink-0">NN</div>
+          <div class="leading-tight">
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] font-semibold uppercase tracking-wider text-emerald-500">Nils sin geografibok</span>
+              <span class="text-xs text-sec hidden sm:inline">·</span>
+              <span class="text-xs font-medium text-sec hidden sm:inline">Kapittel 3 · Klassisk lesning</span>
+            </div>
+            <h1 class="font-bold text-sm sm:text-base tracking-tight">Naturgeografi · Kapittel 3</h1>
           </div>
-          <h1 class="font-bold text-sm sm:text-base tracking-tight">Naturgeografi · Kapittel 3</h1>
-        </div>
+        </a>
       </div>
 
       <div class="flex flex-wrap items-center gap-2">
-        <a href="index.html" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors">🌳 App / Kunnskapstre</a>
+        <a href="#startside" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors">🏠 Startside</a>
+        <a href="index.html?view=tree" class="elevated-surface border hover:border-sky-400/60 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors">🌳 Kunnskapstre ↗</a>
 
         <div class="elevated-surface border rounded-lg p-0.5 flex items-center text-xs font-medium" title="Bytt mellom kortversjon og full læreboktekst">
           <button id="mode-enkel" type="button" class="px-2.5 py-1 rounded-md transition-colors text-sec hover:text-current">Enkel</button>
@@ -766,12 +769,13 @@
     ];
 
     const expandedGroups = new Set(CHAPTER_GROUPS.map(gr => gr.id));
-    let activeSectionId = 'n1';
+    let activeSectionId = 'startside';
     let readingMode = 'full';
 
     function renderClassicNav(targetId, closeDrawerOnClick = false) {
       const el = document.getElementById(targetId);
       if (!el) return;
+      const startLink = `<a href="#startside" data-target="startside" class="nav-link block px-3 py-2.5 rounded-xl text-xs font-bold border transition-colors ${activeSectionId === 'startside' ? 'bg-emerald-600 text-white border-emerald-600' : 'elevated-surface text-sec hover:text-current'}">🏠 Startside &amp; veiledning</a>`;
       const groupsHtml = CHAPTER_GROUPS.map(group => {
         const isOpen = expandedGroups.has(group.id);
         const hasActive = group.nodeIds.includes(activeSectionId);
@@ -800,7 +804,7 @@
       }).join('');
 
       const glossaryLink = `<a href="#ordliste" data-target="ordliste" class="nav-link block px-3 py-2.5 rounded-xl text-xs font-bold border transition-colors ${activeSectionId === 'ordliste' ? 'bg-emerald-600 text-white border-emerald-600' : 'elevated-surface text-sec hover:text-current'}">📖 Samlet ordliste</a>`;
-      el.innerHTML = groupsHtml + glossaryLink;
+      el.innerHTML = startLink + groupsHtml + glossaryLink;
 
       el.querySelectorAll('.classic-group-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -822,16 +826,46 @@
     function renderClassicContent() {
       const main = document.getElementById('classic-main');
       const introHeader = `
-        <section class="panel-surface border rounded-2xl p-6 sm:p-9 shadow-xs">
-          <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-emerald-500 mb-3">
-            <span class="elevated-surface border px-2.5 py-1 rounded-md">Naturgeografi</span>
-            <span class="text-sec">/</span>
-            <span>Kapittel 3 · Samlet klassisk lesning</span>
+        <section id="startside" class="scroll-mt-header panel-surface border rounded-2xl p-6 sm:p-9 shadow-xs">
+          <div class="grid grid-cols-1 md:grid-cols-[230px_1fr] xl:grid-cols-[260px_1fr] gap-6 lg:gap-8 items-center">
+            <div class="mx-auto md:mx-0">
+              <img src="Images/cover-geografi.jpg" alt="Omslag til Geografi for videregående skole vg2 (LK20) av Nils" class="w-52 sm:w-56 md:w-full rounded-2xl shadow-xl border border-slate-500/25 object-cover" />
+            </div>
+
+            <div class="space-y-4">
+              <div>
+                <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-emerald-500 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-1 rounded-full mb-2">Nils sin geografibok · Vg2 · LK20</span>
+                <h1 class="font-serif text-2xl sm:text-4xl font-bold tracking-tight">Velkommen til Kapittel 3: Ytre krefter og landformene i Norge</h1>
+                <p class="text-sm sm:text-base text-sec mt-2 leading-relaxed">
+                  Fra forvitring og erosjon til elvelandformer, isbreer, Norges landformer, løsmasser fra istiden og skredfare – med figurer, lokale eksempler fra Telemark og fagbegreper.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="elevated-surface border rounded-xl p-4 space-y-1.5">
+                  <p class="text-xs font-bold uppercase tracking-wider text-emerald-500">1. Velg kapittel i menyen til venstre</p>
+                  <p class="text-xs sm:text-sm text-sec leading-relaxed">
+                    Bruk <strong>kapittelmenyen til venstre</strong> (3.1–3.5) for å hoppe rett til ønsket tema, eller scroll nedover for å lese hele kapittelet fortløpende.
+                  </p>
+                </div>
+                <div class="elevated-surface border rounded-xl p-4 space-y-1.5">
+                  <p class="text-xs font-bold uppercase tracking-wider text-sky-500">2. Bytt visningsmåte med Kunnskapstreet</p>
+                  <p class="text-xs sm:text-sm text-sec leading-relaxed">
+                    Vil du utforske hvordan prosessene og landformene henger sammen? Klikk på <strong>🌳 Kunnskapstre</strong> for å åpne den interaktive kartvisningen.
+                  </p>
+                </div>
+              </div>
+
+              <div class="elevated-surface border rounded-xl px-4 py-3 text-xs text-sec leading-relaxed">
+                <strong class="text-emerald-500">Tips:</strong> Øverst kan du bytte mellom <strong>Enkel</strong> og <strong>Full</strong> tekst, og holde musepekeren over <strong class="text-emerald-500">uthevede fagbegreper</strong> for forklaring.
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2.5 pt-1">
+                <a href="#n1" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-semibold shadow-sm transition-colors">Start med 1. Hva er en landform? ↓</a>
+                <a href="index.html?view=tree" class="elevated-surface border hover:border-sky-400/60 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-colors">🌳 Prøv Kunnskapstreet ↗</a>
+              </div>
+            </div>
           </div>
-          <h1 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-3">Ytre krefter og landformene i Norge</h1>
-          <p class="text-base sm:text-lg text-sec leading-relaxed">
-            Fra forvitring og erosjon til elvelandformer, isbreer, Norges gamle og unge landformer, løsmasser fra istiden og skredfare. Bruk menyen til venstre for å hoppe rett til ønsket tema, eller les kapittelet fortløpende nedover.
-          </p>
         </section>
       `;
 
@@ -923,7 +957,7 @@
       document.getElementById('reading-progress').style.width = `${pct}%`;
 
       const sections = document.querySelectorAll('main section[id]');
-      let current = 'n1';
+      let current = 'startside';
       sections.forEach(sec => {
         if (sec.getBoundingClientRect().top <= 170) current = sec.id;
       });

@@ -1590,6 +1590,9 @@
     document.getElementById('btn-try-tree')?.addEventListener('click', () => setLeftView('tree'));
 
     showWelcome();
+    if (new URLSearchParams(window.location.search).get('view') === 'tree') {
+      setLeftView('tree');
+    }
     setTimeout(fitOverview, 50);
   </script>
 </body>
