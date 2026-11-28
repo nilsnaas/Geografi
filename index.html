@@ -102,7 +102,7 @@
   <!-- Top Navigation Bar (2 rows) -->
   <header class="panel-surface border-b px-3 sm:px-5 py-2.5 shrink-0 z-30">
     <div class="flex flex-wrap items-center justify-between gap-2.5">
-      <div class="flex items-center gap-3">
+      <button id="btn-home-brand" type="button" class="flex items-center gap-3 text-left hover:opacity-90 transition-opacity" title="Tilbake til startsiden">
         <div class="w-8 h-8 rounded-lg bg-emerald-700 text-white font-serif font-bold text-xs flex items-center justify-center tracking-tight shadow-sm shrink-0">NN</div>
         <div class="leading-tight">
           <div class="flex items-center gap-2">
@@ -112,9 +112,11 @@
           </div>
           <h1 class="font-bold text-sm sm:text-base tracking-tight">Naturgeografi · Kapittel 3</h1>
         </div>
-      </div>
+      </button>
 
       <div class="flex flex-wrap items-center gap-2">
+        <button id="btn-welcome" type="button" class="elevated-surface border hover:border-emerald-500/50 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors" title="Vis velkomstside og veiledning">🏠 Startside</button>
+
         <!-- View Switcher: Klassisk sidemeny (standard) vs Kunnskapstre -->
         <div class="elevated-surface border rounded-lg p-0.5 flex items-center text-xs font-medium" title="Bytt mellom klassisk kapittelmeny og interaktivt kunnskapstre">
           <button id="view-sidebar" type="button" class="px-2.5 py-1 rounded-md transition-colors bg-emerald-600 text-white font-semibold">📖 Kapittelmeny</button>
@@ -220,8 +222,54 @@
       </div>
     </section>
 
-    <!-- RIGHT PANE: Content Reader -->
+    <!-- RIGHT PANE: Content Reader & Welcome Start Page -->
     <section id="content-pane" class="panel-surface border rounded-2xl overflow-y-auto p-5 sm:p-7 flex flex-col">
+      <!-- Welcome / Start Page -->
+      <div id="welcome-view" class="flex-1 flex flex-col justify-center max-w-4xl mx-auto w-full py-2">
+        <div class="grid grid-cols-1 md:grid-cols-[240px_1fr] xl:grid-cols-[270px_1fr] gap-6 lg:gap-8 items-center">
+          <div class="mx-auto md:mx-0">
+            <img src="Images/cover-geografi.jpg" alt="Omslag til Geografi for videregående skole vg2 (LK20) av Nils" class="w-52 sm:w-60 md:w-full rounded-2xl shadow-2xl border border-slate-500/25 object-cover" />
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-1 rounded-full mb-2">Nils sin geografibok · Vg2 · LK20</span>
+              <h2 class="font-serif text-2xl sm:text-3xl font-bold tracking-tight">Velkommen til Kapittel 3: Ytre krefter og landformene i Norge</h2>
+              <p class="text-sm sm:text-base text-sec mt-2 leading-relaxed">
+                Her lærer du hvordan vann, is, vind og tyngdekraft former det norske landskapet – med figurer, lokale eksempler fra Telemark, ordforklaringer og kontrollspørsmål.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="elevated-surface border rounded-xl p-4 space-y-1.5">
+                <p class="text-xs font-bold uppercase tracking-wider text-emerald-400">1. Velg kapittel til venstre</p>
+                <p class="text-xs sm:text-sm text-sec leading-relaxed">
+                  I <strong>kapittelmenyen til venstre</strong> velger du hvilket tema du vil lese (3.1–3.5). Klikk på et punkt for å åpne fagstoff, figurer og oppgaver.
+                </p>
+              </div>
+              <div class="elevated-surface border rounded-xl p-4 space-y-1.5">
+                <p class="text-xs font-bold uppercase tracking-wider text-sky-400">2. Bytt til Kunnskapstreet</p>
+                <p class="text-xs sm:text-sm text-sec leading-relaxed">
+                  Ønsker du en annen visningsmåte? Klikk på <strong>🌳 Kunnskapstre</strong> i toppmenyen for å se hvordan alle landformene henger sammen i et interaktivt kart.
+                </p>
+              </div>
+            </div>
+
+            <div class="elevated-surface border rounded-xl px-4 py-3 text-xs text-sec leading-relaxed">
+              <strong class="text-emerald-400">Tips:</strong> Du kan også bytte mellom <strong>Enkel</strong> og <strong>Full</strong> tekst øverst, holde musepekeren over grønne fagbegreper for forklaring, eller åpne <strong>Klassisk visning</strong> for å lese hele kapittelet på én side.
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2.5 pt-1">
+              <button id="btn-start-reading" type="button" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-semibold shadow-sm transition-colors">Start med 1. Hva er en landform? →</button>
+              <button id="btn-try-tree" type="button" class="elevated-surface border hover:border-sky-400/60 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-colors">🌳 Prøv Kunnskapstreet</button>
+              <a href="klassisk.html" class="elevated-surface border hover:border-emerald-500/50 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-sec hover:text-current transition-colors">📜 Klassisk visning ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Node Reader -->
+      <div id="node-reader-view" class="hidden flex-1 flex flex-col">
       <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
         <div class="flex flex-wrap items-center gap-2 text-xs">
           <span id="node-period" class="font-semibold text-emerald-400"></span>
@@ -255,6 +303,7 @@
           <p class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">Kompetansemål &amp; Læringsfokus</p>
           <p id="node-goal" class="text-xs sm:text-sm text-sec leading-relaxed"></p>
         </div>
+      </div>
       </div>
     </section>
   </div>
@@ -878,14 +927,14 @@
       }
     ];
     // 3. State
-    let activeNodeId = 'n1';
+    let activeNodeId = null;
     let readingMode = 'full';
     let activeTab = 'fagstoff';
     let activeFilter = 'all';
     let followMode = true;
     let panX = 0, panY = 0, scale = 0.85;
     const nodeQuizState = {};
-    const visitedNodes = new Set(['n1']);
+    const visitedNodes = new Set();
 
     function getAncestorEdgeSet(nodeId) {
       const activeEdges = new Set();
@@ -1056,11 +1105,27 @@
       });
     }
 
+    function showWelcome() {
+      activeNodeId = null;
+      const welcomeView = document.getElementById('welcome-view');
+      const readerView = document.getElementById('node-reader-view');
+      if (welcomeView) welcomeView.classList.remove('hidden');
+      if (readerView) readerView.classList.add('hidden');
+      renderTree();
+      renderSidebar();
+      document.getElementById('content-pane').scrollTop = 0;
+    }
+
     function selectNode(id) {
       activeNodeId = id;
       visitedNodes.add(id);
       const node = NODES.find(n => n.id === id);
       if (!node) return;
+
+      const welcomeView = document.getElementById('welcome-view');
+      const readerView = document.getElementById('node-reader-view');
+      if (welcomeView) welcomeView.classList.add('hidden');
+      if (readerView) readerView.classList.remove('hidden');
 
       const ownerGroup = CHAPTER_GROUPS.find(g => g.nodeIds.includes(id));
       if (ownerGroup) expandedGroups.add(ownerGroup.id);
@@ -1153,7 +1218,7 @@
       readingMode = mode;
       btnEnkel.className = mode === 'enkel' ? 'px-2.5 py-1 rounded-md transition-colors bg-emerald-600 text-white font-semibold' : 'px-2.5 py-1 rounded-md transition-colors text-sec hover:text-current';
       btnFull.className = mode === 'full' ? 'px-2.5 py-1 rounded-md transition-colors bg-emerald-600 text-white font-semibold' : 'px-2.5 py-1 rounded-md transition-colors text-sec hover:text-current';
-      renderTabContent();
+      if (activeNodeId) renderTabContent();
     }
     btnEnkel.addEventListener('click', () => setReadingMode('enkel'));
     btnFull.addEventListener('click', () => setReadingMode('full'));
@@ -1207,7 +1272,7 @@
       btnFollow.className = followMode
         ? 'px-2.5 py-1 rounded-lg bg-emerald-600 text-white font-semibold transition-colors'
         : 'px-2.5 py-1 rounded-lg text-sec hover:text-current transition-colors';
-      if (followMode) centerOnNode(NODES.find(n => n.id === activeNodeId));
+      if (followMode && activeNodeId) centerOnNode(NODES.find(n => n.id === activeNodeId));
     });
 
     const searchInput = document.getElementById('search-input');
@@ -1519,9 +1584,12 @@
     btnViewSidebar.addEventListener('click', () => setLeftView('sidebar'));
     btnViewTree.addEventListener('click', () => setLeftView('tree'));
 
-    renderTree();
-    renderSidebar();
-    selectNode('n1');
+    document.getElementById('btn-welcome')?.addEventListener('click', showWelcome);
+    document.getElementById('btn-home-brand')?.addEventListener('click', showWelcome);
+    document.getElementById('btn-start-reading')?.addEventListener('click', () => selectNode('n1'));
+    document.getElementById('btn-try-tree')?.addEventListener('click', () => setLeftView('tree'));
+
+    showWelcome();
     setTimeout(fitOverview, 50);
   </script>
 </body>
